@@ -20,12 +20,45 @@ Not affiliated with Rewe in any way.
 
 ## contents
 
-A basic go implementation + documentation of the rewe api is available in the [pkg](pkg) directory. 
+A basic go implementation + documentation of the rewe api is available in the [pkg](pkg) directory. CLI is in [cmd](cmd).
 
 At some point this repo will contain:
-- a cli and tui for the go-implementation
+- a tui for the go-implementation
 - a powershell script for extracting the password incase it changes (script will not work if anything else changes because of static linking)
 - (maybe) a basic python implementation for fetching discounts if no one wants to maintain one ([torbens fork](https://github.com/torbenpfohl/rewe-discounts) is already functional)
+
+## cli
+
+```
+> rewerse.exe
+Usage: rewerse-cli [flags] [subcommand] [subcommand-flags]
+
+Flags:
+   -cert <path>                                      Path to the certificate file (default 'certificate.pem')
+   -key <path>                                       Path to the key file (default 'private.key')
+   -json                                             Output in JSON format (default false)
+
+Subcommands:
+   marketsearch -query <query>                       Search for markets
+   marketdetails -id <market-id>                     Get details for a market
+   coupons                                           Get coupons
+   recalls                                           Get recalls
+   discounts -id <market-id> [-raw] [-catGroup]      Get discounts
+
+Subcommand-Flags:
+   -query <query>                                    Search query. Can be a city, postal code, street, etc.
+   -id <market-id>                                   ID of the market or discount. Get it from marketsearch.
+   -raw                                              Raw output format (directly from the API). Otherwise, it's parsed and cleaned based on what I thought was useful.
+   -catGroup                                         Group by product category instead of rewe-app-category
+
+Examples:
+   rewerse.exe marketsearch -query Köln
+   rewerse.exe marketdetails -id 1763153
+   rewerse.exe discounts -id 1763153
+   rewerse.exe -json discounts -id 1763153 -raw
+   rewerse.exe discounts -id 1763153 -catGroup
+   rewerse.exe -cert cert.pem -key p.key marketsearch -query Köln
+```
 
 ## misc
 
