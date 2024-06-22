@@ -16,7 +16,7 @@ This Go Package implements some of the endpoints used by the Rewe app. The follo
 
 To use any of the functions, the certificate of the Rewe app must be provided:
 ```go
-err := rewerse.SetCertificate("private.pem", "private.key")
+err := rewerse.SetCertificate("certificate.pem", "private.key")
 if err != nil {
     panic(err)
 }

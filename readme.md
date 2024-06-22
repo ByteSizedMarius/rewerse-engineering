@@ -1,7 +1,7 @@
 # rewerse engineering
 
 > [!CAUTION]
-> The certificates required for this repository are not included. You need to extract them from the APK.
+> The certificates required for this repository are not included. You need to extract them from the APK. An extraction-script for windows can be found in the [docs](./docs) directory.
 
 Current supported APK version: 3.18.5 (as of 27.05.24)
 
