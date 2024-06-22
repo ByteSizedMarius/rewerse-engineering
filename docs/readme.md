@@ -38,3 +38,20 @@ You can also quite easily extract the pfx manually by [downloading the apk](http
 ## misc
 
 [Torben](https://github.com/torbenpfohl/rewe-discounts) also has a python helper that's a bit less overengineered.
+
+apk versions:
+
+| version | tested |
+|---------|--------|
+| 3.18.5  | ✅      |
+| 3.18.4  | ✅      |
+| 3.18.3  | ✅      |
+| 3.18.2  | ✅      |
+| 3.18.1  | ✅      |
+| 3.18.0  | ✅      |
+| 3.17.5  | ✅      |
+| 3.16.6  | ✅      |
+| 3.16.5  | ✅      |
+| 3.16.2  | ✅      |
+
+Testing was very unnecessary, since it has seemingly been exactly the same setup for some time.
