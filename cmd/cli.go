@@ -32,7 +32,7 @@ func main() {
 		fmt.Println("\nSubcommand-Flags:")
 		fmt.Println(align("-query <query>") + "Search query. Can be a city, postal code, street, etc.")
 		fmt.Println(align("-id <market-id>") + "ID of the market or discount. Get it from marketsearch.")
-		fmt.Println(align("-raw") + "Raw output format (directly from the API). Otherwise, it's parsed and cleaned based on what I thought was useful.")
+		fmt.Println(align("-raw") + "Whether you want raw output format (directly from the API) or parsed.")
 		fmt.Println(align("-catGroup") + "Group by product category instead of rewe-app-category")
 		fmt.Println("\nExamples:")
 		fmt.Println("   rewerse.exe marketsearch -query Köln")
@@ -42,13 +42,30 @@ func main() {
 		fmt.Println("   rewerse.exe discounts -id 1763153 -catGroup")
 		fmt.Println("   rewerse.exe -cert cert.pem -key p.key marketsearch -query Köln")
 	}
-	certFile := flag.String("cert", "certificate.pem", "Path to the certificate file")
-	keyFile := flag.String("key", "private.key", "Path to the key file")
+
+	certFile := flag.String("cert", "", "Path to the certificate file")
+	keyFile := flag.String("key", "", "Path to the key file")
 	jsonOutput := flag.Bool("json", false, "Output in JSON format (default false)")
 	flag.Parse()
 
+	var crt, key string
+	if *certFile == "" {
+		crt = "certificate.pem"
+	} else {
+		crt = *certFile
+	}
+	if *keyFile == "" {
+		key = "private.key"
+	} else {
+		key = *keyFile
+	}
+
 	var err error
-	err = rewerse.SetCertificate(*certFile, *keyFile)
+	err = rewerse.SetCertificate(crt, key)
+	if err != nil && *certFile == "" && *keyFile == "" {
+		flag.Usage()
+		os.Exit(1)
+	}
 	hdl(err)
 
 	if flag.NArg() == 0 {
@@ -118,5 +135,5 @@ func main() {
 }
 
 func align(s string) string {
-	return "   " + s + strings.Repeat(" ", 40-len(s))
+	return "   " + s + strings.Repeat(" ", 50-len(s))
 }
