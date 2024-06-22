@@ -23,8 +23,8 @@ Not affiliated with Rewe in any way.
 A basic go implementation + documentation of the rewe api is available in the [pkg](pkg) directory. 
 
 At some point this repo will contain:
-- instructions/scripts for extracting the certificate
 - a cli and tui for the go-implementation
+- a powershell script for extracting the password incase it changes (script will not work if anything else changes because of static linking)
 - (maybe) a basic python implementation for fetching discounts if no one wants to maintain one ([torbens fork](https://github.com/torbenpfohl/rewe-discounts) is already functional)
 
 ## misc

@@ -11,7 +11,7 @@ import (
 type Markets []Market
 
 func (ms Markets) String() string {
-	s := "ID      Location\n"
+	s := "ID      Standort\n"
 	for _, m := range ms {
 		s += m.String() + "\n"
 	}

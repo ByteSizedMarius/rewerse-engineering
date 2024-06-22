@@ -7,10 +7,10 @@ type Recalls []Recall
 
 func (rs Recalls) String() string {
 	if len(rs) == 0 {
-		return "Currently no recalls"
+		return "Aktuell keine Produktrückrufe"
 	}
 
-	recalls := "Recalls:\n"
+	recalls := "Produktrückrufe:\n"
 	for _, r := range rs {
 		recalls += r.String() + "\n"
 	}
@@ -57,14 +57,14 @@ type RecipeHub struct {
 
 func (rh RecipeHub) String() string {
 	recipeHub := "Recipe Hub\n\n"
-	recipeHub += "Recipe of the Day\n--------------------\n" + rh.RecipeOfTheDay.String() + "\n"
+	recipeHub += "Rezept des Tages\n--------------------\n" + rh.RecipeOfTheDay.String() + "\n"
 
-	recipeHub += "Popular Recipes\n--------------------\n"
+	recipeHub += "Beliebte Rezepte\n--------------------\n"
 	for _, r := range rh.PopularRecipes {
 		recipeHub += r.String() + "\n"
 	}
 
-	recipeHub += "Available Categories\n--------------------\n"
+	recipeHub += "Verfügbare Rezept-Kategorien\n--------------------\n"
 	for _, c := range rh.Categories {
 		recipeHub += c.Title + "\n"
 	}
