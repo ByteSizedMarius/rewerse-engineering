@@ -1,2 +1,5 @@
 
 /.idea
+*.pem
+*.key
+*.exe
