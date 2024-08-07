@@ -30,13 +30,17 @@ if (-not $ApkFile) {
 		Write-Host "No APK files found in the directory '$WorkingDirectory'"
 		Write-Host "Downloading from UpToDown.com"
 		
-		# Static download link to 3.18.5 because the script may break with new versions anyways
+		# Static download link to 3.18.6 because the script may break with new versions anyways
 		# Also, it will take months from now until they can feasibly change anything about the certificates or api
 		# Send a request to the URL
-		$BaseUrl = "https://rewe.en.uptodown.com/android/post-download/1014869773" 
-		$Response = Invoke-WebRequest -Uri $BaseUrl -UseBasicParsing
-		if ($response.StatusCode -ne 200) {
-			Write-Error "Failed to fetch the URL. Status code: $($response.StatusCode). Download the apk manually from https://rewe.en.uptodown.com/android/post-download/1014869773"
+		$BaseUrl = "https://rewe.de.uptodown.com/android/download/1017194376" 
+		try {
+			$Response = Invoke-WebRequest -Uri $BaseUrl -UseBasicParsing
+			if ($response.StatusCode -ne 200) {
+				throw "Issue getting data-url"
+			}
+		} catch {
+			Write-Error "Failed to fetch the APK. Download the apk manually from https://rewe.en.uptodown.com/android/"
 			return
 		}
 		
@@ -116,8 +120,8 @@ $KeyPem = @"
 $KeyBase64
 -----END PRIVATE KEY-----
 "@
-	Set-Content -Path $KeyPath -Value $KeyPem
-	Write-Host "Keys exported successfully."
-	
-	Write-Host "------------------"
-	Write-Host "Done :)"
+Set-Content -Path $KeyPath -Value $KeyPem
+Write-Host "Keys exported successfully."
+
+Write-Host "------------------"
+Write-Host "Done :)"
