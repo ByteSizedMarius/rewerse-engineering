@@ -11,6 +11,9 @@ This Go Package implements some of the endpoints used by the Rewe app. The follo
 - `GetCoupons`: Get all global coupons. Returns raw data parsed into structs. I have no idea, what exactly the data means, but it's there. Open an issue if you have details.
 - `GetRecalls`: Get product recalls.
 - `GetRecipeHub`: Returns data from the recipe-page in the Rewe app.
+- `GetShopOverview`: Returns Recalls (again) and the Product-Categories available in the given market. Only available for markets who are pickup- or delivery-enabled.
+- `GetCategoryProducts`: Returns all products in a given category. Only available for markets who are pickup- or delivery-enabled.
+- `GetProducts`: Returns all products for a given query. Only available for markets who are pickup- or delivery-enabled.
 
 ## Usage
 
@@ -224,3 +227,80 @@ Fisch
 Vorspeisen
 Kuchen
 ```
+
+**GetShopOverview:**
+
+```go
+so, _ := rewerse.GetShopOverview("831002")
+fmt.Println(so.StringAll())
+```
+
+```
+---Grillsaison-------------------------------------------------
+   ID:                    3752
+   Name:                  Grillsaison
+   Slug:                  grillsaison
+   ProductCount:          475
+   ImageURL:              https://shop.rewe-static.de/mobile/categories/images/v2/3752.png
+   Child-Amnt:            8
+   Children:
+      Grillfleisch & -fisch
+         ID:                    3753
+         Name:                  Grillfleisch & -fisch
+         Slug:                  grillfleisch-fisch
+         ProductCount:          87
+         ImageURL:              https://shop.rewe-static.de/mobile/categories/images/v2/3753.png
+         Child-Amnt:            5
+         Children:
+            Bratwürstchen
+               ID:                    3754
+               Name:                  Bratwürstchen
+               Slug:                  bratwuerstchen
+               ProductCount:          14
+               ImageURL:              https://shop.rewe-static.de/mobile/categories/images/v2/3754.png
+               Child-Amnt:            0
+               [...]
+```
+
+**GetCategoryProducts:**
+
+```go
+cs, _ := rewerse.GetCategoryProducts("831002", "bratwuerstchen", nil)
+fmt.Println(cs)
+```
+
+```
+Products for query *
+Page 1 of 1
+---------------------------------------------------------------
+Wiesenhof Bruzzzler 400g
+Wilhelm Brandenburg Rostbratwürstchen 200g
+REWE Bio Original Nürnberger Rostbratwürstchen 160g
+REWE Feine Welt Salsiccia Peperoncino 300g
+Wolf Berner Würstchen 250g, 3 Stück
+Wilhelm Brandenburg Metzgerbratwurst mittelgrob 400g
+Steinhaus Krakauer mit Emmentaler geräuchert 500g
+Die Thüringer Rostbratwurst 500g
+[...]
+```
+
+**GetProducts:**
+
+```go
+pr, _ := rewerse.GetProducts("831002", "paprika", nil)
+fmt.Println(pr)
+```
+
+```
+Products for query paprika
+Page 1 of 9
+---------------------------------------------------------------
+Paprika rot 500g
+Spitzpaprika gelb 500g
+Spitzpaprika rot 500g
+Paprika Mix 500g
+Paprika rot ca. 250g
+Bio Paprika 400g
+[...]
+```
+

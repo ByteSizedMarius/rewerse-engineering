@@ -87,7 +87,6 @@ func DoRequest(req *http.Request, dest any) (err error) {
 		err = fmt.Errorf("error reading response: %v", err)
 		return
 	}
-
 	//fmt.Println(string(body))
 
 	// Unmarshal the body into the destination

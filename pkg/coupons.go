@@ -26,7 +26,7 @@ type OneScanCoupons struct {
 }
 
 func (o OneScanCoupons) String() string {
-	coupons := fmt.Sprintf("%d OneScan-Coupons\n\n", len(o.Coupons))
+	coupons := fmt.Sprintf("Got %d OneScan-Coupons\n\n", len(o.Coupons))
 	for _, c := range o.Coupons {
 		coupons += c.Title + "\n"
 		coupons += strings.ReplaceAll(c.Description, "\n", " ")
@@ -83,7 +83,7 @@ type Coupons struct {
 }
 
 func (cs Coupons) String() string {
-	coupons := fmt.Sprintf("%d Coupons\n\n", len(cs.Data.GetCoupons.Coupons))
+	coupons := fmt.Sprintf("Got %d Coupons\n\n", len(cs.Data.GetCoupons.Coupons))
 	for _, c := range cs.Data.GetCoupons.Coupons {
 		coupons += c.Title + " // " + c.OfferTitle + "\n"
 		coupons += c.Subtitle + "\n"

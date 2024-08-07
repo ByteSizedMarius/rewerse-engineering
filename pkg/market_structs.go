@@ -11,7 +11,7 @@ import (
 type Markets []Market
 
 func (ms Markets) String() string {
-	s := "ID      Standort\n"
+	s := "ID      Location\n"
 	for _, m := range ms {
 		s += m.String() + "\n"
 	}
@@ -140,5 +140,16 @@ func sep(base string) string {
 }
 
 func align(s string) string {
-	return "   " + s + ":" + strings.Repeat(" ", 22-len(s))
+	al := 22
+	if len(s) > al {
+		al = 0
+	} else {
+		al -= len(s)
+	}
+
+	return "   " + s + ":" + strings.Repeat(" ", al)
+}
+
+func alignL(s string, n int) string {
+	return strings.Repeat(" ", n*3) + s
 }

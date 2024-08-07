@@ -29,24 +29,39 @@ func main() {
 		fmt.Println(align("coupons") + "Get coupons")
 		fmt.Println(align("recalls") + "Get recalls")
 		fmt.Println(align("discounts -id <market-id> [-raw] [-catGroup]") + "Get discounts")
+		fmt.Println(align("categories -id <market-id> [-printAll]") + "Get product categories")
+		fmt.Println(align("products -id <market-id> [-category <category> -search <query>] [-page <page>] [-perPage <productsPerPage>]") + "\n" + align("") + "Get products from a category or by query")
 		fmt.Println("\nSubcommand-Flags:")
 		fmt.Println(align("-query <query>") + "Search query. Can be a city, postal code, street, etc.")
 		fmt.Println(align("-id <market-id>") + "ID of the market or discount. Get it from marketsearch.")
 		fmt.Println(align("-raw") + "Whether you want raw output format (directly from the API) or parsed.")
-		fmt.Println(align("-catGroup") + "Group by product category instead of rewe-app-category")
+		fmt.Println(align("-catGroup") + "Group by product category instead of rewe-app category")
+		fmt.Println(align("-printAll") + "Print all available product categories (very many)")
+		fmt.Println(align("-category <category>") + "The slug of the category to fetch the products from")
+		fmt.Println(align("-search <query>") + "Search query for products. Can be any term or EANs for example")
+		fmt.Println(align("-page <page>") + "Page number for pagination. Starts at 1, default 1. The amount of available pages is included in the output")
+		fmt.Println(align("-perPage <productsPerPage>") + "Number of products per page. Default 30")
 		fmt.Println("\nExamples:")
+		fmt.Println("   rewerse.exe -cert cert.pem -key p.key marketsearch -query Köln")
 		fmt.Println("   rewerse.exe marketsearch -query Köln")
 		fmt.Println("   rewerse.exe marketdetails -id 1763153")
 		fmt.Println("   rewerse.exe discounts -id 1763153")
 		fmt.Println("   rewerse.exe -json discounts -id 1763153 -raw")
 		fmt.Println("   rewerse.exe discounts -id 1763153 -catGroup")
-		fmt.Println("   rewerse.exe -cert cert.pem -key p.key marketsearch -query Köln")
+		fmt.Println("   rewerse.exe categories -id 831002 -printAll")
+		fmt.Println("   rewerse.exe products -id 831002 -category kueche-haushalt -page 2 -perPage 10")
+		fmt.Println("   rewerse.exe products -id 831002 -search Karotten")
 	}
 
 	certFile := flag.String("cert", "", "Path to the certificate file")
 	keyFile := flag.String("key", "", "Path to the key file")
 	jsonOutput := flag.Bool("json", false, "Output in JSON format (default false)")
 	flag.Parse()
+
+	if flag.NArg() == 0 {
+		flag.Usage()
+		os.Exit(1)
+	}
 
 	var crt, key string
 	if *certFile == "" {
@@ -63,15 +78,10 @@ func main() {
 	var err error
 	err = rewerse.SetCertificate(crt, key)
 	if err != nil && *certFile == "" && *keyFile == "" {
-		flag.Usage()
+		fmt.Println("Please provide the paths to the certificate and key files.\n\nrewerse.exe -cert cert.pem -key p.key [...]")
 		os.Exit(1)
 	}
 	hdl(err)
-
-	if flag.NArg() == 0 {
-		flag.Usage()
-		os.Exit(1)
-	}
 
 	marketSearchCmd := flag.NewFlagSet("marketsearch", flag.ExitOnError)
 	marketSearchQuery := marketSearchCmd.String("query", "", "Search query")
@@ -83,6 +93,17 @@ func main() {
 	discountsID := discountsCmd.String("id", "", "Market-ID")
 	rawOutput := discountsCmd.Bool("raw", false, "Whether to return raw API Data")
 	groupProduct := discountsCmd.Bool("catGroup", false, "Group by product category instead of app-category")
+
+	pcategories := flag.NewFlagSet("categories", flag.ExitOnError)
+	pcategoriesMarketID := pcategories.String("id", "", "Market-ID")
+	all := pcategories.Bool("printAll", false, "Print all available product categories")
+
+	products := flag.NewFlagSet("products", flag.ExitOnError)
+	productsMarketID := products.String("id", "", "Market-ID")
+	productsCategory := products.String("category", "", "Category slug")
+	productsSearch := products.String("search", "", "Search query")
+	productsPage := products.Int("page", 0, "Page number")
+	productsPerPage := products.Int("perPage", 0, "Products per page")
 
 	var data any
 	switch flag.Arg(0) {
@@ -118,9 +139,73 @@ func main() {
 		if *groupProduct {
 			data = data.(rewerse.Discounts).GroupByProductCategory()
 		}
+	case "categories":
+		hdl(pcategories.Parse(flag.Args()[1:]))
+		if *pcategoriesMarketID == "" {
+			fmt.Println("Expected market ID")
+			os.Exit(1)
+		}
+
+		var so rewerse.ShopOverview
+		so, err = rewerse.GetShopOverview(*pcategoriesMarketID)
+		hdl(err)
+
+		if *all && *jsonOutput {
+			fmt.Println("Cannot print all and output in JSON format (json is all by default)")
+			return
+		}
+
+		if *all {
+			fmt.Println(so.StringAll())
+			return
+		} else if !*jsonOutput {
+			fmt.Println(so.String())
+			return
+		} else {
+			data = so.ProductCategories
+		}
+	case "products":
+		hdl(products.Parse(flag.Args()[1:]))
+		if *productsMarketID == "" {
+			fmt.Println("Expected market ID")
+			os.Exit(1)
+		}
+
+		if *productsCategory == "" && *productsSearch == "" {
+			fmt.Println("Expected category or search query")
+			os.Exit(1)
+		}
+
+		if *productsCategory != "" && *productsSearch != "" {
+			fmt.Println("Expected either category or search query, not both")
+			os.Exit(1)
+		}
+
+		var opts *rewerse.ProductOpts
+		if *productsPage != 0 {
+			opts = &rewerse.ProductOpts{
+				Page: *productsPage,
+			}
+		}
+
+		if *productsPerPage != 0 {
+			if opts == nil {
+				opts = &rewerse.ProductOpts{
+					ObjectsPerPage: *productsPerPage,
+				}
+			} else {
+				opts.ObjectsPerPage = *productsPerPage
+			}
+		}
+
+		if *productsCategory != "" {
+			data, err = rewerse.GetCategoryProducts(*productsMarketID, *productsCategory, opts)
+		} else {
+			data, err = rewerse.GetProducts(*productsMarketID, *productsSearch, opts)
+		}
 
 	default:
-		fmt.Println("Expected 'marketsearch', 'marketdetails', 'coupons', 'recalls' or 'discounts' subcommands")
+		fmt.Println("Expected one of the following subcommands:\n- marketsearch\n- marketdetails\n- coupons\n- recalls\n- discounts\n- categories\n- products")
 		os.Exit(1)
 	}
 
@@ -135,5 +220,12 @@ func main() {
 }
 
 func align(s string) string {
-	return "   " + s + strings.Repeat(" ", 50-len(s))
+	al := 50
+	if len(s) > al {
+		al = 0
+	} else {
+		al -= len(s)
+	}
+
+	return "   " + s + strings.Repeat(" ", al)
 }

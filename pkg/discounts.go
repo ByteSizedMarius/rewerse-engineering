@@ -41,13 +41,13 @@ const (
 // It contains the discount categories, which in turn contain the actual discounts.
 // I removed various parameters I deemed unnecessary and parsed into different datatypes where it made sense to me.
 // The struct Discounts also provides some helper methods.
-func GetDiscounts(marketID string) (d Discounts, err error) {
+func GetDiscounts(marketID string) (ds Discounts, err error) {
 	rd, err := GetDiscountsRaw(marketID)
 	if err != nil {
 		return
 	}
 
-	d.ValidUntil = time.Unix(int64(rd.Data.Offers.UntilDate)/1000, 0)
+	ds.ValidUntil = time.Unix(int64(rd.Data.Offers.UntilDate)/1000, 0)
 	var foundAnyManuf bool // detect if the manufacturer format changed
 	for _, rawCat := range rd.Data.Offers.Categories {
 		cat := DiscountCategory{
@@ -101,7 +101,7 @@ func GetDiscounts(marketID string) (d Discounts, err error) {
 			cat.Offers = append(cat.Offers, discount)
 		}
 
-		d.Categories = append(d.Categories, cat)
+		ds.Categories = append(ds.Categories, cat)
 	}
 
 	if !foundAnyManuf {
