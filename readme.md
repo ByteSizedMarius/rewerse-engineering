@@ -1,13 +1,13 @@
 # rewerse engineering
 
 <div>
-  <img src="gopher.png" alt="Project Logo" width="180" align="right">
-  <p style="font-size: 16px;">This repository implements many API endpoints used by the Rewe app for querying current discounts, products, coupons and recalls.</p>
-  <p style="font-size: 16px;">Current supported APK version: 3.18.6 (as of 07.08.24)</p> 
+  <img src="gopher.png" alt="Project Logo" width="170" align="right">
+  <p>This repository implements many API endpoints used by the Rewe app for querying current discounts, products, coupons and recalls.</p>
+  <p>Current supported APK version: 4.0.3 (as of 22.01.25)</p> 
 </div>
 
 > [!CAUTION]
-> The certificates required for this repository are not included. You need to extract them from the APK. Documentation & an extraction-script for windows can be found in the [docs](./docs) directory.
+> The certificates required for talking to the rewe api are not included in this repository. You need to extract them from the APK. Documentation & an extraction-script for windows can be found in the [docs](./docs) directory.
 
 ## intro
 

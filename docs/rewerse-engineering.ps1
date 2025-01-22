@@ -25,15 +25,15 @@ Write-Host "------------------"
 # If ApkFile is not provided, return false
 if (-not $ApkFile) {
 	Write-Host "No APK file specified. Looking in working directory..."
-	$ApkFiles = Get-ChildItem -Path $WorkingDirectory -Filter *.apk -File
+	$ApkFiles = Get-ChildItem -Path $WorkingDirectory -File | Where-Object { $_.Extension -in ".apk",".xapk" }
 	if ($ApkFiles.Count -eq 0) {
 		Write-Host "No APK files found in the directory '$WorkingDirectory'"
 		Write-Host "Downloading from UpToDown.com"
 		
-		# Static download link to 3.18.6 because the script may break with new versions anyways
+		# Static download link to 4.0.2 because the script may break with new versions anyways
 		# Also, it will take months from now until they can feasibly change anything about the certificates or api
 		# Send a request to the URL
-		$BaseUrl = "https://rewe.de.uptodown.com/android/download/1017194376" 
+		$BaseUrl = "https://rewe.de.uptodown.com/android/download/1043262438-x" 
 		try {
 			$Response = Invoke-WebRequest -Uri $BaseUrl -UseBasicParsing
 			if ($response.StatusCode -ne 200) {
@@ -80,9 +80,23 @@ $ErrorActionPreference = "Stop"
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 
-# Open the APK file as a zip archive and fetch the file
-$ExpectedCertName = "mtls_prod.pfx"
+# Open the APK file as a zip archive
 $Zip = [System.IO.Compression.ZipFile]::OpenRead($ApkFile)
+
+# Check for nested APK (apkx packing)
+$NestedApk = $Zip.GetEntry("de.rewe.app.mobile.apk")
+if ($NestedApk) {
+    # Read nested APK into memory stream
+    $NestedStream = New-Object System.IO.MemoryStream
+    $NestedApk.Open().CopyTo($NestedStream)
+    $Zip.Dispose()
+    
+    # Reset stream position and create new zip archive
+    $NestedStream.Position = 0
+    $Zip = [System.IO.Compression.ZipArchive]::new($NestedStream)
+}
+
+$ExpectedCertName = "mtls_prod.pfx"
 $Entry = $Zip.GetEntry("res/raw/$ExpectedCertName")
 if($Entry) {
 	$Dest = Join-Path -Path $WorkingDirectory -ChildPath $ExpectedCertName
