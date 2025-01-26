@@ -10,18 +10,13 @@ In a powershell-window, run
 ```powershell
 git clone https://github.com/ByteSizedMarius/rewerse-engineering
 cd .\rewerse-engineering\docs
-
-$OriginalExecutionPolicy = Get-ExecutionPolicy
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
-
+Set-ExecutionPolicy Bypass -Scope Process -Force
 .\rewerse-engineering.ps1
-
-Set-ExecutionPolicy -ExecutionPolicy $OriginalExecutionPolicy -Scope Process -Force
 ```
 
 or as a one-liner:
 ```powershell
-git clone https://github.com/ByteSizedMarius/rewerse-engineering; Push-Location .\rewerse-engineering\docs; $(@(Set-ExecutionPolicy Bypass -Scope Process -Force; .\rewerse-engineering.ps1); Set-ExecutionPolicy (Get-ExecutionPolicy -Scope Process) -Scope Process -Force); Pop-Location
+git clone https://github.com/ByteSizedMarius/rewerse-engineering; Push-Location .\rewerse-engineering\docs; Set-ExecutionPolicy Bypass -Scope Process -Force; .\rewerse-engineering.ps1; Pop-Location
 ```
 
 ## manual extraction
