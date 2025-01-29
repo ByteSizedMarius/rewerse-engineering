@@ -34,18 +34,17 @@ You can also quite easily extract the pfx manually by first [downloading the apk
 	- the working directory is searched for an apk file
 	- if not found, rewe apk ver. 4.0.2 is downloaded from uptodown.net
 
-
-
 ## misc
 
-[Torben](https://github.com/torbenpfohl/rewe-discounts) also has a python helper that's a bit less overengineered.
-
-apk versions:
+Apk versions tested with the script:
 
 | version | tested  |
 |---------|---------|
 | 4.0.3   | ✅      |
 | 4.0.2   | ✅      |
+| 3.21.4  | ✅      |
+| 3.20.0  | ✅      |
+| 3.19.3  | ✅      |
 | 3.18.6  | ✅      |
 | 3.18.5  | ✅      |
 | 3.18.4  | ✅      |
@@ -58,8 +57,9 @@ apk versions:
 | 3.16.5  | ✅      |
 | 3.16.2  | ✅      |
 
-Starting with v4, the app now seems to be packaged as an xapk, which means the apk interesting for us is nested.
+**Notes:**
 
-Note: The pfx bundled with the apk seems to be an old format (RC2-40-CBC) and may not be supported everywhere. You may have to convert it.
-
-Currently trying to get better at powershell, feedback appreciated.
+- [Torben](https://github.com/torbenpfohl/rewe-discounts/blob/main/rewe_discounts/get_creds.py) also has a python helper for extracting the cert that's a bit less overengineered
+- Starting with v3.19, the app now seems to be packaged as an xapk, which means the apk containing the certificate is nested. This requires unzipping twic3
+- The pfx bundled with the apk seems to be an old format (RC2-40-CBC) and may not be supported everywhere. You may have to convert it to a newer format
+- Currently trying to get better at powershell, feedback appreciated.
