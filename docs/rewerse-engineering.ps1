@@ -121,8 +121,7 @@ if($Entry) {
 Write-Host "------------------"
 
 # Extract pem and key
-$Cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
-$Cert.Import($Dest, "NC3hDTstMX9waPPV", [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::Exportable)
+$Cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2($Dest, "NC3hDTstMX9waPPV", [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::Exportable)
 
 $PemPath = Join-Path -Path $WorkingDirectory -ChildPath "certificate.pem"
 $CertBytes = $cert.Export([System.Security.Cryptography.X509Certificates.X509ContentType]::Cert)
@@ -140,7 +139,6 @@ $KeyBase64
 -----END PRIVATE KEY-----
 "@
 Set-Content -Path $KeyPath -Value $KeyPem
-Write-Host "Keys exported successfully."
 
-Write-Host "------------------"
+Write-Host "Keys exported successfully."
 Write-Host "Done :)"
