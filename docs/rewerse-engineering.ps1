@@ -22,18 +22,22 @@ Write-Host "Working Directory: $WorkingDirectory"
 Write-Host "Starting..."
 Write-Host "------------------"
 
-# If ApkFile is not provided, return false
+# Apk files was not provided via cmdline
 if (-not $ApkFile) {
+	
 	Write-Host "No APK file specified. Looking in working directory..."
 	$ApkFiles = Get-ChildItem -Path $WorkingDirectory -File | Where-Object { $_.Extension -in ".apk",".xapk" }
+	
+	# No apkfiles in working directory. download it.
 	if ($ApkFiles.Count -eq 0) {
 		Write-Host "No APK files found in the directory '$WorkingDirectory'"
 		Write-Host "Downloading from UpToDown.com"
 		
 		# Static download link to 4.0.2 because the script may break with new versions anyways
 		# Also, it will take months from now until they can feasibly change anything about the certificates or api
-		# Send a request to the URL
-		$BaseUrl = "https://rewe.de.uptodown.com/android/download/1043262438-x" 
+		
+		# Send a request to the URL, then extract the dynamic download link from the response
+		$BaseUrl = "https://rewe.de.uptodown.com/android/download/1047828586-x" 
 		try {
 			$Response = Invoke-WebRequest -Uri $BaseUrl -UseBasicParsing
 			if ($response.StatusCode -ne 200) {
@@ -52,6 +56,7 @@ if (-not $ApkFile) {
 			return
 		}
 		
+		# Downloading the file
 		Write-Host "Starting download. Please wait..."
 		$ApkUrl = "https://dw.uptodown.com/dwn/$DataUrl"
 		$ApkFile = Join-Path -Path $WorkingDirectory -ChildPath "rewe.apk"
@@ -77,10 +82,9 @@ if (-not (Test-Path -Path $ApkFile -PathType Leaf)) {
 Write-Host "------------------"
 
 $ErrorActionPreference = "Stop"
-Add-Type -AssemblyName System.IO.Compression.FileSystem
-
 
 # Open the APK file as a zip archive
+Add-Type -AssemblyName System.IO.Compression.FileSystem
 $Zip = [System.IO.Compression.ZipFile]::OpenRead($ApkFile)
 
 # Check for nested APK (apkx packing)
@@ -96,6 +100,7 @@ if ($NestedApk) {
     $Zip = [System.IO.Compression.ZipArchive]::new($NestedStream)
 }
 
+# Find the pfx and copy it out of the zip
 $ExpectedCertName = "mtls_prod.pfx"
 $Entry = $Zip.GetEntry("res/raw/$ExpectedCertName")
 if($Entry) {

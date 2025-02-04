@@ -60,6 +60,6 @@ Apk versions tested with the script:
 **Notes:**
 
 - [Torben](https://github.com/torbenpfohl/rewe-discounts/blob/main/rewe_discounts/get_creds.py) also has a python helper for extracting the cert that's a bit less overengineered
-- Starting with v3.19, the app now seems to be packaged as an xapk, which means the apk containing the certificate is nested. This requires unzipping twic3
-- The pfx bundled with the apk seems to be an old format (RC2-40-CBC) and may not be supported everywhere. You may have to convert it to a newer format
-- Currently trying to get better at powershell, feedback appreciated.
+- Starting with v3.19, the app now seems to be packaged as an xapk, which means the apk containing the certificate is nested. This requires unzipping twice
+- The pfx bundled with the apk seems to be an old format (RC2-40-CBC) and may not be supported everywhere. You may have to convert it to a newer format if you are experiencing strange issues (ask me how I know)
+- Currently trying to get better at powershell, feel free to criticise relentlessly
