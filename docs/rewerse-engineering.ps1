@@ -130,15 +130,26 @@ $PemContent = "-----BEGIN CERTIFICATE-----`r`n$Base64Cert`r`n-----END CERTIFICAT
 Set-Content -Path $PemPath -Value $PemContent
 
 $KeyPath = Join-Path -Path $WorkingDirectory -ChildPath "private.key"
-$RSACng = [Security.Cryptography.X509Certificates.RSACertificateExtensions]::GetRSAPrivateKey($Cert)
-$KeyBytes = $RSACng.Key.Export([Security.Cryptography.CngKeyBlobFormat]::Pkcs8PrivateBlob)
-$KeyBase64 = [Convert]::ToBase64String($KeyBytes, [Base64FormattingOptions]::InsertLineBreaks)
-$KeyPem = @"
+try {
+    if ($IsLinux) {
+        $RSA = [System.Security.Cryptography.RSA]::Create()
+        $KeyBytes = $Cert.PrivateKey.ExportPkcs8PrivateKey()
+    } else {
+        $RSACng = [Security.Cryptography.X509Certificates.RSACertificateExtensions]::GetRSAPrivateKey($Cert)
+        $KeyBytes = $RSACng.Key.Export([Security.Cryptography.CngKeyBlobFormat]::Pkcs8PrivateBlob)
+    }
+
+    $KeyBase64 = [Convert]::ToBase64String($KeyBytes, [Base64FormattingOptions]::InsertLineBreaks)
+    Set-Content -Path $KeyPath -Value @"
 -----BEGIN PRIVATE KEY-----
 $KeyBase64
 -----END PRIVATE KEY-----
 "@
-Set-Content -Path $KeyPath -Value $KeyPem
+} finally {
+    if ($null -ne $RSA) {
+        $RSA.Dispose()
+    }
+}
 
 Write-Host "Keys exported successfully."
 Write-Host "Done :)"
