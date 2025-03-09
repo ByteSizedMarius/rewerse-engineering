@@ -33,7 +33,7 @@ You can also quite easily extract the pfx manually.
 - Optional: Provide a working directory (`-WorkingDirectory <Path>`); if not provided, the current working-directory is used
 - Optional: Provide the apk-file to use (`-ApkFile <Path>`); if not provided:
 	- the working directory is searched for an apk file
-	- if not found, rewe apk ver. 4.0.2 is downloaded from uptodown.net
+	- if not found, rewe apk ver. 4.1.0 is downloaded from uptodown.net
 - Optional: Just extract key/pem from `mtls_prod.pfx` in current WorkingDirectory (`-Pfx`)
 - Optional: Just extract key/pem from pfx at path (`-PfxPath <Path>`)
 - Optional: Just download the apk to the current working directory (`-Dl`). Note: File ending is always .apk, even when it is an xapk.
@@ -44,6 +44,7 @@ Apk versions tested with the script:
 
 | version | tested  |
 |---------|---------|
+| 4.1.0   | ✅      |
 | 4.0.3   | ✅      |
 | 4.0.2   | ✅      |
 | 3.21.4  | ✅      |

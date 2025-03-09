@@ -3,7 +3,7 @@
 <div>
   <img src="gopher.png" alt="Project Logo" width="170" align="right">
   <p>This repository implements many API endpoints used by the Rewe app for querying current discounts, products, coupons and recalls.</p>
-  <p>Current supported APK version: 4.0.3 (as of 22.01.25)</p> 
+  <p>Current supported APK version: 4.1.0 (as of 09.03.25)</p> 
 </div>
 
 > [!CAUTION]
