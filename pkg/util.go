@@ -3,10 +3,10 @@
 package rewerse
 
 import (
+	cr "crypto/rand"
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
-	"github.com/google/uuid"
 	"io"
 	"math/rand"
 	"net/http"
@@ -46,13 +46,13 @@ func BuildCustomRequest(host, path string) (req *http.Request, err error) {
 
 	// Optional Headers
 	// just adding these to fit in :)
-	id, err := uuid.NewRandom()
+	id, err := NewUUID()
 	if err != nil {
 		err = fmt.Errorf("error generating uuid: %v", err)
 		return
 	}
 	req.Header.Add("rdfa", rdfa)
-	req.Header.Add("correlation-id", id.String())
+	req.Header.Add("correlation-id", id)
 	req.Header.Add("rd-service-types", "UNKNOWN")
 	req.Header.Add("x-rd-service-types", "UNKNOWN")
 	req.Header.Add("rd-is-lsfk", "false")
@@ -115,11 +115,10 @@ func SetCertificate(clientCert, clientKey string) error {
 	userAgent = userAgents[rand.Intn(len(userAgents))]
 
 	// rdfa is a static header
-	id, err := uuid.NewRandom()
+	rdfa, err = NewUUID()
 	if err != nil {
 		return fmt.Errorf("error generating uuid: %v", err)
 	}
-	rdfa = id.String()
 
 	Client = &http.Client{
 		Transport: &http.Transport{
@@ -149,4 +148,27 @@ func CloseWithWrap(f io.Closer, e *error) {
 			*e = err
 		}
 	}
+}
+
+func NewUUID() (string, error) {
+	uuid := make([]byte, 16)
+
+	// Read random bytes
+	n, err := io.ReadFull(cr.Reader, uuid)
+	if n != len(uuid) || err != nil {
+		return "", err
+	}
+
+	// Set version (4) and variant bits according to RFC 4122
+	// Version 4 means random UUID
+	uuid[6] = (uuid[6] & 0x0f) | 0x40 // Version 4
+	uuid[8] = (uuid[8] & 0x3f) | 0x80 // Variant RFC 4122
+
+	// Format according to UUID string representation
+	return fmt.Sprintf("%x-%x-%x-%x-%x",
+		uuid[0:4],
+		uuid[4:6],
+		uuid[6:8],
+		uuid[8:10],
+		uuid[10:16]), nil
 }

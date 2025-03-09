@@ -3,3 +3,6 @@
 *.pem
 *.key
 *.exe
+/example
+*.pfx
+*.apk

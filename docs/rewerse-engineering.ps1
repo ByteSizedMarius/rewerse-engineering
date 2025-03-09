@@ -1,14 +1,18 @@
 param (
 	[parameter(Mandatory=$false)]
 	$WorkingDirectory,
+	
 	[parameter(Mandatory=$false)]
 	$ApkFile,
-    [parameter(Mandatory = $false, ParameterSetName = "DefaultPath")]
-    [switch]$Pfx,
-    [parameter(Mandatory = $true, ParameterSetName = "CustomPath")]
-    [string]$PfxPath,
+	
+	[parameter(Mandatory = $false, ParameterSetName = "DefaultPath")]
+	[switch]$Pfx,
+	
+	[parameter(Mandatory = $true, ParameterSetName = "CustomPath")]
+	[string]$PfxPath,
+	
 	[parameter(Mandatory = $false)]
-    [switch]$Dl
+	[switch]$Dl
 )
 
 # ——————————————————————————————————————————————————————————————————————————————
