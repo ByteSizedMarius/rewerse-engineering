@@ -26,12 +26,7 @@ Not affiliated with Rewe in any way.
 
 A basic go implementation + documentation of the rewe api is available in the [pkg](pkg) directory. The CLI-implementation (quick & dirty currently) is in [cmd](cmd). Releases are in [releases](https://github.com/ByteSizedMarius/rewerse-engineering/releases). 
 
-Please note that since this is an unsigned go binary that does some encryption/decryption of certificates and sends webrequests to the rewe api, it will likely get flagged by your antivirus. The only dependency is [google/uuid](https://github.com/google/uuid), so you can easily compile it yourself.
-
-At some point this repo will contain:
-- a tui for the go-implementation
-- a powershell script for extracting the password incase it changes (script will not work if anything else changes because of static linking)
-- (maybe) a basic python implementation for fetching discounts if no one wants to maintain one ([torbens fork](https://github.com/torbenpfohl/rewe-discounts) is already functional)
+Please note that since this is an unsigned go binary that does some encryption/decryption of certificates and sends webrequests to the rewe api, it will likely get flagged by your antivirus. There are no dependencies, so you can easily compile it yourself.
 
 ## cli
 
