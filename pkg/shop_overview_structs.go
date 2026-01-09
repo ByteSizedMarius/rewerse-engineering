@@ -1,21 +1,14 @@
 package rewerse
 
-// This sucks and was very little fun to write.
-
 import (
 	"fmt"
 	"strings"
 )
 
 const (
-	noCategoriesStr = "No Categories found.\nMake sure the market has the service PICKUP (query market-details, services should contain type:PICKUP)"
+	noCategoriesStr  = "No Categories found.\nMake sure the market supports the service type you're using (PICKUP or DELIVERY)."
+	maxCategoryDepth = 10
 )
-
-//===================================================
-//
-// Shop Overview
-//
-//===================================================
 
 type ShopOverview struct {
 	ProductRecalls    Recalls        `json:"productRecalls"`
@@ -54,76 +47,34 @@ func (so ShopOverview) StringAll() string {
 	return s.String()
 }
 
-//===================================================
-//
-// Category
-//
-//===================================================
-
 type ShopCategory struct {
 	ID              string `json:"id"`
 	Name            string `json:"name"`
 	Slug            string `json:"slug"`
 	ProductCount    int    `json:"productCount"`
 	ImageURL        string `json:"imageUrl"`
-	ChildCategories []ShopCategory
+	ChildCategories []ShopCategory `json:"childCategories"`
 }
 
 func (sc ShopCategory) String() string {
-	return fmt.Sprintf(
-		"%s%s\n"+ // ID
-			"%s%s\n"+ // Name
-			"%s%s\n"+ // Slug
-			"%s%d\n"+ // ProductCount
-			"%s%s\n%s", // ImageURL
-		align("ID"),
-		sc.ID,
-		align("Name"),
-		sc.Name,
-		align("Slug"),
-		sc.Slug,
-		align("ProductCount"),
-		sc.ProductCount,
-		align("ImageURL"),
-		sc.ImageURL,
-		shopCatNestToString(len(sc.ChildCategories)),
-	)
+	return fmt.Sprintf("%s (%s) - %d products", sc.Name, sc.Slug, sc.ProductCount)
 }
 
 func (sc ShopCategory) StringAll() string {
 	return generateStringAll(sc, 0)
 }
 
-//===================================================
-//
-// Internals
-//
-//===================================================
-
-func shopCatNestToString(amnt int) string {
-	return fmt.Sprintf("%s%d", align("Child-Amnt"), amnt)
-}
-
 func generateStringAll(sc ShopCategory, depth int) string {
-	var s strings.Builder
-	scs := sc.String()
-	for i, scsl := range strings.Split(scs, "\n") {
-		if i != 0 {
-			s.WriteString("\n")
-		}
-		s.WriteString(alignL(scsl, depth))
+	if depth > maxCategoryDepth {
+		return alignL("... (max depth reached)", depth)
 	}
 
-	children := sc.ChildCategories
-	if len(children) != 0 {
-		s.WriteString("\n" + alignL("Children:", depth+1))
-		for _, child := range children {
-			s.WriteString("\n" + alignL(child.Name, depth+2))
-			childString := generateStringAll(child, depth)
-			for _, line := range strings.Split(childString, "\n") {
-				s.WriteString("\n" + alignL(line, depth+2))
-			}
-		}
+	var s strings.Builder
+	s.WriteString(alignL(sc.String(), depth))
+
+	for _, child := range sc.ChildCategories {
+		s.WriteString("\n")
+		s.WriteString(generateStringAll(child, depth+1))
 	}
 
 	return s.String()

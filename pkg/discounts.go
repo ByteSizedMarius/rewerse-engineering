@@ -2,33 +2,43 @@ package rewerse
 
 import (
 	"fmt"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
 )
 
+// priceRegex extracts German-format prices: "1,99", "12,99", "1.234,56"
+var priceRegex = regexp.MustCompile(`(\d{1,3}(?:\.\d{3})*),(\d{2})`)
+
 // GetDiscountsRaw returns the raw data from the API in a RawDiscounts struct.
 // It contains links to the handout (Prospekt) as well as discount categories, which in turn contain the actual discounts.
 func GetDiscountsRaw(marketID string) (rd RawDiscounts, err error) {
-	// Build Request
-	req, err := BuildCustomRequest(clientHost, "stationary-app-offers/"+marketID)
+	req, err := BuildCustomRequest(clientHost, "stationary-offers/"+marketID)
 	if err != nil {
 		return
 	}
 
-	// Send Request & Parse Response
 	err = DoRequest(req, &rd)
 	if err != nil {
 		return
 	}
 
-	// Somewhat validate Result
-	if len(rd.Data.Offers.Categories) == 0 {
+	week := getActiveWeek(rd)
+	if len(week.Categories) == 0 {
 		err = fmt.Errorf("no discounts found for market %s", marketID)
 		return
 	}
 
 	return
+}
+
+// getActiveWeek returns the week that should be displayed based on defaultWeek field
+func getActiveWeek(rd RawDiscounts) RawOffersWeek {
+	if rd.Data.Offers.DefaultWeek == "next" && rd.Data.Offers.Next.Available {
+		return rd.Data.Offers.Next
+	}
+	return rd.Data.Offers.Current
 }
 
 const (
@@ -47,9 +57,17 @@ func GetDiscounts(marketID string) (ds Discounts, err error) {
 		return
 	}
 
-	ds.ValidUntil = time.Unix(int64(rd.Data.Offers.UntilDate)/1000, 0)
-	var foundAnyManuf bool // detect if the manufacturer format changed
-	for _, rawCat := range rd.Data.Offers.Categories {
+	week := getActiveWeek(rd)
+
+	// Parse date from ISO format: "2026-01-10"
+	ds.ValidUntil, err = time.Parse("2006-01-02", week.UntilDate)
+	if err != nil {
+		err = fmt.Errorf("error parsing date %s: %w", week.UntilDate, err)
+		return
+	}
+
+	var foundAnyManuf bool
+	for _, rawCat := range week.Categories {
 		cat := DiscountCategory{
 			ID:    rawCat.ID,
 			Index: rawCat.Order,
@@ -58,7 +76,6 @@ func GetDiscounts(marketID string) (ds Discounts, err error) {
 
 		for _, rawOffer := range rawCat.Offers {
 			if rawOffer.CellType != expectedCellType {
-				//fmt.Println("skipping non-default cell type", rawOffer.CellType)
 				continue
 			}
 
@@ -72,14 +89,17 @@ func GetDiscounts(marketID string) (ds Discounts, err error) {
 				ProductCategory: rawOffer.RawValues.CategoryTitle,
 			}
 
-			// Parse Price
-			p := strings.Replace(strings.TrimSpace(strings.Trim(rawOffer.PriceData.Price, "€")), ",", ".", 1)
-			if p != "" && !strings.Contains(p, " ") {
-				discount.Price, err = strconv.ParseFloat(p, 64)
+			// Parse Price: German format "1,99 €" or "1.234,56 €" -> float
+			if match := priceRegex.FindStringSubmatch(rawOffer.PriceData.Price); match != nil {
+				euros := strings.ReplaceAll(match[1], ".", "") // remove thousand separators
+				cents := match[2]
+				discount.Price, err = strconv.ParseFloat(euros+"."+cents, 64)
 				if err != nil {
-					fmt.Printf("error parsing price: %v. please report.\n", err)
-					return
+					discount.PriceParseFail = true
+					err = nil // don't fail the entire call, just flag this discount
 				}
+			} else if rawOffer.PriceData.Price != "" {
+				discount.PriceParseFail = true
 			}
 
 			// Parse Manufacturer
