@@ -17,7 +17,7 @@ git clone https://github.com/ByteSizedMarius/rewerse-engineering; Push-Location 
 
 You can also quite easily extract the pfx manually.
 1. [Download the apk](https://apkpure.com/de/rewe-supermarkt/de.rewe.app.mobile/download). Version does not really matter. However, pay attention to which download button you click, as many of these sites have been introducing dark patterns to get you to install their store instead. 
-2. Rename the file from `.apk` or `.apkx` to `.zip`. 
+2. Rename the file from `.apk` or `.apkx` to `.zip` and open the zip.
 	- If you had an `apkx`-file: Copy `de.rewe.app.mobile.apk` out of the zip and redo step 2 with this apk.
 3. Navigate to `/res/raw`, where you will find the `mtls_prod.pfx`. 
 4. Extract key and pem from the `.pfx`. 
@@ -33,7 +33,7 @@ You can also quite easily extract the pfx manually.
 - Optional: Provide a working directory (`-WorkingDirectory <Path>`); if not provided, the current working-directory is used
 - Optional: Provide the apk-file to use (`-ApkFile <Path>`); if not provided:
 	- the working directory is searched for an apk file
-	- if not found, rewe apk ver. 4.1.0 is downloaded from uptodown.net
+	- if not found, rewe apk ver. 5.7.3 is downloaded from uptodown.net
 - Optional: Just extract key/pem from `mtls_prod.pfx` in current WorkingDirectory (`-Pfx`)
 - Optional: Just extract key/pem from pfx at path (`-PfxPath <Path>`)
 - Optional: Just download the apk to the current working directory (`-Dl`). Note: File ending is always .apk, even when it is an xapk.
@@ -44,6 +44,7 @@ Apk versions tested with the script:
 
 | version | tested  |
 |---------|---------|
+| 5.7.3   | ✅      |
 | 4.1.0   | ✅      |
 | 4.0.3   | ✅      |
 | 4.0.2   | ✅      |

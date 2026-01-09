@@ -19,60 +19,36 @@ param (
 # Functions
 # ——————————————————————————————————————————————————————————————————————————————
 
-# APK download target version; no need to update unless certificates change
-$targetVersion = "4.1.0"
+# APK download target version; update if this version is no longer available on UpToDown
+$targetVersion = "5.7.3"
 
 function Get-ApkVersionUrl {
     try {
         $response = Invoke-WebRequest -UseBasicParsing -Uri "https://rewe.en.uptodown.com/android/versions"
-        $htmlDoc = New-Object -ComObject "HTMLFile"
-        $htmlDoc.IHTMLDocument2_write($response.Content)
-        
-        # Get version info
-        $versionsDiv = $htmlDoc.getElementById("versions-items-list")
-        if ($null -eq $versionsDiv) {
-            Write-Error "Could not find versions list on the page"
-            return $null
+        $content = $response.Content
+
+        # Find div with data-url, data-version-id, data-extra-url that contains target version
+        # HTML: <div data-url="URL" data-version-id="ID" data-extra-url="download">...<span class="version">VERSION</span>
+        $escapedVersion = [regex]::Escape($targetVersion)
+        if ($content -match "<div[^>]*data-url=`"([^`"]+)`"[^>]*data-version-id=`"([^`"]+)`"[^>]*data-extra-url=`"([^`"]+)`"[^>]*>[\s\S]*?<span[^>]*class=`"version`"[^>]*>$escapedVersion</span>") {
+            $baseUrl = $Matches[1]
+            $versionId = $Matches[2]
+            $extraUrl = $Matches[3]
+            return "$baseUrl/$extraUrl/$versionId"
         }
-        
-        $versionDivs = $versionsDiv.getElementsByTagName("div")
-        $targetVersionDiv = $null
-        for ($i = 0; $i -lt $versionDivs.length; $i++) {
-            $versionElement = $versionDivs[$i].getElementsByClassName("version")
-            if ($versionElement.length -gt 0) {
-                $versionText = $versionElement[0].innerText
-				
-                # Check if this is our target version
-                if ($versionText -eq $targetVersion) {
-                    $targetVersionDiv = $versionDivs[$i]
-                    break
-                }
-            }
-        }
-        
-        # Check if target version was found
-        if ($null -eq $targetVersionDiv) {
-            Write-Error "Target version $targetVersion not found on the page"
-            return $null
-        }
-        
-        return $targetVersionDiv.getAttribute("data-url")
+
+        Write-Error "Target version $targetVersion not found on the page"
+        return $null
     } catch {
         Write-Error "Error extracting download URL: $_"
         return $null
-    } finally {
-        # Release COM object
-        if ($null -ne $htmlDoc) {
-            [System.Runtime.InteropServices.Marshal]::ReleaseComObject($htmlDoc) | Out-Null
-        }
-        [System.GC]::Collect()
     }
 }
 
 function Get-ApkDownloadUrl {
     [CmdletBinding()]
     param()
-    
+
     try {
         # Get the initial URL for the app version page
         $initialUrl = Get-ApkVersionUrl
@@ -81,80 +57,47 @@ function Get-ApkDownloadUrl {
             return $null
         }
         Write-Verbose "Initial URL: $initialUrl"
-        
+
         # Request the version page
         $versionPageResponse = Invoke-WebRequest -UseBasicParsing -Uri $initialUrl
-        $htmlDoc = New-Object -ComObject "HTMLFile"
-        $htmlDoc.IHTMLDocument2_write($versionPageResponse.Content)
-        
-        # Extract data-version
-        $variantButton = $null
-        $buttons = $htmlDoc.getElementsByTagName("button")
-        for ($i = 0; $i -lt $buttons.length; $i++) {
-            if ($buttons[$i].className -eq "button variants") {
-                $variantButton = $buttons[$i]
-                break
-            }
-        }
-        if ($null -eq $variantButton) {
+        $content = $versionPageResponse.Content
+
+        # Extract data-version from button.variants
+        if ($content -notmatch 'class="button variants"[^>]*data-version="([^"]+)"') {
             Write-Error "Could not find variants button"
             return $null
         }
-        $dataVersion = $variantButton.getAttribute("data-version")
+        $dataVersion = $Matches[1]
         Write-Verbose "Data Version: $dataVersion"
-        
-        # Extract data-code
-        $appNameH1 = $htmlDoc.getElementById("detail-app-name")
-        if ($null -eq $appNameH1) {
+
+        # Extract data-code from #detail-app-name
+        if ($content -notmatch 'id="detail-app-name"[^>]*data-code="([^"]+)"') {
             Write-Error "Could not find app name element"
             return $null
         }
-        $dataCode = $appNameH1.getAttribute("data-code")
+        $dataCode = $Matches[1]
         Write-Verbose "Data Code: $dataCode"
-        
+
         # Construct and request the variants URL
         $variantsUrl = "https://rewe.en.uptodown.com/app/$dataCode/version/$dataVersion/files"
         Write-Verbose "Variants URL: $variantsUrl"
         $variantsResponse = Invoke-WebRequest -UseBasicParsing -Uri $variantsUrl
         $jsonResponse = $variantsResponse.Content | ConvertFrom-Json
         $htmlContent = $jsonResponse.content
-        $variantsHtmlDoc = New-Object -ComObject "HTMLFile"
-        $variantsHtmlDoc.IHTMLDocument2_write($htmlContent)
-        
-        # Get all divs
-        $allDivs = $variantsHtmlDoc.getElementsByTagName("div")
-        Write-Verbose "Found $($allDivs.length) divs total"
-        
-        # Find first div with class "v-version" and extract URL
-        $downloadUrl = $null
-        for ($i = 0; $i -lt $allDivs.length; $i++) {
-            if ($allDivs[$i].className -eq "v-version") {
-                $versionDiv = $allDivs[$i]
-                $version = $versionDiv.innerText
-                
-                # Get the HTML and extract the onclick using regex
-                $html = $versionDiv.outerHTML
-                if ($html -match 'onclick=[''"].*?location\.href=[''"]([^''"]+)[''"]') {
-                    $downloadUrl = $Matches[1]
-                    Write-Verbose "Found version: $version with URL: $downloadUrl"
-                    break
-                }
-            }
+
+        # Extract URL from onclick in v-version div
+        # HTML: <div class="v-version" onclick="...location.href='URL';">
+        if ($htmlContent -match 'class="v-version"[^>]*onclick="[^"]*location\.href=''([^'']+)''') {
+            $downloadUrl = $Matches[1]
+            Write-Verbose "Found download URL: $downloadUrl"
+            return $downloadUrl
         }
-        
-        return $downloadUrl
+
+        Write-Error "Could not find download URL in variants"
+        return $null
     } catch {
         Write-Error "Error extracting download URL: $_"
         return $null
-    } finally {
-        # Release COM objects
-        if ($null -ne $htmlDoc) {
-            [System.Runtime.InteropServices.Marshal]::ReleaseComObject($htmlDoc) | Out-Null
-        }
-        if ($null -ne $variantsHtmlDoc) {
-            [System.Runtime.InteropServices.Marshal]::ReleaseComObject($variantsHtmlDoc) | Out-Null
-        }
-        [System.GC]::Collect()
     }
 }
 
@@ -231,7 +174,6 @@ function Download-ReweApk {
     }
     
     # Function to get the APK download base URL
-    # Note: This function should be defined elsewhere or adapted as needed
     $BaseUrl = Get-ApkDownloadUrl
     
     try {
@@ -245,9 +187,9 @@ function Download-ReweApk {
         return
     }
     
-    # Match the regex pattern in the response content
-    if ($Response.Content -match 'data-url="([^"]+)"') {
-        $DataUrl = $matches[1] 
+    # Match the download data-url (the one with data-download-version attribute)
+    if ($Response.Content -match 'data-url="([^"]+)"[^>]*data-download-version=') {
+        $DataUrl = $matches[1]
     } else {
         Write-Error "No data-url found in the response content."
         return
@@ -257,9 +199,9 @@ function Download-ReweApk {
     Write-Host "Starting download. Please wait..."
     $ApkUrl = "https://dw.uptodown.com/dwn/$DataUrl"
     $ApkFile = Join-Path -Path $WorkingDirectory -ChildPath "rewe.apk"
-    $ApkFileDownload = (New-Object Net.WebClient).DownloadFile($ApkUrl, $ApkFile)
+    Invoke-WebRequest -Uri $ApkUrl -OutFile $ApkFile -UseBasicParsing
     Write-Host "Done"
-    
+
     return $ApkFile
 }
 
