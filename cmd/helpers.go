@@ -34,16 +34,6 @@ func validateFlag(name, value string) error {
 	return nil
 }
 
-// validateFlags returns an error if any of the flag values are empty or whitespace-only
-func validateFlags(flags map[string]string) error {
-	for name, value := range flags {
-		if strings.TrimSpace(value) == "" {
-			return fmt.Errorf("-%s is required", name)
-		}
-	}
-	return nil
-}
-
 // validateNumeric returns an error if the value is empty or non-numeric
 func validateNumeric(name, value string) error {
 	if err := validateFlag(name, value); err != nil {

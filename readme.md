@@ -9,6 +9,20 @@
 > [!CAUTION]
 > The certificates required for talking to the rewe api are not included in this repository. You need to extract them from the APK. Documentation & an extraction-script for windows can be found in the [docs](./docs) directory.
 
+## quick start
+
+1. **Extract certificates** from the rewe apk; see [docs](./docs) for instructions
+
+2. **Download** the [latest release](https://github.com/ByteSizedMarius/rewerse-engineering/releases/latest) or clone and build:
+   ```
+   go build -o rewerse ./cmd
+   ```
+
+3. **Run** (certificates must be in working directory or specified via flags):
+   ```
+   ./rewerse.exe -json discounts -market 840174
+   ```
+
 ## intro
 
 In [March 2024](https://github.com/foo-git/rewe-discounts/issues/19), Rewe started
@@ -24,7 +38,7 @@ Not affiliated with Rewe in any way.
 
 ## contents
 
-A basic go implementation + documentation of the rewe api is available in the [pkg](pkg) directory. See the [pkg README](pkg/README.md) for API documentation with usage examples. The CLI-implementation is in [cmd](cmd). Releases are in [releases](https://github.com/ByteSizedMarius/rewerse-engineering/releases). 
+A basic go implementation + documentation of the rewe api is available in the [pkg](pkg) directory. See the [readme](pkg/readme.md) for API documentation with usage examples. The CLI-implementation is in [cmd](cmd). Releases are in [releases](https://github.com/ByteSizedMarius/rewerse-engineering/releases). 
 
 Please note that since this is an unsigned go binary that does some encryption/decryption of certificates and sends webrequests to the rewe api, it will likely get flagged by your antivirus. There are no dependencies, so you can easily compile it yourself.
 

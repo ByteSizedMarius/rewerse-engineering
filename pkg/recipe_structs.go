@@ -6,6 +6,7 @@ import "fmt"
 type RecipeSorting string
 
 // Probably not exhaustive
+
 const (
 	SortRelevance RecipeSorting = "RELEVANCE_DESC"
 )
@@ -14,6 +15,7 @@ const (
 type RecipeCollection string
 
 // Not exhaustive - other collections may exist
+
 const (
 	CollectionVegetarisch RecipeCollection = "Vegetarisch"
 )

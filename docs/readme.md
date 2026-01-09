@@ -42,8 +42,8 @@ You can also quite easily extract the pfx manually.
 
 Apk versions tested with the script:
 
-| version | tested  |
-|---------|---------|
+| version | tested |
+|---------|--------|
 | 5.7.3   | ✅      |
 | 4.1.0   | ✅      |
 | 4.0.3   | ✅      |
