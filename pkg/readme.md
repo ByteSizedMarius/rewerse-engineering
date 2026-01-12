@@ -2,6 +2,10 @@
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/ByteSizedMarius/rewerse-engineering.svg)](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering)
 
+- [Usage](#usage)
+- [Service Types](#service-types)
+- [Output Examples](#output-examples)
+
 This Go package implements publicly accessible (unauthenticated) API endpoints used by the Rewe app for querying current discounts, products, recipes and recalls. The following functions are currently available:
 
 - `MarketSearch`: Search for Rewe markets using city, street, PLZ, market name, etc. Returns a list of markets with some basic information.
@@ -45,6 +49,8 @@ pr, _ := rewerse.GetProducts("831002", "milch", nil)
 opts := &rewerse.ProductOpts{ServiceType: rewerse.ServiceDelivery}
 pr, _ := rewerse.GetProducts("840174", "milch", opts)
 ```
+
+## Output Examples
 
 I have written very basic string-functions for all structs except RawDiscounts, which allows printing the data to console easily. Below are examples of the data:
 
