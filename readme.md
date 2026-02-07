@@ -13,15 +13,15 @@
 
 1. **Extract certificates** from the rewe apk; see [docs](./docs) for instructions
 
-2. **Download** the [latest release](https://github.com/ByteSizedMarius/rewerse-engineering/releases/latest) or clone and build:
-   ```
-   go build -o rewerse ./cmd
-   ```
+2. **Use the library:**
 
-3. **Run** (certificates must be in working directory or specified via flags):
-   ```
-   ./rewerse.exe -json discounts -market 840174
-   ```
+   - **Go**: `go get github.com/ByteSizedMarius/rewerse-engineering` – [docs](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg)
+   - **Python**: `pip install rewerse` – [docs](python/README.md)
+
+   Or use the **CLI**:
+   - [Download](https://github.com/ByteSizedMarius/rewerse-engineering/releases/latest) a release
+   - Install via Go: `go install github.com/ByteSizedMarius/rewerse-engineering/cmd@latest`
+   - Or clone and build: `go build -o rewerse ./cmd`
 
 ## intro
 

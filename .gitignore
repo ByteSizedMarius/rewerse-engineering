@@ -6,3 +6,7 @@
 /example
 *.pfx
 *.apk
+*.pyc
+/python/dist
+/python/rewerse.egg-info
+/python/rewerse/_lib
