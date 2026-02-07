@@ -6,7 +6,7 @@ Python bindings for the REWE mobile API.
 
 - FFI wrapper around compiled Go library ([Github](https://github.com/ByteSizedMarius/rewerse-engineering/)), not native Python
 - ~9 MB package size (includes .so and .dll)
-- Linux x86_64 and Windows x86_64 only
+- Linux x86_64 and Windows x86_64 only (macOS: [build from source](#macos))
 - Response types are untyped dicts; see [Go structs](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg) for field definitions
 
 ## Requirements
@@ -26,11 +26,7 @@ Requires Go 1.21+ and a C compiler.
 
 From repo root:
 ```bash
-# Linux
 python python/build_lib.py
-
-# Windows (cross-compile from WSL)
-python python/build_lib.py --platform windows
 ```
 
 Then install locally:
@@ -112,6 +108,19 @@ All methods raise `RewerseError` on failure. Responses are untyped dicts; see [G
 | Method | Description |
 |--------|-------------|
 | `get_bulky_goods_config(market_id, service_type="DELIVERY")` | Get beverage crate limits and surcharges |
+
+## macOS
+
+The PyPI wheel doesn't include a macOS binary. Build from source on a Mac:
+
+```bash
+git clone https://github.com/ByteSizedMarius/rewerse-engineering.git
+cd rewerse-engineering
+python python/build_lib.py --platform darwin
+cd python && pip install -e .
+```
+
+Requires Go 1.21+ and Xcode command line tools (`xcode-select --install`).
 
 ## License
 
