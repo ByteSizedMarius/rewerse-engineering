@@ -41,9 +41,13 @@ Not affiliated with Rewe in any way.
 
 ## contents
 
-A basic go implementation + documentation of the rewe api is available in the [pkg](pkg) directory. See the [readme](pkg/readme.md) for API documentation with usage examples. A Python wrapper is available as `rewerse` on [PyPI](https://pypi.org/project/rewerse/) – see [python/README.md](python/README.md) for details. The CLI-implementation is in [cmd](cmd). Releases are in [releases](https://github.com/ByteSizedMarius/rewerse-engineering/releases).
+- A basic go implementation of the rewe api is available in the [pkg](pkg) directory; see [pkg/readme](pkg/readme.md) for the api documentation of the go-library including usage examples. 
+- An ffi python wrapper is available as `rewerse` on [PyPI](https://pypi.org/project/rewerse/) – see [python/readme](python/README.md) for details and source code.
+- The source code of the cli for the go library is in [cmd](cmd).
+- Releases are in [releases](https://github.com/ByteSizedMarius/rewerse-engineering/releases).
 
-Please note that since this is an unsigned go binary that does some encryption/decryption of certificates and sends webrequests to the rewe api, it will likely get flagged by your antivirus. There are no dependencies, so you can easily compile it yourself – which is always recommended from a security perspective.
+> [!NOTE]
+> Please note that since this is an unsigned go binary that does some encryption/decryption of certificates and sends webrequests to the rewe api, it will likely get flagged by your antivirus. There are no dependencies, so you can easily compile it yourself – which is always recommended from a security perspective.
 
 ## cli
 
