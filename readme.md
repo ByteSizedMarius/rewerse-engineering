@@ -11,17 +11,20 @@
 
 ## quick start
 
-1. **Extract certificates** from the rewe apk; see [docs](./docs) for instructions
+**Extract certificates** from the rewe apk; see [docs](./docs) for instructions
 
-2. **Use the library:**
+**Use the library:**
 
-   - **Go**: `go get github.com/ByteSizedMarius/rewerse-engineering` – [docs](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg)
-   - **Python**: `pip install rewerse` – [docs](python/README.md)
+- **Go**: `go get github.com/ByteSizedMarius/rewerse-engineering` – [docs](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg)
+- **Python**: `pip install rewerse` – [docs](python/README.md)
 
-   Or use the **CLI**:
-   - [Download](https://github.com/ByteSizedMarius/rewerse-engineering/releases/latest) a release
-   - Install via Go: `go install github.com/ByteSizedMarius/rewerse-engineering/cmd@latest`
-   - Or clone and build: `go build -o rewerse ./cmd`
+**Or install the CLI:**
+ 
+- [Download](https://github.com/ByteSizedMarius/rewerse-engineering/releases/latest) a release
+- Install via Go: `go install github.com/ByteSizedMarius/rewerse-engineering/cmd@latest`
+- Or clone and build: `go build -o rewerse ./cmd`
+
+Verify: `rewerse --help`
 
 ## intro
 
@@ -38,9 +41,9 @@ Not affiliated with Rewe in any way.
 
 ## contents
 
-A basic go implementation + documentation of the rewe api is available in the [pkg](pkg) directory. See the [readme](pkg/readme.md) for API documentation with usage examples. The CLI-implementation is in [cmd](cmd). Releases are in [releases](https://github.com/ByteSizedMarius/rewerse-engineering/releases). 
+A basic go implementation + documentation of the rewe api is available in the [pkg](pkg) directory. See the [readme](pkg/readme.md) for API documentation with usage examples. A Python wrapper is available as `rewerse` on [PyPI](https://pypi.org/project/rewerse/) – see [python/README.md](python/README.md) for details. The CLI-implementation is in [cmd](cmd). Releases are in [releases](https://github.com/ByteSizedMarius/rewerse-engineering/releases).
 
-Please note that since this is an unsigned go binary that does some encryption/decryption of certificates and sends webrequests to the rewe api, it will likely get flagged by your antivirus. There are no dependencies, so you can easily compile it yourself.
+Please note that since this is an unsigned go binary that does some encryption/decryption of certificates and sends webrequests to the rewe api, it will likely get flagged by your antivirus. There are no dependencies, so you can easily compile it yourself – which is always recommended from a security perspective.
 
 ## cli
 
