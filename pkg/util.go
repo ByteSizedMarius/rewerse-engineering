@@ -138,6 +138,34 @@ func DoRequest(req *http.Request, dest any) (err error) {
 	return
 }
 
+func DoRequestRaw(req *http.Request) ([]byte, error) {
+	cfg := config.Load()
+	if cfg == nil {
+		return nil, ErrNotInitialized
+	}
+
+	resp, err := cfg.client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error making request: %w", err)
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response: %w", err)
+	}
+
+	if resp.StatusCode >= 400 {
+		return nil, fmt.Errorf("HTTP %d: %s", resp.StatusCode, truncateBody(body, 200))
+	}
+
+	if strings.HasPrefix(string(body), "<!DOCTYPE html>") {
+		return nil, fmt.Errorf("error: response is html (cloudflared)")
+	}
+
+	return body, nil
+}
+
 func truncateBody(body []byte, maxLen int) string {
 	if len(body) <= maxLen {
 		return string(body)

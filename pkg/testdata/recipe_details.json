@@ -1,0 +1,74 @@
+{
+  "recipe": {
+    "id": "30ce3caf-4b3b-4c9e-8ea0-645fe75d1303",
+    "title": "Gnocchi-Pfanne mit Rosenkohl und getrockneten Tomaten",
+    "detailUrl": "https://www.rewe.de/rezepte/gnocchi-pfanne-rosenkohl-getrocknete-tomaten/",
+    "imageUrl": "https://c.rewe-static.de/37579890/2/37579890.png",
+    "duration": "50 min",
+    "difficultyLevel": 1,
+    "difficultyDescription": "Einfach",
+    "ingredients": {
+      "portions": 2,
+      "items": [
+        {
+          "name": "frischer Rosenkohl (ersatzweise TK)",
+          "quantity": 250,
+          "unit": "g"
+        },
+        {
+          "name": "rote Zwiebel",
+          "quantity": 1
+        },
+        {
+          "name": "Knoblauch",
+          "quantity": 1,
+          "unit": "Zehe(n)"
+        },
+        {
+          "name": "getrocknete Tomaten (in Öl)",
+          "quantity": 40,
+          "unit": "g"
+        },
+        {
+          "name": "Thymian",
+          "quantity": 3,
+          "unit": "Stiel(e)"
+        },
+        {
+          "name": "Olivenöl",
+          "quantity": 4,
+          "unit": "EL"
+        },
+        {
+          "name": "Salz",
+          "quantity": 0
+        },
+        {
+          "name": "Parmesan",
+          "quantity": 20,
+          "unit": "g"
+        },
+        {
+          "name": "Gnocchi (Fertigprodukt, Kühlregal)",
+          "quantity": 400,
+          "unit": "g"
+        },
+        {
+          "name": "Pfeffer",
+          "quantity": 0
+        },
+        {
+          "name": "Balsamicoessig",
+          "quantity": 1,
+          "unit": "EL"
+        }
+      ]
+    },
+    "steps": [
+      "Rosenkohl putzen, hierzu den Strunk jeweils großzügig abschneiden, die äußeren Blätter entfernen. Rosenkohl halbieren, größere vierteln. Zwiebel halbieren und in dünne Spalten schneiden. Knoblauch fein würfeln. Tomaten in dünne Streifen schneiden, Tomatenöl beiseitestellen. Thymianblättchen abzupfen.",
+      "Olivenöl in einer großen, beschichteten Pfanne erhitzen und Rosenkohl darin bei mittlerer Hitze ca. 15 Minuten rundum anbraten, dabei mit Salz würzen. Währenddessen Parmesan fein reiben.",
+      "Zwiebeln und Knoblauch zugeben und 5 Minuten mitbraten. Dann Gnocchi zugeben und 6-7 Minuten mitbraten. Dann Tomaten, Thymian und Tomatenöl untermengen, mit Salz und Pfeffer abschmecken. Mit Balsamico ablöschen und unter Schwenken kurz einkochen lassen.",
+      "Gnocchi-Pfanne auf Tellern anrichten und mit geriebenem Parmesan servieren."
+    ]
+  }
+}

@@ -21,7 +21,7 @@
 **Or install the CLI:**
  
 - [Download](https://github.com/ByteSizedMarius/rewerse-engineering/releases/latest) a release
-- Install via Go: `go install github.com/ByteSizedMarius/rewerse-engineering/cmd@latest`
+- Or install via Go: `go install github.com/ByteSizedMarius/rewerse-engineering/cmd@latest`
 - Or clone and build: `go build -o rewerse ./cmd`
 
 Verify: `rewerse --help`
@@ -80,7 +80,16 @@ Examples:
 Run './rewerse.exe <command>' for subcommand help.
 ```
 
-## misc
+## tests
+
+Tests live in `pkg/*_test.go`. There are two kinds:
+
+- Unit tests unmarshal JSON payloads into our structs. The payloads are derived from real API responses. These run without certificates and catch type mismatches between our structs and actual API shapes. `go test ./pkg/ -run Unmarshal`
+- Integration tests hit the live API and require certificates. They skip automatically if no certs are found. `go test ./pkg/`
+
+If you're contributing a struct change, please consider adding or updating an unmarshal test. Use a real API response if you can capture one, otherwise a synthetic JSON payload that reflects actual API behavior is fine.
+
+## contributing
 
 Feel free to open github issues for suggestions, questions, bugs. PRs welcome. Email: rewe at marius dot codes.
 

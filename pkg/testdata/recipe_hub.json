@@ -1,0 +1,140 @@
+{
+  "recipeOfTheDay": {
+    "id": "956b1a08-8a68-49ba-97a8-cafcbe1fbd65",
+    "title": "Goi Xoai Mangosalat",
+    "detailUrl": "https://www.rewe.de/rezepte/goi-xoai-mangosalat/",
+    "imageUrl": "https://c.rewe-static.de/53435221/1/53435221.png",
+    "duration": "30 min",
+    "difficultyLevel": 2,
+    "difficultyDescription": "Mittel"
+  },
+  "popularRecipes": [
+    {
+      "id": "956b1a08-8a68-49ba-97a8-cafcbe1fbd65",
+      "title": "Goi Xoai Mangosalat",
+      "detailUrl": "https://www.rewe.de/rezepte/goi-xoai-mangosalat/",
+      "imageUrl": "https://c.rewe-static.de/53435221/1/53435221.png",
+      "duration": "30 min",
+      "difficultyLevel": 2,
+      "difficultyDescription": "Mittel"
+    },
+    {
+      "id": "6a42a4b8-3d36-45e5-a44d-5c41fe999ab0",
+      "title": "Hack-Reis-Pfanne",
+      "detailUrl": "https://www.rewe.de/rezepte/hack-reis-pfanne/",
+      "imageUrl": "https://c.rewe-static.de/34818953/2/34818953.png",
+      "duration": "30 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "30ce3caf-4b3b-4c9e-8ea0-645fe75d1303",
+      "title": "Gnocchi-Pfanne mit Rosenkohl und getrockneten Tomaten",
+      "detailUrl": "https://www.rewe.de/rezepte/gnocchi-pfanne-rosenkohl-getrocknete-tomaten/",
+      "imageUrl": "https://c.rewe-static.de/37579890/2/37579890.png",
+      "duration": "50 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "9df0efae-0c02-455f-81f9-2460f3a65b96",
+      "title": "Schnelles Tiramisu mit Cantuccini",
+      "detailUrl": "https://www.rewe.de/rezepte/schnelles-tiramisu-cantuccini/",
+      "imageUrl": "https://c.rewe-static.de/41493092/2/41493092.png",
+      "duration": "25 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "5b01c33d-faec-498a-b773-dd72f0ca0133",
+      "title": "Chinakohl-Curry mit Reis",
+      "detailUrl": "https://www.rewe.de/rezepte/chinakohl-curry-reis/",
+      "imageUrl": "https://c.rewe-static.de/52250402/1/52250402.png",
+      "duration": "35 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "aec0ca56-d4ff-4b91-8a20-a22a094b27c6",
+      "title": "Putengeschnetzeltes mit Paprika",
+      "detailUrl": "https://www.rewe.de/rezepte/putengeschnetzeltes-paprika/",
+      "imageUrl": "https://c.rewe-static.de/33426460/5/33426460.png",
+      "duration": "40 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "b50e161c-06d2-4c8d-b4ed-a948fcccc42c",
+      "title": "Gebratenes Lachsfilet mit Gurkengemüse in Senf-Sahnesoße",
+      "detailUrl": "https://www.rewe.de/rezepte/gebratenes-lachsfilet-gurkengemuese-senf-sahnesosse/",
+      "imageUrl": "https://c.rewe-static.de/37413929/2/37413929.png",
+      "duration": "45 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "9cf97818-0623-471a-9e8d-3911fc3e0263",
+      "title": "Entenbrust auf Rucola-Tomaten-Salat",
+      "detailUrl": "https://www.rewe.de/rezepte/entenbrust-rucola-tomaten-salat/",
+      "imageUrl": "https://c.rewe-static.de/34581148/2/34581148.png",
+      "duration": "55 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "c51891f4-96ac-40f3-a5b3-61a5b5a44f47",
+      "title": "Rosenkohl vom Blech",
+      "detailUrl": "https://www.rewe.de/rezepte/rosenkohl-blech/",
+      "imageUrl": "https://c.rewe-static.de/42787945/1/42787945.png",
+      "duration": "45 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "41737b0d-1766-4905-93a5-40ef447a2ee3",
+      "title": "Gebackener Camembert",
+      "detailUrl": "https://www.rewe.de/rezepte/gebackener-camembert/",
+      "imageUrl": "https://c.rewe-static.de/30820568/8/30820568.png",
+      "duration": "20 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    }
+  ],
+  "categories": [
+    {
+      "type": "MAIN_DISH_VEGE",
+      "title": "Vegetarisch",
+      "searchQuery": "Vegetarisch"
+    },
+    {
+      "type": "MAIN_DISH_MEAT",
+      "title": "Fleisch",
+      "searchQuery": "Fleisch"
+    },
+    {
+      "type": "BAKING",
+      "title": "Backen",
+      "searchQuery": "Backen"
+    },
+    {
+      "type": "DESSERT",
+      "title": "Nachspeisen",
+      "searchQuery": "Nachspeisen"
+    },
+    {
+      "type": "MAIN_DISH_FISH",
+      "title": "Fisch",
+      "searchQuery": "Fisch"
+    },
+    {
+      "type": "APPETIZER",
+      "title": "Vorspeisen",
+      "searchQuery": "Vorspeisen"
+    },
+    {
+      "type": "UNKNOWN",
+      "title": "Kuchen",
+      "searchQuery": "Kuchen"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "data": {
+    "productRecalls": {
+      "products": [
+        {
+          "subjectReason": "Mögliches Vorhandensein von Cereulid",
+          "subjectProduct": "Vorsorglicher Produktrückruf von verschiedenen Beba Produkten",
+          "url": "https://mediacenter.rewe.de/produktrueckrufe/beba-produkte"
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "http": [
+      {
+        "path": [
+          "productRecalls"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,356 @@
+{
+  "data": {
+    "offers": {
+      "defaultWeek": "current",
+      "nextWeekAvailableFrom": "saturday",
+      "current": {
+        "available": true,
+        "fromDate": "2026-01-05",
+        "untilDate": "2026-01-10",
+        "hasOnlineOffers": true,
+        "handout": {
+          "images": [
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53934887-2_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53934887-2_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53162513-11_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53162513-11_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027407-31_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027407-31_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027426-24_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027426-24_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027451-25_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027451-25_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53678366-13_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53678366-13_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53780695-7_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53780695-7_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027533-21_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027533-21_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027595-14_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027595-14_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53306449-31_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53306449-31_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53306450-21_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53306450-21_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027640-15_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027640-15_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027651-15_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027651-15_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027670-19_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027670-19_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53054391-10_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53054391-10_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027691-17_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027691-17_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027702-13_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027702-13_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027778-12_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027778-12_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027795-18_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027795-18_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027813-15_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027813-15_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027836-21_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027836-21_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027853-26_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027853-26_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027862-24_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027862-24_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53054125-13_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53054125-13_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53054126-12_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53054126-12_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53054127-9_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53054127-9_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53054388-9_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53054388-9_preview.jpg"
+            },
+            {
+              "original": "https://img.rewe-static.de/REWE02_2026/catalog/53027874-20_preview.jpg",
+              "thumbnail": "https://img.rewe-static.de/REWE02_2026/catalog/53027874-20_preview.jpg"
+            }
+          ]
+        },
+        "categories": [
+          {
+            "id": "markt-topangebote",
+            "title": "Top-Angebote in deinem Markt",
+            "moodUrl": null,
+            "order": 3,
+            "backgroundColor": "#EDF9FA",
+            "foregroundColor": "#2E7B85",
+            "offers": [
+              {
+                "cellType": "DEFAULT",
+                "overline": "",
+                "title": "Haribo Goldbären oder Color-Rado",
+                "subtitle": "je 175-g-Btl. (1 kg = 4.40)",
+                "images": [
+                  "https://img.rewe-static.de/REWE02_2026/7772669/45264002-174_digital-image.png"
+                ],
+                "biozid": false,
+                "priceData": {
+                  "price": "0,77 €",
+                  "regularPrice": "Knaller"
+                },
+                "loyaltyBonus": null,
+                "stock": null,
+                "detail": {
+                  "sensational": null,
+                  "pitchIn": null,
+                  "tags": [],
+                  "contents": [
+                    {
+                      "header": "Produktdetails",
+                      "titles": [
+                        "Art.-Nr.: 7772669",
+                        "Hersteller: HARIBO"
+                      ]
+                    },
+                    {
+                      "header": "Hinweise",
+                      "titles": [
+                        "Darstellungsfehler vorbehalten. Abgabe nur in handelsüblichen Mengen. Verkauf nur solange der Vorrat reicht. Aktionspreise sind zeitlich begrenzt und unter Umständen nicht in allen Märkten verfügbar. Nur in teilnehmenden Märkten. Alle Artikel ohne Dekoration. Alle Preise in Euro (€) inkl. gesetzlicher Mehrwertsteuer, zuzüglich Pfand."
+                      ]
+                    }
+                  ],
+                  "biocide": false,
+                  "nutriScore": null
+                },
+                "rawValues": {
+                  "categoryTitle": "suesses-und-salziges",
+                  "priceAverage": 0.0,
+                  "flyerPage": 0,
+                  "nan": "7772669"
+                }
+              },
+              {
+                "cellType": "DEFAULT",
+                "overline": "",
+                "title": "Coca-Cola, Fanta, Sprite oder Mezzo Mix",
+                "subtitle": "versch. Sorten, teilw. koffeinhaltig, je 12 x 1-l-Fl.-Kasten (1 l = 1.00), zzgl. 3.30 Pfand",
+                "images": [
+                  "https://img.rewe-static.de/REWE02_2026/8002614/29216131-49_digital-image.png"
+                ],
+                "biozid": false,
+                "priceData": {
+                  "price": "11,99 €",
+                  "regularPrice": "Knaller"
+                },
+                "loyaltyBonus": null,
+                "stock": null,
+                "detail": {
+                  "sensational": null,
+                  "pitchIn": "individuell kombinierbar",
+                  "tags": [],
+                  "contents": [
+                    {
+                      "header": "Produktdetails",
+                      "titles": [
+                        "Art.-Nr.: 8002614",
+                        "Hersteller: MW CC"
+                      ]
+                    },
+                    {
+                      "header": "Hinweise",
+                      "titles": [
+                        "Darstellungsfehler vorbehalten. Abgabe nur in handelsüblichen Mengen. Verkauf nur solange der Vorrat reicht. Aktionspreise sind zeitlich begrenzt und unter Umständen nicht in allen Märkten verfügbar. Nur in teilnehmenden Märkten. Alle Artikel ohne Dekoration. Alle Preise in Euro (€) inkl. gesetzlicher Mehrwertsteuer, zuzüglich Pfand."
+                      ]
+                    }
+                  ],
+                  "biocide": false,
+                  "nutriScore": null
+                },
+                "rawValues": {
+                  "categoryTitle": "alkoholfreie-getraenke",
+                  "priceAverage": 0.0,
+                  "flyerPage": 0,
+                  "nan": "8002614"
+                }
+              }
+            ]
+          },
+          {
+            "id": "rewe-bonus-produkte",
+            "title": "Bonus-Aktionen",
+            "moodUrl": "https://shop.rewe-static.de/stationary-offers/30f298b2ad9d6dd6a98d9f312636cb436feade14/img/App_Header_REWE_Bonus_Produkte.jpg?fit=inside%7C1170.0px:1170.0px&output-quality=70&output-format=jpeg",
+            "order": 4,
+            "backgroundColor": "#E6F2F1",
+            "foregroundColor": "#22786E",
+            "offers": [
+              {
+                "cellType": "HERO",
+                "overline": "",
+                "title": "Meßmer Kräutertee Pfefferminze",
+                "subtitle": "je 56,25-g-Pckg. (1 kg = 30.04)",
+                "images": [
+                  "https://img.rewe-static.de/REWE02_2026/6818501/6649570-32_digital-image.png"
+                ],
+                "biozid": false,
+                "priceData": {
+                  "price": "1,69 €",
+                  "regularPrice": "Knaller"
+                },
+                "loyaltyBonus": {
+                  "bonusValue": 20,
+                  "bonusType": "cent"
+                },
+                "stock": null,
+                "detail": {
+                  "sensational": null,
+                  "pitchIn": null,
+                  "tags": [],
+                  "contents": [
+                    {
+                      "header": "Produktdetails",
+                      "titles": [
+                        "Art.-Nr.: 6818501",
+                        "Hersteller: MESSMER"
+                      ]
+                    },
+                    {
+                      "header": "Hinweise",
+                      "titles": [
+                        "Darstellungsfehler vorbehalten. Abgabe nur in handelsüblichen Mengen. Verkauf nur solange der Vorrat reicht. Aktionspreise sind zeitlich begrenzt und unter Umständen nicht in allen Märkten verfügbar. Nur in teilnehmenden Märkten. Alle Artikel ohne Dekoration. Alle Preise in Euro (€) inkl. gesetzlicher Mehrwertsteuer, zuzüglich Pfand."
+                      ]
+                    }
+                  ],
+                  "biocide": false,
+                  "nutriScore": null
+                },
+                "rawValues": {
+                  "categoryTitle": "fruehstueck",
+                  "priceAverage": 0.0,
+                  "flyerPage": 0,
+                  "nan": "6818501"
+                }
+              },
+              {
+                "cellType": "DEFAULT",
+                "overline": "",
+                "title": "YFood Trinkmahlzeit",
+                "subtitle": "versch. Sorten, teilw. koffeinhaltig, je 500-ml-Fl. (1 l = 6.58), zzgl. 0.25 Pfand",
+                "images": [
+                  "https://img.rewe-static.de/REWE02_2026/9019224/42034382-44_digital-image.png"
+                ],
+                "biozid": false,
+                "priceData": {
+                  "price": "3,29 €",
+                  "regularPrice": "Aktion"
+                },
+                "loyaltyBonus": {
+                  "bonusValue": 30,
+                  "bonusType": "cent"
+                },
+                "stock": null,
+                "detail": {
+                  "sensational": null,
+                  "pitchIn": null,
+                  "tags": [],
+                  "contents": [
+                    {
+                      "header": "Produktdetails",
+                      "titles": [
+                        "Art.-Nr.: 9019224",
+                        "Hersteller: EW L YFOOD"
+                      ]
+                    },
+                    {
+                      "header": "Hinweise",
+                      "titles": [
+                        "Darstellungsfehler vorbehalten. Abgabe nur in handelsüblichen Mengen. Verkauf nur solange der Vorrat reicht. Aktionspreise sind zeitlich begrenzt und unter Umständen nicht in allen Märkten verfügbar. Nur in teilnehmenden Märkten. Alle Artikel ohne Dekoration. Alle Preise in Euro (€) inkl. gesetzlicher Mehrwertsteuer, zuzüglich Pfand."
+                      ]
+                    }
+                  ],
+                  "biocide": false,
+                  "nutriScore": "A"
+                },
+                "rawValues": {
+                  "categoryTitle": "sonstige-angebote",
+                  "priceAverage": 0.0,
+                  "flyerPage": 0,
+                  "nan": "9019224"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "next": {
+        "available": false,
+        "fromDate": "2026-01-12",
+        "untilDate": "2026-01-17",
+        "hasOnlineOffers": false,
+        "handout": {
+          "images": null
+        },
+        "categories": []
+      }
+    }
+  },
+  "extensions": {
+    "http": [
+      {
+        "path": [
+          "offers"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      }
+    ]
+  }
+}

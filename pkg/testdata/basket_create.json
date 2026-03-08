@@ -1,0 +1,78 @@
+{
+  "data": {
+    "basket": {
+      "id": "b4a5c6d7-e8f9-4a0b-1c2d-3e4f5a6b7c8d",
+      "version": 0,
+      "orderId": null,
+      "deviceId": "d1e2v3c4-a5b6-4c7d-8e9f-0a1b2c3d4e5f",
+      "serviceSelection": {
+        "wwIdent": "831002",
+        "serviceType": "PICKUP",
+        "zipCode": "67065"
+      },
+      "serviceConfiguration": {
+        "minimumOrderAmount": 0
+      },
+      "staggerings": {
+        "reachedStaggering": {
+          "articlePriceThreshold": 0,
+          "displayText": "Diesen Einkauf packen wir gratis."
+        },
+        "nextStaggering": {
+          "remainingArticlePrice": 7000,
+          "articlePriceThreshold": 7000,
+          "displayText": "Kauf noch für 70,00 € ein, dann packen wir deinen Einkauf gratis."
+        }
+      },
+      "lineItems": [],
+      "loyaltyBadges": {
+        "listingBadges": []
+      },
+      "violations": null,
+      "changes": null,
+      "summary": {
+        "articleCount": 0,
+        "articlePrice": 0,
+        "fees": {
+          "refund": null,
+          "beverageSurcharge": null,
+          "reusableBagSurcharge": null,
+          "transportBoxSurcharge": null,
+          "substitutesSurcharge": null,
+          "serviceFee": null
+        },
+        "totalPriceExclServiceFee": 0,
+        "totalPrice": 0,
+        "totalArticleQuantity": 0,
+        "reservationTotal": 0
+      },
+      "timeSlotInformation": {
+        "startTime": null,
+        "endTime": null,
+        "timeSlotPrice": null,
+        "timeSlotText": "Abholtermin nicht gewählt"
+      }
+    }
+  },
+  "extensions": {
+    "http": [
+      {
+        "path": [
+          "basket"
+        ],
+        "message": "Created",
+        "statusCode": 201,
+        "responseBody": null
+      },
+      {
+        "path": [
+          "basket",
+          "loyaltyBadges"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,255 @@
+{
+  "errors": [
+    {
+      "message": "Not Found",
+      "locations": [
+        {
+          "line": 71,
+          "column": 5
+        }
+      ],
+      "path": [
+        "groups"
+      ],
+      "extensions": {
+        "statusCode": 404,
+        "classification": "RemoteResourceFetchingError"
+      }
+    }
+  ],
+  "data": {
+    "product": [
+      {
+        "productId": "7535400",
+        "title": "MAX Mixnuts mit Edamame pikant 250g",
+        "depositLabel": null,
+        "imageURL": "https://img.rewe-static.de/7535400/43168769_digital-image.png",
+        "attributes": {
+          "isBulkyGood": false,
+          "isOrganic": false,
+          "isVegan": false,
+          "isVegetarian": false,
+          "isDairyFree": false,
+          "isGlutenFree": false,
+          "isBiocide": false,
+          "isAgeRestricted": false,
+          "isRegional": false,
+          "isNew": true,
+          "isLowestPrice": false,
+          "isTobacco": null
+        },
+        "orderLimit": 99,
+        "categories": [
+          "2110",
+          "3845"
+        ],
+        "detailsViewRequired": false,
+        "articleId": "4H27HYFW",
+        "listing": {
+          "listingId": "8-4H27HYFW-e431f956-9c66-3740-991c-da0b6594f7c9",
+          "listingVersion": 1200007,
+          "currentRetailPrice": 499,
+          "totalRefundPrice": null,
+          "grammage": "250g (1 kg = 19,96 €)",
+          "discount": null,
+          "loyaltyBonus": null
+        },
+        "regulatedProductName": "Mandel-Cashew-Edamame-Mix geröstet, mit Chili-Würzung.",
+        "additionalImageURLs": null,
+        "description": null,
+        "featureBenefit": null,
+        "tradeItemMarketingMessage": null,
+        "qsCertificationMark": false,
+        "brand": "MAX",
+        "nutritionFacts": [
+          {
+            "preparationState": "Unzubereitet",
+            "nutrientInformation": [
+              {
+                "nutrientType": "Energie",
+                "measurementPrecision": "ungefähr",
+                "quantityContained": {
+                  "value": 2440.0,
+                  "uomShortText": "kJ",
+                  "uomLongText": "kJ"
+                }
+              },
+              {
+                "nutrientType": "Energie",
+                "measurementPrecision": "ungefähr",
+                "quantityContained": {
+                  "value": 589.0,
+                  "uomShortText": "kcal",
+                  "uomLongText": "kcal"
+                }
+              },
+              {
+                "nutrientType": "Fett",
+                "measurementPrecision": "ungefähr",
+                "quantityContained": {
+                  "value": 46.0,
+                  "uomShortText": "g",
+                  "uomLongText": "Gramm"
+                }
+              },
+              {
+                "nutrientType": "Fett, davon gesättigte Fettsäuren",
+                "measurementPrecision": "ungefähr",
+                "quantityContained": {
+                  "value": 5.9,
+                  "uomShortText": "g",
+                  "uomLongText": "Gramm"
+                }
+              },
+              {
+                "nutrientType": "Kohlenhydrate",
+                "measurementPrecision": "ungefähr",
+                "quantityContained": {
+                  "value": 15.0,
+                  "uomShortText": "g",
+                  "uomLongText": "Gramm"
+                }
+              },
+              {
+                "nutrientType": "Kohlenhydrate, davon Zucker",
+                "measurementPrecision": "ungefähr",
+                "quantityContained": {
+                  "value": 5.0,
+                  "uomShortText": "g",
+                  "uomLongText": "Gramm"
+                }
+              },
+              {
+                "nutrientType": "Eiweiß",
+                "measurementPrecision": "ungefähr",
+                "quantityContained": {
+                  "value": 25.0,
+                  "uomShortText": "g",
+                  "uomLongText": "Gramm"
+                }
+              },
+              {
+                "nutrientType": "Salz",
+                "measurementPrecision": "ungefähr",
+                "quantityContained": {
+                  "value": 1.3,
+                  "uomShortText": "g",
+                  "uomLongText": "Gramm"
+                }
+              }
+            ],
+            "servingSize": {
+              "value": 100.0,
+              "uomShortText": "g",
+              "uomLongText": "Gramm"
+            }
+          }
+        ],
+        "nutriScore": null,
+        "packaging": {
+          "weightPerPiece": 250.0,
+          "volumeCode": "STK"
+        },
+        "allergenStatement": null,
+        "ingredientStatement": "geröstete MANDELKERNE, geröstete CASHEWKERNE, geröstete EDAMAME (SOJA-Bohne), Sonnenblumenöl, Salz, Maltodextrin, Zucker, Hefeextrakt, Knoblauchpulver, 0,2% Chilipulver, Zwiebelpulver, Cuminpulver, Backtriebmittel: Natriumcarbonat, Säuerungsmittel: Citronensäure. Produkt kann Spuren von ERDNÜSSEN und anderen SCHALENFRÜCHTEN enthalten.",
+        "hazardsAndWarnings": null,
+        "imageDeliveryScopeHint": null,
+        "relationships": null,
+        "attributeGroups": [
+          {
+            "label": "Hinweise",
+            "attributes": [
+              {
+                "name": "ConsumerStorageInstructions",
+                "label": "Aufbewahrungshinweise",
+                "showLabel": true,
+                "value": "Trocken lagern, vor Wärme schützen.",
+                "index": 4
+              }
+            ],
+            "index": 5
+          },
+          {
+            "label": "Artikeldetails",
+            "attributes": [
+              {
+                "name": "BrandId",
+                "label": "Marke",
+                "showLabel": true,
+                "value": "MAX",
+                "index": 4
+              },
+              {
+                "name": "CustomProductFlags",
+                "label": "Eigenschaften",
+                "showLabel": true,
+                "value": "*Neu*",
+                "index": 8
+              }
+            ],
+            "index": 6
+          },
+          {
+            "label": "Kontakt",
+            "attributes": [
+              {
+                "name": "ContactName",
+                "label": "Kontaktname",
+                "showLabel": true,
+                "value": "MAX KIENE GmbH",
+                "index": 1
+              },
+              {
+                "name": "CommunicationAddress",
+                "label": "Kontaktadresse",
+                "showLabel": true,
+                "value": "Oberhafenstrasse 1, \nD- 20097 Hamburg",
+                "index": 2
+              }
+            ],
+            "index": 8
+          }
+        ],
+        "isBuyable": true,
+        "loyaltyBadges": {
+          "listingBadges": []
+        }
+      }
+    ],
+    "groups": null
+  },
+  "extensions": {
+    "http": [
+      {
+        "path": [
+          "groups"
+        ],
+        "message": "Not Found",
+        "statusCode": 404,
+        "responseBody": {
+          "status": 404,
+          "message": "No group for product id=7535400 with marketCode=831002 found",
+          "timestamp": "9.1.2026, 12:20:45"
+        }
+      },
+      {
+        "path": [
+          "product"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      },
+      {
+        "path": [
+          "product",
+          0,
+          "loyaltyBadges"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      }
+    ]
+  }
+}

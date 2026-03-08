@@ -1,0 +1,130 @@
+{
+  "data": {
+    "products": {
+      "pagination": {
+        "objectsPerPage": 5,
+        "currentPage": 1,
+        "pageCount": 20,
+        "objectCount": 97
+      },
+      "search": {
+        "term": {
+          "original": "*",
+          "corrected": null
+        }
+      },
+      "products": [
+        {
+          "productId": "7302383",
+          "title": "Müller Joghurt mit der Ecke Paw Patrol Knusperflugzeuge Joghurt Vanille 140g",
+          "depositLabel": null,
+          "imageURL": "https://img.rewe-static.de/7302383/52766167_digital-image.png",
+          "attributes": {
+            "isBulkyGood": false,
+            "isOrganic": false,
+            "isVegan": false,
+            "isVegetarian": false,
+            "isDairyFree": false,
+            "isGlutenFree": false,
+            "isBiocide": false,
+            "isAgeRestricted": null,
+            "isRegional": false,
+            "isNew": true,
+            "isLowestPrice": false,
+            "isTobacco": null
+          },
+          "orderLimit": 99,
+          "categories": [
+            "3684",
+            "3844",
+            "223",
+            "3845",
+            "225",
+            "3365"
+          ],
+          "detailsViewRequired": false,
+          "articleId": "WZNM2TID",
+          "listing": {
+            "listingId": "8-WZNM2TID-e431f956-9c66-3740-991c-da0b6594f7c9",
+            "listingVersion": 1200016,
+            "currentRetailPrice": 89,
+            "totalRefundPrice": null,
+            "grammage": "140g (1 kg = 6,36 €)",
+            "discount": null,
+            "loyaltyBonus": null
+          },
+          "advertisement": null
+        },
+        {
+          "productId": "8579796",
+          "title": "Mutti Tomatenfruchtfleisch mit Knoblauch 400g",
+          "depositLabel": null,
+          "imageURL": "https://img.rewe-static.de/8579796/35086801_digital-image.png",
+          "attributes": {
+            "isBulkyGood": false,
+            "isOrganic": false,
+            "isVegan": false,
+            "isVegetarian": false,
+            "isDairyFree": false,
+            "isGlutenFree": false,
+            "isBiocide": false,
+            "isAgeRestricted": null,
+            "isRegional": false,
+            "isNew": true,
+            "isLowestPrice": false,
+            "isTobacco": null
+          },
+          "orderLimit": 99,
+          "categories": [
+            "3738",
+            "3739",
+            "3844",
+            "459",
+            "3703",
+            "3845",
+            "472",
+            "237",
+            "612"
+          ],
+          "detailsViewRequired": false,
+          "articleId": "N9HZ2DNV",
+          "listing": {
+            "listingId": "8-N9HZ2DNV-e431f956-9c66-3740-991c-da0b6594f7c9",
+            "listingVersion": 1200034,
+            "currentRetailPrice": 179,
+            "totalRefundPrice": null,
+            "grammage": "400g (1 kg = 4,48 €)",
+            "discount": null,
+            "loyaltyBonus": null
+          },
+          "advertisement": null
+        }
+      ],
+      "alternativeProducts": null,
+      "loyaltyBadges": {
+        "listingBadges": []
+      }
+    }
+  },
+  "extensions": {
+    "http": [
+      {
+        "path": [
+          "products"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      },
+      {
+        "path": [
+          "products",
+          "loyaltyBadges"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      }
+    ]
+  }
+}

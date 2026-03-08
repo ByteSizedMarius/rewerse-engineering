@@ -1,0 +1,83 @@
+{
+  "productRecalls": [
+    {
+      "recallUrl": "https://mediacenter.rewe.de/produktrueckrufe/beba-produkte",
+      "subjectProduct": "Vorsorglicher Produktrückruf von verschiedenen Beba Produkten",
+      "subjectReason": "Mögliches Vorhandensein von Cereulid"
+    }
+  ],
+  "productCategories": [
+    {
+      "id": "3844",
+      "name": "Monats-Highlights",
+      "slug": "monatshighlights",
+      "productCount": 540,
+      "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3844.png",
+      "childCategories": [
+        {
+          "id": "3845",
+          "name": "Neu im Sortiment",
+          "link": "/c/neu-im-sortiment/",
+          "slug": "neu-im-sortiment",
+          "productCount": 97,
+          "imageUrl": "https://shop.rewe-static.de/rewe-navigation-service/static-images/navigation/v1_category-img-3845.png",
+          "childCategories": []
+        },
+        {
+          "id": "3908",
+          "name": "Fit ins neue Jahr",
+          "link": "/c/fit-ins-neue-jahr/",
+          "slug": "fit-ins-neue-jahr",
+          "productCount": 231,
+          "imageUrl": "https://shop.rewe-static.de/rewe-navigation-service/static-images/navigation/v1_category-img-3908.png",
+          "childCategories": []
+        }
+      ]
+    },
+    {
+      "id": "3862",
+      "name": "Bewusste Ernährung",
+      "slug": "bewusste-ernaehrung",
+      "productCount": 1724,
+      "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3862.png",
+      "childCategories": [
+        {
+          "id": "3914",
+          "name": "Biologisch",
+          "link": "/c/bio-logisch/",
+          "slug": "bio-logisch",
+          "productCount": 700,
+          "imageUrl": "https://shop.rewe-static.de/rewe-navigation-service/static-images/navigation/v1_category-img-3914.png",
+          "childCategories": [
+            {
+              "id": "3915",
+              "name": "Alles für das Bio-Müsli",
+              "link": "/c/alles-fuer-das-bio-muesli/",
+              "slug": "alles-fuer-das-bio-muesli",
+              "productCount": 81,
+              "imageUrl": "https://shop.rewe-static.de/rewe-navigation-service/static-images/navigation/v1_category-img-3915.png"
+            }
+          ]
+        },
+        {
+          "id": "3666",
+          "name": "Vegane Vielfalt",
+          "link": "/c/vegane-vielfalt/",
+          "slug": "vegane-vielfalt",
+          "productCount": 496,
+          "imageUrl": "https://shop.rewe-static.de/rewe-navigation-service/static-images/navigation/v1_category-img-3666.png",
+          "childCategories": [
+            {
+              "id": "3679",
+              "name": "Vegane Basics",
+              "link": "/c/vegane-basics/",
+              "slug": "vegane-basics",
+              "productCount": 53,
+              "imageUrl": "https://shop.rewe-static.de/rewe-navigation-service/static-images/navigation/v1_category-img-3679.png"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

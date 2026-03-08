@@ -1,0 +1,217 @@
+{
+  "totalCount": 4903,
+  "recipes": [
+    {
+      "id": "30ce3caf-4b3b-4c9e-8ea0-645fe75d1303",
+      "title": "Gnocchi-Pfanne mit Rosenkohl und getrockneten Tomaten",
+      "detailUrl": "https://www.rewe.de/rezepte/gnocchi-pfanne-rosenkohl-getrocknete-tomaten/",
+      "imageUrl": "https://c.rewe-static.de/37579890/2/37579890.png",
+      "duration": "50 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "5b01c33d-faec-498a-b773-dd72f0ca0133",
+      "title": "Chinakohl-Curry mit Reis",
+      "detailUrl": "https://www.rewe.de/rezepte/chinakohl-curry-reis/",
+      "imageUrl": "https://c.rewe-static.de/52250402/1/52250402.png",
+      "duration": "35 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "c51891f4-96ac-40f3-a5b3-61a5b5a44f47",
+      "title": "Rosenkohl vom Blech",
+      "detailUrl": "https://www.rewe.de/rezepte/rosenkohl-blech/",
+      "imageUrl": "https://c.rewe-static.de/42787945/1/42787945.png",
+      "duration": "45 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "41737b0d-1766-4905-93a5-40ef447a2ee3",
+      "title": "Gebackener Camembert",
+      "detailUrl": "https://www.rewe.de/rezepte/gebackener-camembert/",
+      "imageUrl": "https://c.rewe-static.de/30820568/8/30820568.png",
+      "duration": "20 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "029c9bc3-e542-4b75-9a41-719b73ba8542",
+      "title": "Salat mit Chinakohl und Äpfeln",
+      "detailUrl": "https://www.rewe.de/rezepte/chinakohl-apfel-salat/",
+      "imageUrl": "https://c.rewe-static.de/52027973/2/52027973.png",
+      "duration": "20 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "9f70e945-7c0b-49b9-9332-3196d71bead9",
+      "title": "Herzhafter Kaiserschmarrn mit Schnittlauch-Dip",
+      "detailUrl": "https://www.rewe.de/rezepte/herzhafter-kaiserschmarrn-schnittlauchdip/",
+      "imageUrl": "https://c.rewe-static.de/32592098/6/32592098.png",
+      "duration": "45 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "3820b729-ad2e-4e5d-bf76-ec5c95ebdf91",
+      "title": "Green Goddess Salad",
+      "detailUrl": "https://www.rewe.de/rezepte/green-goddess-salad/",
+      "imageUrl": "https://c.rewe-static.de/35609840/1/35609840.png",
+      "duration": "30 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "48996a7a-665a-4e4f-af75-e740d8b50a90",
+      "title": "Grünkohl-Linsensalat",
+      "detailUrl": "https://www.rewe.de/rezepte/gruenkohl-linsensalat/",
+      "imageUrl": "https://c.rewe-static.de/43042817/2/43042817.png",
+      "duration": "60 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "2a692e62-9d74-40fe-b6ee-17008fff0ae1",
+      "title": "Kürbistaschen mit Ziegenfrischkäse",
+      "detailUrl": "https://www.rewe.de/rezepte/kuerbistaschen-ziegenfrischkaese/",
+      "imageUrl": "https://c.rewe-static.de/32592104/6/32592104.png",
+      "duration": "50 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "f72edf68-97f9-4f79-a72a-b9953dca1a78",
+      "title": "Winterlicher Röstgemüse-Salat",
+      "detailUrl": "https://www.rewe.de/rezepte/winterlicher-roestgemuese-salat/",
+      "imageUrl": "https://c.rewe-static.de/30412245/6/30412245.png",
+      "duration": "35 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "96f47f89-4170-482a-8d04-a2a9a9451558",
+      "title": "Süßkartoffel Curry",
+      "detailUrl": "https://www.rewe.de/rezepte/suesskartoffel-curry/",
+      "imageUrl": "https://c.rewe-static.de/34706360/1/34706360.png",
+      "duration": "30 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "6b10b001-a705-46c7-a963-9dee7c75e42b",
+      "title": "Pilzstullen",
+      "detailUrl": "https://www.rewe.de/rezepte/pilzstullen/",
+      "imageUrl": "https://c.rewe-static.de/34819046/2/34819046.png",
+      "duration": "20 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "61ea42b1-329c-4aab-bf88-526f9d37582d",
+      "title": "Cannelloni mit Frischkäse und Spinat",
+      "detailUrl": "https://www.rewe.de/rezepte/cannelloni-frischkaese-spinat/",
+      "imageUrl": "https://c.rewe-static.de/35635511/2/35635511.png",
+      "duration": "70 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "eb707d8c-d2e4-4792-9072-0634a790ef04",
+      "title": "Asianudeln mit Erdnusssoße",
+      "detailUrl": "https://www.rewe.de/rezepte/asianudeln-erdnusssosse/",
+      "imageUrl": "https://c.rewe-static.de/34582795/2/34582795.png",
+      "duration": "25 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "605c3a59-fc61-41d5-9fea-3cdc61db1aa6",
+      "title": "Disi-Bisi Dinkel Pfanne",
+      "detailUrl": "https://www.rewe.de/rezepte/disi-bisi-dinkel-pfanne/",
+      "imageUrl": "https://c.rewe-static.de/30691399/8/30691399.png",
+      "duration": "20 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "918f557f-73e6-42f5-a8d1-67312f13f36e",
+      "title": "Knoblauch Kartoffel Suppe",
+      "detailUrl": "https://www.rewe.de/rezepte/knoblauch-kartoffel-suppe/",
+      "imageUrl": "https://c.rewe-static.de/53370066/2/53370066.png",
+      "duration": "95 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "12ff5cc8-292f-4ff6-9a4b-6b8ad8ce05de",
+      "title": "Spitzkohlstrudel mit Curryrahm",
+      "detailUrl": "https://www.rewe.de/rezepte/spitzkohlstrudel-mit-curryrahm/",
+      "imageUrl": "https://c.rewe-static.de/34582572/2/34582572.png",
+      "duration": "60 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "ed8f2517-bf3c-48c7-9afd-dadf38ce3d2e",
+      "title": "Gefüllte Gnocchi auf Winter-Röstgemüse",
+      "detailUrl": "https://www.rewe.de/rezepte/gefuellte-gnocchi-winter-roestgemuese/",
+      "imageUrl": "https://c.rewe-static.de/30741071/6/30741071.png",
+      "duration": "45 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "981c15dd-8960-452c-954c-b7be8db20626",
+      "title": "Glitzer-Drink",
+      "detailUrl": "https://www.rewe.de/rezepte/glitzer-drink/",
+      "imageUrl": "https://c.rewe-static.de/34581268/2/34581268.png",
+      "duration": "5 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    },
+    {
+      "id": "0c9446b7-f0bb-4569-9714-4c02cfc55b55",
+      "title": "Winterliche Kohlpfanne",
+      "detailUrl": "https://www.rewe.de/rezepte/winterliche-kohlpfanne/",
+      "imageUrl": "https://c.rewe-static.de/34705065/2/34705065.png",
+      "duration": "40 min",
+      "difficultyLevel": 1,
+      "difficultyDescription": "Einfach"
+    }
+  ],
+  "metadata": {
+    "collections": [
+      "Vegetarisch"
+    ],
+    "tags": [
+      "Geringer Aufwand",
+      "Vegetarisch",
+      "Abendessen",
+      "Mittagessen",
+      "Hauptspeise",
+      "schnell",
+      "Gemüse",
+      "gesund",
+      "Laktosefrei",
+      "herzhaft",
+      "Glutenfrei",
+      "Vegan",
+      "Sommer",
+      "Party",
+      "Frische Rezepte",
+      "Vorspeise",
+      "Snacks",
+      "Feierabend",
+      "Mittlerer Aufwand",
+      "Kalorienarm"
+    ],
+    "difficulties": [
+      "Gering",
+      "Mittel",
+      "Hoch"
+    ]
+  }
+}
