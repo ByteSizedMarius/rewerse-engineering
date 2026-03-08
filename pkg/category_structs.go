@@ -98,7 +98,7 @@ type ProductDetail struct {
 	// Description is the product description
 	Description string `json:"description"`
 	// FeatureBenefit contains marketing benefits
-	FeatureBenefit string `json:"featureBenefit"`
+	FeatureBenefit []string `json:"featureBenefit"`
 	// TradeItemMarketingMessage contains marketing text
 	TradeItemMarketingMessage string `json:"tradeItemMarketingMessage"`
 	// QSCertificationMark indicates QS certification
