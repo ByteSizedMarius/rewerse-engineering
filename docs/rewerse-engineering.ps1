@@ -20,7 +20,7 @@ param (
 # ——————————————————————————————————————————————————————————————————————————————
 
 # APK download target version; update if this version is no longer available on UpToDown
-$targetVersion = "5.7.3"
+$targetVersion = "5.11.0"
 
 function Get-ApkVersionUrl {
     try {

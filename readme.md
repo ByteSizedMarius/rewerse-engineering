@@ -3,7 +3,7 @@
 <div>
   <img src="gopher.png" alt="Project Logo" width="170" align="right">
   <p>This repository aims to implement all publicly accessible (unauthenticated) API endpoints used by the Rewe app for querying current discounts, products, recipes and recalls.</p>
-  <p>Current supported APK version: 5.7.3 (as of 09.01.26)</p> 
+  <p>Current supported APK version: 5.11.0 (as of 25.03.26)</p> 
 </div>
 
 > [!CAUTION]
