@@ -9,6 +9,8 @@
 > [!CAUTION]
 > The certificates required for talking to the rewe api are not included in this repository. You need to extract them from the APK. Documentation & an extraction-script for windows can be found in the [docs](./docs) directory.
 
+Also see [rewerse-ui](https://github.com/ByteSizedMarius/rewerse-ui).
+
 ## quick start
 
 **Extract certificates** from the rewe apk; see [docs](./docs) for instructions

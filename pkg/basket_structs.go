@@ -87,7 +87,9 @@ type LineItemProduct struct {
 	Attributes  ProductAttributes `json:"attributes"`
 }
 
-// Listing contains listing-specific info (market-specific pricing)
+// Listing holds data specific to a product being offered at a particular market,
+// such as pricing and unit price. The same product can have different listings
+// across markets.
 type Listing struct {
 	// ListingID is used for basket operations: "8-FP05LLPR-rewe-online-services|48465001-320516"
 	ListingID          string `json:"listingId"`
