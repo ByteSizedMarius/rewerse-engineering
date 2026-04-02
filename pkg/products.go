@@ -179,10 +179,10 @@ func getProductsCommon(marketID string, opts *ProductOpts, queryParams url.Value
 	return ProductResults{
 		Products: raw.Data.Products.Products,
 		Pagination: struct {
-			ObjectsPerPage int
-			CurrentPage    int
-			PageCount      int
-			ObjectCount    int
+			ObjectsPerPage int `json:"objectsPerPage"`
+			CurrentPage    int `json:"currentPage"`
+			PageCount      int `json:"pageCount"`
+			ObjectCount    int `json:"objectCount"`
 		}{
 			ObjectsPerPage: raw.Data.Products.Pagination.ObjectsPerPage,
 			CurrentPage:    raw.Data.Products.Pagination.CurrentPage,
@@ -190,8 +190,8 @@ func getProductsCommon(marketID string, opts *ProductOpts, queryParams url.Value
 			ObjectCount:    raw.Data.Products.Pagination.ObjectCount,
 		},
 		SearchTerm: struct {
-			Original  string
-			Corrected *string
+			Original  string  `json:"original"`
+			Corrected *string `json:"corrected"`
 		}{
 			Original:  raw.Data.Products.Search.Term.Original,
 			Corrected: raw.Data.Products.Search.Term.Corrected,

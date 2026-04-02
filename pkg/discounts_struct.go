@@ -118,8 +118,8 @@ type RawOffer struct {
 
 // Discounts is the struct that holds cleaned up discount data.
 type Discounts struct {
-	Categories []DiscountCategory
-	ValidUntil time.Time
+	Categories []DiscountCategory `json:"categories"`
+	ValidUntil time.Time          `json:"validUntil"`
 }
 
 // GroupByProductCategory groups the discounts by their product category and returns the results.
@@ -165,24 +165,24 @@ func (d Discounts) String() string {
 // It contains an index for sorting the categories in their intended order and the actual discounts.
 // Calling GroupByProductCategory reorders the discounts by their product category (z. B. "Nahrungsmittel").
 type DiscountCategory struct {
-	ID     string
-	Title  string
-	Index  int
-	Offers []Discount
+	ID     string     `json:"id"`
+	Title  string     `json:"title"`
+	Index  int        `json:"index"`
+	Offers []Discount `json:"offers"`
 }
 
 // Discount is the actual discount with some of the information provided by rewe.
 type Discount struct {
-	Title           string
-	Subtitle        string
-	Images          []string
-	PriceRaw string
+	Title    string   `json:"title"`
+	Subtitle string   `json:"subtitle"`
+	Images   []string `json:"images"`
+	PriceRaw string   `json:"priceRaw"`
 	// Price is the parsed price in euros. Check PriceParseFail before using -
 	// if true, Price is 0.0 due to parse failure, not because item is free.
-	Price          float64
-	PriceParseFail bool
-	Manufacturer    string
-	ArticleNo       string
-	NutriScore      string
-	ProductCategory string
+	Price           float64 `json:"price"`
+	PriceParseFail  bool    `json:"priceParseFail"`
+	Manufacturer    string  `json:"manufacturer"`
+	ArticleNo       string  `json:"articleNo"`
+	NutriScore      string  `json:"nutriScore"`
+	ProductCategory string  `json:"productCategory"`
 }

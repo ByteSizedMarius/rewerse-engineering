@@ -8,17 +8,17 @@ import (
 // ProductResults is the flattened result from product search endpoints.
 // Endpoint: GET /api/products
 type ProductResults struct {
-	Products   []Product
+	Products   []Product `json:"products"`
 	Pagination struct {
-		ObjectsPerPage int
-		CurrentPage    int
-		PageCount      int
-		ObjectCount    int
-	}
+		ObjectsPerPage int `json:"objectsPerPage"`
+		CurrentPage    int `json:"currentPage"`
+		PageCount      int `json:"pageCount"`
+		ObjectCount    int `json:"objectCount"`
+	} `json:"pagination"`
 	SearchTerm struct {
-		Original  string
-		Corrected *string // non-nil if API corrected a typo
-	}
+		Original  string  `json:"original"`
+		Corrected *string `json:"corrected"`
+	} `json:"searchTerm"`
 }
 
 func (pr ProductResults) String() string {

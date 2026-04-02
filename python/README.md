@@ -27,7 +27,7 @@ python python/build_lib.py
 cd python && pip install -e .
 ```
 
-This builds both the Linux .so and Windows .dll.
+This builds both the Linux .so and Windows .dll. For macOS, see [building from source](#macos).
 
 ## Usage
 
@@ -37,16 +37,92 @@ from rewerse import Rewerse
 client = Rewerse(cert="certificate.pem", key="private.key")
 
 markets = client.market_search("Berlin")
+# [
+#     {
+#         "wwIdent": "8547534",
+#         "name": "REWE Markt",
+#         "companyName": "REWE Karsten Schmidt oHG",
+#         "street": "Schönhauser Allee 80",
+#         "zipCode": "10439",
+#         "city": "Berlin",
+#         "location": {"latitude": 52.54984, "longitude": 13.41488},
+#         "openingStatus": {"openState": "CLOSED", "statusText": "Geschlossen", ...},
+#         "serviceFlags": {"hasPickup": true},
+#         ...
+#     },
+#     ...
+# ]
+
 market_id = markets[0]["wwIdent"]
 
-response = client.get_products(market_id, "Milch")
+products = client.get_products(market_id, "Milch")
+# {
+#     "products": [
+#         {
+#             "productId": "677067",
+#             "title": "Weihenstephan H-Milch 3,5% 1l",
+#             "listing": {
+#                 "currentRetailPrice": 99,
+#                 "grammage": "1l",
+#                 "discount": {"__typename": "RegularProductDiscount", "validTo": "04.04."},
+#                 "loyaltyBonus": {"bonusType": "CENT", "bonusValue": 10},
+#                 ...
+#             },
+#             "attributes": {"isOrganic": false, "isVegan": false, "isBulkyGood": true, ...},
+#             ...
+#         },
+#         ...
+#     ],
+#     "pagination": {"objectsPerPage": 30, "currentPage": 1, "pageCount": 24, "objectCount": 706},
+#     "searchTerm": {"original": "Milch", "corrected": null}
+# }
+
 discounts = client.get_discounts(market_id)
+# {
+#     "categories": [
+#         {
+#             "id": "markt-topangebote",
+#             "title": "Top-Angebote in deinem Markt",
+#             "index": 3,
+#             "offers": [
+#                 {
+#                     "title": "Kinder Riegel",
+#                     "subtitle": "je 18 x 21-g-Pckg. (1 kg = 11.56)",
+#                     "price": 3.99,
+#                     "priceRaw": "3,99 €",
+#                     "manufacturer": "FERRERO",
+#                     "articleNo": "249183",
+#                     "productCategory": "suesses-und-salziges",
+#                     ...
+#                 },
+#                 ...
+#             ]
+#         },
+#         ...
+#     ],
+#     "validUntil": "2026-04-05T00:00:00Z"
+# }
+
 recipes = client.recipe_search(search_term="Pasta")
+# {
+#     "totalCount": 150,
+#     "recipes": [
+#         {
+#             "id": "60f6d89e-640e-4911-8b61-628250c2217a",
+#             "title": "Bruschetta Pasta",
+#             "duration": "25 min",
+#             "difficultyLevel": 1,
+#             "difficultyDescription": "Einfach"
+#         },
+#         ...
+#     ],
+#     "metadata": {"collections": ["Vegetarisch"], "difficulties": ["Gering", "Mittel", "Hoch"], ...}
+# }
 ```
 
 ## Methods
 
-All methods raise `RewerseError` on failure. Responses are untyped dicts; see [Go structs](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg) for field definitions.
+All methods raise `RewerseError` on failure. Responses are untyped dicts; field definitions, filter constants, and enum values are documented in the [Go reference](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg#pkg-types).
 
 ### Markets
 
@@ -65,6 +141,8 @@ All methods raise `RewerseError` on failure. Responses are untyped dicts; see [G
 | `get_product_suggestions(query, *, page=1, objects_per_page=25)` | Autocomplete suggestions |
 | `get_product_recommendations(market_id, listing_id)` | Related product recommendations |
 
+See [`ProductFilter`](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg#ProductFilter). Prices in `currentRetailPrice` are in **cents** (divide by 100 for euros).
+
 ### Discounts
 
 | Method | Description |
@@ -76,10 +154,12 @@ All methods raise `RewerseError` on failure. Responses are untyped dicts; see [G
 
 | Method | Description |
 |--------|-------------|
-| `recipe_search(*, search_term="", sorting="RELEVANCE_DESC", difficulty="", collection="", page=1, objects_per_page=20)` | Search recipes. Difficulty: `"Gering"`, `"Mittel"`, `"Hoch"`. Collection: `"Vegetarisch"`, `"Vegan"` |
+| `recipe_search(*, search_term="", sorting="RELEVANCE_DESC", difficulty="", collection="", page=1, objects_per_page=20)` | Search recipes |
 | `get_recipe_details(recipe_id)` | Get full recipe with ingredients and steps |
 | `get_recipe_popular_terms()` | Get popular recipe search terms |
 | `get_recipe_hub()` | Get recipe homepage (recipe of the day, popular, categories) |
+
+See [`RecipeDifficulty`](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg#RecipeDifficulty), [`RecipeCollection`](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg#RecipeCollection).
 
 ### Shop & Services
 
@@ -89,6 +169,8 @@ All methods raise `RewerseError` on failure. Responses are untyped dicts; see [G
 | `get_service_portfolio(zipcode)` | Get available REWE services for a zip code |
 | `get_recalls()` | Get current product recalls |
 
+See [`ServiceType`](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg#ServiceType). Must match market capabilities — check `serviceFlags.hasPickup` from `get_market_details()`.
+
 ### Basket
 
 | Method | Description |
@@ -97,6 +179,8 @@ All methods raise `RewerseError` on failure. Responses are untyped dicts; see [G
 | `get_basket(basket_id, market_id, zip_code, service_type, version=0)` | Get current basket state |
 | `set_basket_item(basket_id, market_id, zip_code, service_type, listing_id, quantity, version)` | Add/update item quantity in basket |
 | `remove_basket_item(basket_id, market_id, zip_code, service_type, listing_id)` | Remove item from basket |
+
+See [`ServiceType`](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg#ServiceType). `version`: basket state version for optimistic locking (from previous basket response). Prices in cents.
 
 ### Delivery
 
