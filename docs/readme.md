@@ -19,10 +19,10 @@ You can also quite easily extract the pfx manually.
 1. [Download the apk](https://apkpure.com/de/rewe-supermarkt/de.rewe.app.mobile/download). Version does not really matter. However, pay attention to which download button you click, as many of these sites have been introducing dark patterns to get you to install their store instead. 
 2. Rename the file from `.apk` or `.apkx` to `.zip` and open the zip.
 	- If you had an `apkx`-file: Copy `de.rewe.app.mobile.apk` out of the zip and redo step 2 with this apk.
-3. Navigate to `/res/raw`, where you will find the `mtls_prod.pfx`. 
+3. Navigate to `/res/raw`, where you will find the `mtls_prod.pfx`. Copy it out of the zip. 
 4. Extract key and pem from the `.pfx`. 
 	- Using the PowerShell-script: `./rewerse-engineering -PfxPath "/path/to/.pfx/"`
-	- [Torbens openssl commands](https://github.com/torbenpfohl/rewe-discounts/blob/main/how%20to%20get%20private.pem%20and%20private.key.txt#L16)
+	- Or [Torbens openssl commands](https://github.com/torbenpfohl/rewe-discounts/blob/main/how%20to%20get%20private.pem%20and%20private.key.txt#L16)
 
 ## usage 
 
@@ -68,4 +68,3 @@ Apk versions tested with the script:
 - [Torben](https://github.com/torbenpfohl/rewe-discounts/blob/main/rewe_discounts/get_creds.py) also has a python helper for extracting the cert that's a bit less overengineered
 - Starting with v3.19, the app now seems to be packaged as an xapk, which means the apk containing the certificate is nested. This requires unzipping twice
 - The pfx bundled with the apk seems to be an old format (RC2-40-CBC) and may not be supported everywhere. You may have to convert it to a newer format if you are experiencing strange issues (ask me how I know)
-- Currently trying to get better at powershell, feel free to criticise relentlessly

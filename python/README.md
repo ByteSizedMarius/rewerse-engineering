@@ -20,19 +20,14 @@ Python bindings for the REWE mobile API.
 pip install rewerse
 ```
 
-## Building from source
+Alternatively, build from source on Windows (requires Go 1.21+ and gcc):
 
-Requires Go 1.21+ and a C compiler.
-
-From repo root:
 ```bash
 python python/build_lib.py
-```
-
-Then install locally:
-```bash
 cd python && pip install -e .
 ```
+
+This builds both the Linux .so and Windows .dll.
 
 ## Usage
 

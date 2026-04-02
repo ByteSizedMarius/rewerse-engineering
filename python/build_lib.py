@@ -2,13 +2,12 @@
 """
 Build script for compiling the Go shared library.
 
-Usage:
-    python build_lib.py [--platform PLATFORM]
+Builds both Linux (.so) and Windows (.dll) by default. Runs on Windows (requires Go 1.21+ and gcc).
+macOS (.dylib) must be built on macOS with --platform darwin.
 
-Platforms:
-    linux   - Build for Linux (default, requires gcc)
-    windows - Cross-compile for Windows (requires mingw-w64)
-    darwin  - Cross-compile for macOS (requires osxcross)
+Usage:
+    python build_lib.py                    # build linux + windows
+    python build_lib.py --platform darwin  # build macOS (on macOS only)
 """
 
 import argparse
@@ -31,7 +30,7 @@ def get_output_dir() -> Path:
 
 
 def build_linux(project_root: Path, output_dir: Path):
-    """Build shared library for Linux."""
+    """Cross-compile shared library for Linux from Windows."""
     output = output_dir / "librewerse.so"
     cmd = [
         "go", "build",
@@ -41,8 +40,10 @@ def build_linux(project_root: Path, output_dir: Path):
     ]
     env = os.environ.copy()
     env["CGO_ENABLED"] = "1"
+    env["GOOS"] = "linux"
+    env["GOARCH"] = "amd64"
 
-    print(f"Building Linux library: {output}")
+    print(f"Cross-compiling Linux library: {output}")
     subprocess.run(cmd, cwd=project_root, env=env, check=True)
     print(f"Built: {output}")
 
@@ -54,19 +55,7 @@ def build_linux(project_root: Path, output_dir: Path):
 
 
 def build_windows(project_root: Path, output_dir: Path):
-    """Cross-compile shared library for Windows."""
-    # Check mingw-w64 is available
-    try:
-        subprocess.run(
-            ["x86_64-w64-mingw32-gcc", "--version"],
-            capture_output=True,
-            check=True,
-        )
-    except FileNotFoundError:
-        raise FileNotFoundError(
-            "mingw-w64 not found. Install with: apt install mingw-w64"
-        )
-
+    """Build shared library for Windows natively."""
     output = output_dir / "rewerse.dll"
     cmd = [
         "go", "build",
@@ -76,11 +65,8 @@ def build_windows(project_root: Path, output_dir: Path):
     ]
     env = os.environ.copy()
     env["CGO_ENABLED"] = "1"
-    env["GOOS"] = "windows"
-    env["GOARCH"] = "amd64"
-    env["CC"] = "x86_64-w64-mingw32-gcc"
 
-    print(f"Cross-compiling Windows library: {output}")
+    print(f"Building Windows library: {output}")
     subprocess.run(cmd, cwd=project_root, env=env, check=True)
     print(f"Built: {output}")
 
@@ -92,7 +78,10 @@ def build_windows(project_root: Path, output_dir: Path):
 
 
 def build_darwin(project_root: Path, output_dir: Path):
-    """Cross-compile shared library for macOS."""
+    """Build shared library for macOS. Must be run on macOS."""
+    if sys.platform != "darwin":
+        raise RuntimeError("macOS builds must be run on macOS")
+
     output = output_dir / "librewerse.dylib"
     cmd = [
         "go", "build",
@@ -102,11 +91,8 @@ def build_darwin(project_root: Path, output_dir: Path):
     ]
     env = os.environ.copy()
     env["CGO_ENABLED"] = "1"
-    env["GOOS"] = "darwin"
-    env["GOARCH"] = "amd64"
 
-    print(f"Cross-compiling macOS library: {output}")
-    print("Note: This requires osxcross or building on macOS")
+    print(f"Building macOS library: {output}")
     subprocess.run(cmd, cwd=project_root, env=env, check=True)
     print(f"Built: {output}")
 
@@ -121,29 +107,27 @@ def main():
     parser = argparse.ArgumentParser(description="Build rewerse shared library")
     parser.add_argument(
         "--platform",
-        choices=["linux", "windows", "darwin"],
-        default="linux",
-        help="Target platform (default: linux)",
+        choices=["darwin"],
+        default=None,
+        help="Build for a specific platform (only needed for macOS)",
     )
     args = parser.parse_args()
 
     project_root = get_project_root()
     output_dir = get_output_dir()
 
-    builders = {
-        "linux": build_linux,
-        "windows": build_windows,
-        "darwin": build_darwin,
-    }
-
     try:
-        builders[args.platform](project_root, output_dir)
+        if args.platform == "darwin":
+            build_darwin(project_root, output_dir)
+        else:
+            build_linux(project_root, output_dir)
+            build_windows(project_root, output_dir)
     except subprocess.CalledProcessError as e:
         print(f"Build failed with exit code {e.returncode}", file=sys.stderr)
         sys.exit(1)
     except FileNotFoundError as e:
         print(f"Build failed: {e}", file=sys.stderr)
-        print("Make sure Go and the required C compiler are installed.", file=sys.stderr)
+        print("Make sure Go and gcc are installed.", file=sys.stderr)
         sys.exit(1)
 
 

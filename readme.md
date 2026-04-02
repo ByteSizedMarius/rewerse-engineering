@@ -19,12 +19,26 @@
 - **Python**: `pip install rewerse` – [docs](python/README.md)
 
 **Or install the CLI:**
- 
+
 - [Download](https://github.com/ByteSizedMarius/rewerse-engineering/releases/latest) a release
 - Or install via Go: `go install github.com/ByteSizedMarius/rewerse-engineering/cmd@latest`
 - Or clone and build: `go build -o rewerse ./cmd`
 
 Verify: `rewerse --help`
+
+**Example:** Fetch current discounts for a market:
+
+```
+$ rewerse discounts -market 840174
+
+Top-Angebote in deinem Markt
+	Haribo Goldbären oder Color-Rado, 0.77€
+	Coca-Cola, Fanta oder Sprite, 0.99€
+Obst & Gemüse
+	Heidelbeeren, 1.49€
+	Rispentomaten, 0.99€
+...
+```
 
 ## intro
 
@@ -35,7 +49,7 @@ Github-user [@torbenpfohl](https://github.com/torbenpfohl) was ~~obsessed~~ pers
 his [work](https://github.com/torbenpfohl/rewe-discounts/blob/main/how%20to%20get%20private.pem%20and%20private.key.txt) and aims to document the required procedures and implement some of the endpoints.
 
 This repo is not meant to cause any harm. It's sole purpose is to give access to data that is already freely
-accessible via the app/website. It will never contain endpoints related to rewe account information (login/shoppinglist/etc.) or payback.
+accessible via the app/website. It will never contain endpoints related to rewe account information (login/shoppinglist/etc.).
 
 Not affiliated with Rewe in any way.
 
