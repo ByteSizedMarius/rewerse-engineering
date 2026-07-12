@@ -8,9 +8,14 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	rewerse "github.com/ByteSizedMarius/rewerse-engineering/pkg"
 )
+
+// binaryName is the name the binary was invoked as. Used in help text so
+// examples match whatever the user actually typed.
+var binaryName = filepath.Base(os.Args[0])
 
 func main() {
 	// Global flags

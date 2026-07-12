@@ -50,10 +50,13 @@ broke [existing solutions](https://github.com/foo-git/rewe-discounts) that allow
 Github-user [@torbenpfohl](https://github.com/torbenpfohl) was ~~obsessed~~ persistent enough to figure this out, find the certificate and it's password. This repo is based on
 his [work](https://github.com/torbenpfohl/rewe-discounts/blob/main/how%20to%20get%20private.pem%20and%20private.key.txt) and aims to document the required procedures and implement some of the endpoints.
 
-This repo is not meant to cause any harm. It's sole purpose is to give access to data that is already freely
-accessible via the app/website. It will never contain endpoints related to rewe account information (login/shoppinglist/etc.).
+## disclaimer
 
-Not affiliated with Rewe in any way.
+This project is not affiliated with, endorsed by, or sponsored by REWE-ZENTRALFINANZ eG. "REWE" is a registered trademark of its respective owner.
+
+This is an unofficial client based on publicly observable network traffic from the REWE mobile app. It is provided for educational and research purposes. The underlying API is undocumented and may change or break at any time without notice.
+
+Use of this software is at your own risk. Users are responsible for ensuring their usage complies with applicable terms of service.
 
 ## contents
 
@@ -107,7 +110,7 @@ If you're contributing a struct change, please consider adding or updating an un
 
 ## contributing
 
-Feel free to open github issues for suggestions, questions, bugs. PRs welcome. Email: rewe at marius dot codes.
+Feel free to open github issues for suggestions, questions, bugs. PRs welcome. Email: rewe at byte dot rest.
 
 ## attribution
 

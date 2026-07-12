@@ -169,7 +169,7 @@ See [`RecipeDifficulty`](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-e
 | `get_service_portfolio(zipcode)` | Get available REWE services for a zip code |
 | `get_recalls()` | Get current product recalls |
 
-See [`ServiceType`](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg#ServiceType). Must match market capabilities — check `serviceFlags.hasPickup` from `get_market_details()`.
+See [`ServiceType`](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engineering/pkg#ServiceType). Must match market capabilities (check `serviceFlags.hasPickup` from `get_market_details()`).
 
 ### Basket
 
