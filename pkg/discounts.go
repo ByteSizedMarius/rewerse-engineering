@@ -84,6 +84,7 @@ func GetDiscounts(marketID string) (ds Discounts, err error) {
 				Subtitle:        rawOffer.Subtitle,
 				Images:          rawOffer.Images,
 				PriceRaw:        rawOffer.PriceData.Price,
+				LoyaltyBonus:    parseLoyaltyBonus(rawOffer.LoyaltyBonus),
 				NutriScore:      rawOffer.Detail.NutriScore,
 				ArticleNo:       rawOffer.RawValues.Nan,
 				ProductCategory: rawOffer.RawValues.CategoryTitle,
@@ -129,4 +130,19 @@ func GetDiscounts(marketID string) (ds Discounts, err error) {
 	}
 
 	return
+}
+
+func parseLoyaltyBonus(raw *RawLoyaltyBonus) *LoyaltyBonus {
+	if raw == nil || raw.BonusValue == 0 {
+		return nil
+	}
+
+	lb := &LoyaltyBonus{BonusType: raw.BonusType}
+	switch strings.ToLower(raw.BonusType) {
+	case "cent":
+		lb.BonusValue = float64(raw.BonusValue) / 100
+	default:
+		lb.BonusValue = float64(raw.BonusValue)
+	}
+	return lb
 }

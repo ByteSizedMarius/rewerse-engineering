@@ -85,8 +85,8 @@ type RawOffer struct {
 		// RegularPrice is the original price or a label like "Knaller"
 		RegularPrice string `json:"regularPrice"`
 	} `json:"priceData"`
-	// LoyaltyBonus contains bonus points info if applicable
-	LoyaltyBonus any `json:"loyaltyBonus"`
+	// LoyaltyBonus contains REWE bonus cashback info if applicable
+	LoyaltyBonus *RawLoyaltyBonus `json:"loyaltyBonus"`
 	// Stock contains availability info
 	Stock any `json:"stock"`
 	// Detail contains additional product information
@@ -114,6 +114,14 @@ type RawOffer struct {
 		// Nan is the article number (German: Artikelnummer): "7772669"
 		Nan string `json:"nan"`
 	} `json:"rawValues"`
+}
+
+// RawLoyaltyBonus is the REWE bonus program cashback on an offer.
+type RawLoyaltyBonus struct {
+	// BonusType is the unit of bonusValue, typically "cent"
+	BonusType string `json:"bonusType"`
+	// BonusValue is the bonus amount in the type's unit (e.g. 60 = 60 cent)
+	BonusValue int `json:"bonusValue"`
 }
 
 // Discounts is the struct that holds cleaned up discount data.
@@ -155,7 +163,7 @@ func (d Discounts) String() string {
 		sb.WriteString(cat.Title)
 		sb.WriteByte('\n')
 		for _, offer := range cat.Offers {
-			sb.WriteString(fmt.Sprintf("\t%s, %.2f€\n", offer.Title, offer.Price))
+			sb.WriteString(fmt.Sprintf("\t%s\n", offer.formatPriceLine()))
 		}
 	}
 	return sb.String()
@@ -181,8 +189,36 @@ type Discount struct {
 	// if true, Price is 0.0 due to parse failure, not because item is free.
 	Price           float64 `json:"price"`
 	PriceParseFail  bool    `json:"priceParseFail"`
-	Manufacturer    string  `json:"manufacturer"`
-	ArticleNo       string  `json:"articleNo"`
-	NutriScore      string  `json:"nutriScore"`
-	ProductCategory string  `json:"productCategory"`
+	// LoyaltyBonus is REWE bonus cashback when the offer participates in the bonus program.
+	LoyaltyBonus *LoyaltyBonus `json:"loyaltyBonus,omitempty"`
+	Manufacturer string        `json:"manufacturer"`
+	ArticleNo    string        `json:"articleNo"`
+	NutriScore   string        `json:"nutriScore"`
+	ProductCategory string     `json:"productCategory"`
+}
+
+// LoyaltyBonus is parsed REWE bonus cashback on a discount.
+type LoyaltyBonus struct {
+	// BonusType is the unit of the raw API value, typically "cent"
+	BonusType string `json:"bonusType"`
+	// BonusValue is the bonus in euros (e.g. 0.60 for 60 cent)
+	BonusValue float64 `json:"bonusValue"`
+}
+
+func (d Discount) formatPriceLine() string {
+	hasPrice := d.Price > 0
+	hasBonus := d.LoyaltyBonus != nil && d.LoyaltyBonus.BonusValue > 0
+
+	switch {
+	case hasPrice && hasBonus:
+		return fmt.Sprintf("%s, %.2f€ (+%.2f€ Bonus)", d.Title, d.Price, d.LoyaltyBonus.BonusValue)
+	case hasPrice:
+		return fmt.Sprintf("%s, %.2f€", d.Title, d.Price)
+	case hasBonus:
+		return fmt.Sprintf("%s, %.2f€ Bonus", d.Title, d.LoyaltyBonus.BonusValue)
+	case d.PriceParseFail && d.PriceRaw != "":
+		return fmt.Sprintf("%s, %s", d.Title, d.PriceRaw)
+	default:
+		return fmt.Sprintf("%s, %.2f€", d.Title, d.Price)
+	}
 }
