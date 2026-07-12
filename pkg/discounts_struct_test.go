@@ -48,4 +48,7 @@ func TestRawDiscountsUnmarshal(t *testing.T) {
 	if offer.RawValues.Nan == "" {
 		t.Error("offer nan is empty")
 	}
+	if offer.LoyaltyBonus != nil && offer.LoyaltyBonus.BonusType == "" {
+		t.Error("loyalty bonus type is empty")
+	}
 }
