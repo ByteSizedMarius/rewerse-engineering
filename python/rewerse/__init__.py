@@ -16,7 +16,7 @@ import json
 
 from ._ffi import call, RewerseError
 
-__version__ = "0.1.0"
+__version__ = "1.2.0"
 __all__ = ["Rewerse", "RewerseError", "__version__"]
 
 

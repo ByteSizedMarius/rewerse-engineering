@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rewerse"
-version = "0.1.1"
+version = "1.2.0"
 description = "Python bindings for the REWE mobile API"
 readme = "README.md"
 requires-python = ">=3.10"

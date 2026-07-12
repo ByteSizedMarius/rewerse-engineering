@@ -44,6 +44,8 @@ Apk versions tested with the script:
 
 | version | tested |
 |---------|--------|
+| 5.15.2  | ✅      |
+| 5.11.0  | ✅      |
 | 5.7.3   | ✅      |
 | 4.1.0   | ✅      |
 | 4.0.3   | ✅      |
