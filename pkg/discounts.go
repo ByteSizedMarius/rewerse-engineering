@@ -132,17 +132,13 @@ func GetDiscounts(marketID string) (ds Discounts, err error) {
 	return
 }
 
-func parseLoyaltyBonus(raw *RawLoyaltyBonus) *LoyaltyBonus {
+// parseLoyaltyBonus converts the raw bonus to euros. Only "cent" has been observed as bonusType.
+func parseLoyaltyBonus(raw *RawLoyaltyBonus) float64 {
 	if raw == nil || raw.BonusValue == 0 {
-		return nil
+		return 0
 	}
-
-	lb := &LoyaltyBonus{BonusType: raw.BonusType}
-	switch strings.ToLower(raw.BonusType) {
-	case "cent":
-		lb.BonusValue = float64(raw.BonusValue) / 100
-	default:
-		lb.BonusValue = float64(raw.BonusValue)
+	if strings.ToLower(raw.BonusType) == "cent" {
+		return float64(raw.BonusValue) / 100
 	}
-	return lb
+	return float64(raw.BonusValue)
 }

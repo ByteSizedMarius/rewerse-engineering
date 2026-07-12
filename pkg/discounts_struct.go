@@ -108,7 +108,7 @@ type RawOffer struct {
 	// RawValues contains internal tracking data
 	RawValues struct {
 		// CategoryTitle is the product category slug: "suesses-und-salziges"
-		CategoryTitle string `json:"categoryTitle"`
+		CategoryTitle string  `json:"categoryTitle"`
 		PriceAverage  float64 `json:"priceAverage"`
 		FlyerPage     int     `json:"flyerPage"`
 		// Nan is the article number (German: Artikelnummer): "7772669"
@@ -187,35 +187,24 @@ type Discount struct {
 	PriceRaw string   `json:"priceRaw"`
 	// Price is the parsed price in euros. Check PriceParseFail before using -
 	// if true, Price is 0.0 due to parse failure, not because item is free.
-	Price           float64 `json:"price"`
-	PriceParseFail  bool    `json:"priceParseFail"`
-	// LoyaltyBonus is REWE bonus cashback when the offer participates in the bonus program.
-	LoyaltyBonus *LoyaltyBonus `json:"loyaltyBonus,omitempty"`
-	Manufacturer string        `json:"manufacturer"`
-	ArticleNo    string        `json:"articleNo"`
-	NutriScore   string        `json:"nutriScore"`
-	ProductCategory string     `json:"productCategory"`
-}
-
-// LoyaltyBonus is parsed REWE bonus cashback on a discount.
-type LoyaltyBonus struct {
-	// BonusType is the unit of the raw API value, typically "cent"
-	BonusType string `json:"bonusType"`
-	// BonusValue is the bonus in euros (e.g. 0.60 for 60 cent)
-	BonusValue float64 `json:"bonusValue"`
+	Price          float64 `json:"price"`
+	PriceParseFail bool    `json:"priceParseFail"`
+	// LoyaltyBonus is the REWE Bonus cashback in euros (0.30 = 30 cent), 0 if none
+	LoyaltyBonus    float64 `json:"loyaltyBonus,omitempty"`
+	Manufacturer    string  `json:"manufacturer"`
+	ArticleNo       string  `json:"articleNo"`
+	NutriScore      string  `json:"nutriScore"`
+	ProductCategory string  `json:"productCategory"`
 }
 
 func (d Discount) formatPriceLine() string {
-	hasPrice := d.Price > 0
-	hasBonus := d.LoyaltyBonus != nil && d.LoyaltyBonus.BonusValue > 0
+	hasBonus := d.LoyaltyBonus > 0
 
 	switch {
-	case hasPrice && hasBonus:
-		return fmt.Sprintf("%s, %.2f€ (+%.2f€ Bonus)", d.Title, d.Price, d.LoyaltyBonus.BonusValue)
-	case hasPrice:
-		return fmt.Sprintf("%s, %.2f€", d.Title, d.Price)
+	case d.Price > 0 && hasBonus:
+		return fmt.Sprintf("%s, %.2f€ (%.2f€ Bonus)", d.Title, d.Price, d.LoyaltyBonus)
 	case hasBonus:
-		return fmt.Sprintf("%s, %.2f€ Bonus", d.Title, d.LoyaltyBonus.BonusValue)
+		return fmt.Sprintf("%s, %.2f€ Bonus", d.Title, d.LoyaltyBonus)
 	case d.PriceParseFail && d.PriceRaw != "":
 		return fmt.Sprintf("%s, %s", d.Title, d.PriceRaw)
 	default:

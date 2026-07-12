@@ -114,11 +114,11 @@ fmt.Println(discounts)
 Top-Angebote in deinem Markt
     Haribo Goldbären oder Color-Rado, 0.77€
     Coca-Cola, Fanta, Sprite oder Mezzo Mix, 11.99€
-    YFood Trinkmahlzeit, 3.29€
+    YFood Trinkmahlzeit, 3.29€ (0.30€ Bonus)
     Ritter Sport Schokolade, 1.11€
     [...]
 Bonus-Aktionen
-    YFood Trinkmahlzeit, 3.29€
+    YFood Trinkmahlzeit, 3.29€ (0.30€ Bonus)
     Rügenwalder Vegane Mühlen Cordon bleu, 2.49€
     Kinder Country, 2.22€
     Philadelphia, 1.11€

@@ -90,6 +90,7 @@ discounts = client.get_discounts(market_id)
 #                     "subtitle": "je 18 x 21-g-Pckg. (1 kg = 11.56)",
 #                     "price": 3.99,
 #                     "priceRaw": "3,99 €",
+#                     "loyaltyBonus": 0.1,
 #                     "manufacturer": "FERRERO",
 #                     "articleNo": "249183",
 #                     "productCategory": "suesses-und-salziges",
