@@ -2,7 +2,6 @@ package rewerse
 
 import (
 	"fmt"
-	"strings"
 )
 
 type recallsResponse struct {
@@ -54,73 +53,6 @@ func GetRecalls() (r Recalls, err error) {
 	}
 
 	r = res.Data.ProductRecalls.Products
-	return
-}
-
-// RecipeHub is the struct for the Data returned by the Rewe Recipe-Page
-type RecipeHub struct {
-	RecipeOfTheDay Recipe   `json:"recipeOfTheDay"`
-	PopularRecipes []Recipe `json:"popularRecipes"`
-	Categories     []struct {
-		Type        string `json:"type"`
-		Title       string `json:"title"`
-		SearchQuery string `json:"searchQuery"`
-	} `json:"categories"`
-}
-
-func (rh RecipeHub) String() string {
-	var sb strings.Builder
-
-	sb.WriteString(sep("Recipe of the Day"))
-	sb.WriteByte('\n')
-	sb.WriteString(rh.RecipeOfTheDay.String())
-	sb.WriteByte('\n')
-
-	sb.WriteString(sep(fmt.Sprintf("Popular Recipes (%d)", len(rh.PopularRecipes))))
-	sb.WriteByte('\n')
-	for _, r := range rh.PopularRecipes {
-		sb.WriteString(r.String())
-	}
-
-	sb.WriteByte('\n')
-	sb.WriteString(sep(fmt.Sprintf("Categories (%d)", len(rh.Categories))))
-	sb.WriteByte('\n')
-	for _, c := range rh.Categories {
-		sb.WriteString("   ")
-		sb.WriteString(c.Title)
-		sb.WriteByte('\n')
-	}
-
-	return sb.String()
-}
-
-// Recipe is the struct for a single recipe
-type Recipe struct {
-	ID                    string `json:"id"`
-	Title                 string `json:"title"`
-	DetailURL             string `json:"detailUrl"`
-	ImageURL              string `json:"imageUrl"`
-	Duration              string `json:"duration"`
-	DifficultyLevel       int    `json:"difficultyLevel"`
-	DifficultyDescription string `json:"difficultyDescription"`
-}
-
-func (r Recipe) String() string {
-	return fmt.Sprintf("   %s (%s, %s)\n   %s\n", r.Title, r.Duration, r.DifficultyDescription, r.DetailURL)
-}
-
-// GetRecipeHub returns the Data from the RecipeHub
-func GetRecipeHub() (r RecipeHub, err error) {
-	req, err := BuildCustomRequest(apiHost, "v3/recipe-hub")
-	if err != nil {
-		return
-	}
-
-	err = DoRequest(req, &r)
-	if err != nil {
-		return
-	}
-
 	return
 }
 

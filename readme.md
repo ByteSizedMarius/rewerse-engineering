@@ -2,8 +2,8 @@
 
 <div>
   <img src="gopher.png" alt="Project Logo" width="170" align="right">
-  <p>This repository aims to implement all publicly accessible (unauthenticated) API endpoints used by the Rewe app for querying current discounts, products, recipes and recalls.</p>
-  <p>Current supported APK version: 5.15.2 (as of 12.07.26)</p> 
+  <p>This repository aims to implement all publicly accessible (unauthenticated) API endpoints used by the Rewe app for querying current discounts, products and recalls.</p>
+  <p>Current supported APK version: 5.16.2 (as of 06.08.26)</p> 
 </div>
 
 > [!CAUTION]
@@ -68,6 +68,12 @@ Use of this software is at your own risk. Users are responsible for ensuring the
 > [!NOTE]
 > Please note that since this is an unsigned go binary that does some encryption/decryption of certificates and sends webrequests to the rewe api, it will likely get flagged by your antivirus. There are no dependencies, so you can easily compile it yourself – which is always recommended from a security perspective.
 
+## removed endpoints
+
+Recipes are gone for now. Rewe reworked them server-side, moving everything to GraphQL on a different host, so the response types need a full rewrite.
+
+The app no longer has an autocomplete endpoint and just uses the normal product search, so product suggestions are gone too.
+
 ## cli
 
 ```
@@ -81,7 +87,6 @@ Flags:
 Commands:
   markets         Search and get market details
   products        Search, browse, and get product info
-  recipes         Search and browse recipes
   discounts       Get market discounts
   categories      Get product categories
   recalls         Get product recalls
@@ -91,7 +96,6 @@ Examples:
   ./rewerse.exe markets search -query Köln
   ./rewerse.exe products search -market 831002 -query Milch
   ./rewerse.exe products category -market 831002 -slug obst-gemuese
-  ./rewerse.exe recipes search -term Pasta
   ./rewerse.exe discounts -market 840174
   ./rewerse.exe categories -market 831002
   ./rewerse.exe services -zip 50667

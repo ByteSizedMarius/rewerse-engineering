@@ -139,27 +139,6 @@ class Rewerse:
         """
         return call("GetProductByID", market_id, product_id)
 
-    def get_product_suggestions(
-        self,
-        query: str,
-        *,
-        page: int = 1,
-        objects_per_page: int = 25,
-    ) -> list[dict]:
-        """
-        Get search autocomplete suggestions.
-
-        Args:
-            query: Partial search query
-            page: Page number
-            objects_per_page: Results per page
-
-        Returns:
-            List of suggestion objects
-        """
-        opts = {"Page": page, "ObjectsPerPage": objects_per_page}
-        return call("GetProductSuggestions", query, json.dumps(opts))
-
     def get_product_recommendations(self, market_id: str, listing_id: str) -> list[dict]:
         """
         Get related product recommendations.
@@ -199,63 +178,6 @@ class Rewerse:
         """
         return call("GetDiscounts", market_id)
 
-    # --- Recipes ---
-
-    def recipe_search(
-        self,
-        *,
-        search_term: str = "",
-        sorting: str = "RELEVANCE_DESC",
-        difficulty: str = "",
-        collection: str = "",
-        page: int = 1,
-        objects_per_page: int = 20,
-    ) -> dict:
-        """
-        Search for recipes.
-
-        Args:
-            search_term: Search query
-            sorting: Sort order (default: "RELEVANCE_DESC")
-            difficulty: Filter by difficulty ("Gering", "Mittel", "Hoch")
-            collection: Filter by collection ("Vegetarisch", "Vegan")
-            page: Page number
-            objects_per_page: Results per page
-
-        Returns:
-            Recipe search results with metadata
-        """
-        opts = {
-            "SearchTerm": search_term,
-            "Sorting": sorting,
-            "Difficulty": difficulty,
-            "Collection": collection,
-            "Page": page,
-            "ObjectsPerPage": objects_per_page,
-        }
-        return call("RecipeSearch", json.dumps(opts))
-
-    def get_recipe_details(self, recipe_id: str) -> dict:
-        """
-        Get full recipe with ingredients and steps.
-
-        Args:
-            recipe_id: The recipe UUID
-
-        Returns:
-            Full recipe details
-        """
-        return call("GetRecipeDetails", recipe_id)
-
-    def get_recipe_popular_terms(self) -> list[dict]:
-        """
-        Get popular recipe search terms.
-
-        Returns:
-            List of popular search terms
-        """
-        return call("GetRecipePopularTerms")
-
     # --- Misc ---
 
     def get_recalls(self) -> list[dict]:
@@ -266,15 +188,6 @@ class Rewerse:
             List of active product recalls
         """
         return call("GetRecalls")
-
-    def get_recipe_hub(self) -> dict:
-        """
-        Get the recipe hub homepage data.
-
-        Returns:
-            Recipe of the day, popular recipes, categories
-        """
-        return call("GetRecipeHub")
 
     def get_service_portfolio(self, zipcode: str) -> dict:
         """

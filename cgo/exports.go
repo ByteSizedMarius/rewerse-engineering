@@ -201,23 +201,6 @@ func GetProductByID(marketID, productID *C.char) *C.char {
 	return successJSON(product)
 }
 
-//export GetProductSuggestions
-func GetProductSuggestions(query, optsJSON *C.char) *C.char {
-	q, err := requireString(query)
-	if err != nil {
-		return errorJSON(errors.New("query: " + err.Error()))
-	}
-	opts, err := productOptsFromJSON(optsJSON)
-	if err != nil {
-		return errorJSON(errors.New("options: " + err.Error()))
-	}
-	suggestions, err := rewerse.GetProductSuggestions(q, opts)
-	if err != nil {
-		return errorJSON(err)
-	}
-	return successJSON(suggestions)
-}
-
 //export GetProductRecommendations
 func GetProductRecommendations(marketID, listingID *C.char) *C.char {
 	mid, err := requireString(marketID)
@@ -263,60 +246,6 @@ func GetDiscounts(marketID *C.char) *C.char {
 	return successJSON(discounts)
 }
 
-// --- Recipes ---
-
-// recipeOptsFromJSON parses optional RecipeSearchOpts from JSON string
-func recipeOptsFromJSON(optsJSON *C.char) (*rewerse.RecipeSearchOpts, error) {
-	if optsJSON == nil {
-		return nil, nil
-	}
-	s := C.GoString(optsJSON)
-	if s == "" || s == "null" {
-		return nil, nil
-	}
-
-	var opts rewerse.RecipeSearchOpts
-	if err := json.Unmarshal([]byte(s), &opts); err != nil {
-		return nil, err
-	}
-	return &opts, nil
-}
-
-//export RecipeSearch
-func RecipeSearch(optsJSON *C.char) *C.char {
-	opts, err := recipeOptsFromJSON(optsJSON)
-	if err != nil {
-		return errorJSON(errors.New("options: " + err.Error()))
-	}
-	results, err := rewerse.RecipeSearch(opts)
-	if err != nil {
-		return errorJSON(err)
-	}
-	return successJSON(results)
-}
-
-//export GetRecipeDetails
-func GetRecipeDetails(recipeID *C.char) *C.char {
-	rid, err := requireString(recipeID)
-	if err != nil {
-		return errorJSON(errors.New("recipeID: " + err.Error()))
-	}
-	details, err := rewerse.GetRecipeDetails(rid)
-	if err != nil {
-		return errorJSON(err)
-	}
-	return successJSON(details)
-}
-
-//export GetRecipePopularTerms
-func GetRecipePopularTerms() *C.char {
-	terms, err := rewerse.GetRecipePopularTerms()
-	if err != nil {
-		return errorJSON(err)
-	}
-	return successJSON(terms)
-}
-
 // --- Misc ---
 
 //export GetRecalls
@@ -326,15 +255,6 @@ func GetRecalls() *C.char {
 		return errorJSON(err)
 	}
 	return successJSON(recalls)
-}
-
-//export GetRecipeHub
-func GetRecipeHub() *C.char {
-	hub, err := rewerse.GetRecipeHub()
-	if err != nil {
-		return errorJSON(err)
-	}
-	return successJSON(hub)
 }
 
 //export GetServicePortfolio

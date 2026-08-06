@@ -32,13 +32,6 @@
 //
 //	discounts, _ := rewerse.GetDiscounts("840174")
 //
-// # Recipes
-//
-// Search recipes or get recipe details:
-//
-//	results, _ := rewerse.RecipeSearch(&rewerse.RecipeSearchOpts{SearchTerm: "Pasta"})
-//	details, _ := rewerse.GetRecipeDetails("recipe-uuid")
-//
 // # Basket
 //
 // Create and manage shopping baskets:

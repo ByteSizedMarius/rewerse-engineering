@@ -88,37 +88,6 @@ func GetProductByID(marketID, productID string) (ProductDetail, error) {
 	return res.Data.Product[0], nil
 }
 
-// GetProductSuggestions returns search autocomplete suggestions.
-// Endpoint: GET /products/suggestion-search (note: no /api prefix)
-func GetProductSuggestions(query string, opts *ProductOpts) (ProductSuggestions, error) {
-	if opts == nil {
-		opts = &ProductOpts{Page: 1, ObjectsPerPage: 25}
-	}
-	if opts.Page <= 0 {
-		opts.Page = 1
-	}
-	if opts.ObjectsPerPage <= 0 {
-		opts.ObjectsPerPage = 25
-	}
-
-	params := url.Values{}
-	params.Add("query", query)
-	params.Add("page", strconv.Itoa(opts.Page))
-	params.Add("objectsPerPage", strconv.Itoa(opts.ObjectsPerPage))
-
-	req, err := BuildCustomRequestRaw(apiHost, "/products/suggestion-search?"+params.Encode())
-	if err != nil {
-		return nil, err
-	}
-
-	setCommonHeaders(req)
-	req.Header.Set("ruleversion", "2")
-
-	var suggestions ProductSuggestions
-	err = DoRequest(req, &suggestions)
-	return suggestions, err
-}
-
 // GetProductRecommendations returns related product recommendations.
 // Endpoint: GET /api/products/recommendations?listingIds={listingId}
 func GetProductRecommendations(marketID, listingID string) ([]Product, error) {

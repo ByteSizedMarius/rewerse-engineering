@@ -10,6 +10,17 @@ const (
 	maxCategoryDepth = 10
 )
 
+// shopOverviewResponse is the GraphQL-style envelope returned by /api/shop-overview.
+// Its "categories" key is flattened into ShopOverview.ProductCategories.
+type shopOverviewResponse struct {
+	Data struct {
+		ProductRecalls struct {
+			Products Recalls `json:"products"`
+		} `json:"productRecalls"`
+		Categories []ShopCategory `json:"categories"`
+	} `json:"data"`
+}
+
 type ShopOverview struct {
 	ProductRecalls    Recalls        `json:"productRecalls"`
 	ProductCategories []ShopCategory `json:"productCategories"`
@@ -48,11 +59,14 @@ func (so ShopOverview) StringAll() string {
 }
 
 type ShopCategory struct {
-	ID              string `json:"id"`
-	Name            string `json:"name"`
-	Slug            string `json:"slug"`
-	ProductCount    int    `json:"productCount"`
-	ImageURL        string `json:"imageUrl"`
+	ID           string `json:"id"`
+	Name         string `json:"name"`
+	Slug         string `json:"slug"`
+	ProductCount int    `json:"productCount"`
+	ImageURL     string `json:"imageUrl"`
+	// CategoryTags groups categories by theme: ["inspiration"], ["sortiment"]
+	CategoryTags []string `json:"categoryTags"`
+	// ChildCategories is null for leaf categories
 	ChildCategories []ShopCategory `json:"childCategories"`
 }
 

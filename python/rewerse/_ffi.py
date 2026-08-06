@@ -22,21 +22,14 @@ ffi.cdef("""
     char* GetProducts(char* marketID, char* search, char* optsJSON);
     char* GetCategoryProducts(char* marketID, char* categorySlug, char* optsJSON);
     char* GetProductByID(char* marketID, char* productID);
-    char* GetProductSuggestions(char* query, char* optsJSON);
     char* GetProductRecommendations(char* marketID, char* listingID);
 
     // Discounts
     char* GetDiscountsRaw(char* marketID);
     char* GetDiscounts(char* marketID);
 
-    // Recipes
-    char* RecipeSearch(char* optsJSON);
-    char* GetRecipeDetails(char* recipeID);
-    char* GetRecipePopularTerms();
-
     // Misc
     char* GetRecalls();
-    char* GetRecipeHub();
     char* GetServicePortfolio(char* zipcode);
     char* GetShopOverview(char* marketID);
     char* GetShopOverviewWithOpts(char* marketID, char* optsJSON);

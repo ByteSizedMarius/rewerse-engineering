@@ -1,9 +1,5 @@
 package rewerse
 
-import (
-	"net/url"
-)
-
 // ShopOverviewOpts configures the shop overview request
 type ShopOverviewOpts struct {
 	// ServiceType is "PICKUP" or "DELIVERY" (default: PICKUP)
@@ -20,6 +16,9 @@ func GetShopOverview(marketID string) (so ShopOverview, err error) {
 
 // GetShopOverviewWithOpts retrieves the product categories with configurable service type.
 // For DELIVERY mode, opts.ZipCode is required.
+//
+// Endpoint: GET /api/shop-overview. The endpoint takes no query parameters at all -
+// market, service type and zip code are only read from the request headers.
 func GetShopOverviewWithOpts(marketID string, opts *ShopOverviewOpts) (so ShopOverview, err error) {
 	serviceType := ServicePickup
 	zipCode := "67065"
@@ -33,24 +32,26 @@ func GetShopOverviewWithOpts(marketID string, opts *ShopOverviewOpts) (so ShopOv
 		}
 	}
 
-	query := url.Values{}
-	query.Add("serviceTypes", string(serviceType))
-	query.Add("marketCode", marketID)
-	if serviceType == ServiceDelivery {
-		query.Add("deliveryZipCode", zipCode)
-	}
-
-	req, err := BuildCustomRequest(apiHost, "v3/shop-overview?"+query.Encode())
+	req, err := BuildCustomRequest(clientHost, "shop-overview")
 	if err != nil {
 		return
 	}
 
 	setDualHeader(req, "service-types", string(serviceType))
 	setDualHeader(req, "customer-zip", zipCode)
+	setDualHeader(req, "market-id", marketID)
 	req.Header.Set("rd-postcode", zipCode)
-	req.Header.Set("x-rd-market-id", marketID)
 	setCommonHeaders(req)
 
-	err = DoRequest(req, &so)
+	var res shopOverviewResponse
+	err = DoRequest(req, &res)
+	if err != nil {
+		return
+	}
+
+	so = ShopOverview{
+		ProductRecalls:    res.Data.ProductRecalls.Products,
+		ProductCategories: res.Data.Categories,
+	}
 	return
 }

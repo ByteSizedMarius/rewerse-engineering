@@ -48,10 +48,6 @@ def main():
     products_data = response["data"]["products"]
     print(f"\nVegan Joghurt: {products_data['pagination']['objectCount']} results")
 
-    # Autocomplete suggestions (no market required)
-    suggestions = client.get_product_suggestions("Schoko", objects_per_page=5)
-    print(f"\nSuggestions for 'Schoko': {[s['title'] for s in suggestions[:3]]}")
-
     # Get product details by ID (uses productId, not listingId)
     if products_data["products"]:
         product_id = products_data["products"][0]["productId"]
@@ -86,35 +82,6 @@ def main():
     for cat in discounts["Categories"][:2]:
         print(f"  {cat['Title']}: {len(cat['Offers'])} offers")
 
-    # --- Recipes ---
-
-    # Search recipes
-    recipes = client.recipe_search(search_term="Pasta", objects_per_page=5)
-    print(f"\nRecipe search 'Pasta': {recipes['totalCount']} results")
-    for r in recipes["recipes"][:3]:
-        print(f"  - {r['title']} ({r['duration']})")
-
-    # Filter by difficulty and collection
-    vegan = client.recipe_search(collection="Vegan", difficulty="Gering", objects_per_page=3)
-    print(f"\nEasy vegan recipes: {vegan['totalCount']} total")
-
-    # Get full recipe details (wrapped in 'recipe')
-    if recipes["recipes"]:
-        recipe_id = recipes["recipes"][0]["id"]
-        response = client.get_recipe_details(recipe_id)
-        recipe = response["recipe"]
-        print(f"\nRecipe '{recipe['title']}':")
-        print(f"  Ingredients: {len(recipe['ingredients'])}")
-        print(f"  Steps: {len(recipe['steps'])}")
-
-    # Popular recipe search terms
-    popular = client.get_recipe_popular_terms()
-    print(f"\nPopular recipe terms: {[t['title'] for t in popular[:5]]}")
-
-    # Recipe hub homepage
-    hub = client.get_recipe_hub()
-    print(f"Recipe of the day: {hub['recipeOfTheDay']['title']}")
-
     # --- Misc ---
 
     # Check service availability for a postal code
@@ -141,10 +108,10 @@ def error_handling_example():
         print(f"Expected error (invalid product): {e}")
 
     try:
-        # Invalid recipe ID
-        client.get_recipe_details("not-a-valid-uuid")
+        # Invalid market ID
+        client.get_discounts("0000000")
     except RewerseError as e:
-        print(f"Expected error (invalid recipe): {e}")
+        print(f"Expected error (invalid market): {e}")
 
 
 if __name__ == "__main__":

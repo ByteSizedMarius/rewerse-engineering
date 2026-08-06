@@ -57,16 +57,11 @@ func main() {
 		data, err = handleMarkets(flag.Args()[1:])
 	case "products":
 		data, err = handleProducts(flag.Args()[1:])
-	case "recipes":
-		data, err = handleRecipes(flag.Args()[1:], *jsonOutput)
-		if data == nil && err == nil {
-			return // already printed
-		}
 	case "discounts":
 		data, err = handleDiscounts(flag.Args()[1:])
 	case "categories":
 		data, err = handleCategories(flag.Args()[1:], *jsonOutput)
-		if data == nil {
+		if err == nil && data == nil {
 			return // already printed
 		}
 	case "recalls":
@@ -107,7 +102,6 @@ Flags:
 Commands:
   markets         Search and get market details
   products        Search, browse, and get product info
-  recipes         Search and browse recipes
   discounts       Get market discounts
   categories      Get product categories
   recalls         Get product recalls
@@ -117,11 +111,10 @@ Examples:
   %s markets search -query Köln
   %s products search -market 831002 -query Milch
   %s products category -market 831002 -slug obst-gemuese
-  %s recipes search -term Pasta
   %s discounts -market 840174
   %s categories -market 831002
   %s services -zip 50667
 
 Run '%s <command>' for subcommand help.
-`, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName)
+`, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName)
 }

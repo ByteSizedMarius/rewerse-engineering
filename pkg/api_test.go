@@ -151,21 +151,6 @@ func TestGetProductByID(t *testing.T) {
 	}
 }
 
-func TestGetProductSuggestions(t *testing.T) {
-	skipIfNoCert(t)
-
-	suggestions, err := GetProductSuggestions("Milch", nil)
-	if err != nil {
-		t.Fatalf("GetProductSuggestions failed: %v", err)
-	}
-	if len(suggestions) == 0 {
-		t.Fatal("expected at least one suggestion")
-	}
-	if suggestions[0].Title == "" {
-		t.Error("suggestion Title is empty")
-	}
-}
-
 func TestGetProductRecommendations(t *testing.T) {
 	skipIfNoCert(t)
 
@@ -189,97 +174,6 @@ func TestGetProductRecommendations(t *testing.T) {
 		t.Fatalf("GetProductRecommendations failed: %v", err)
 	}
 	t.Logf("got %d recommendations", len(recs))
-}
-
-func TestRecipeSearch(t *testing.T) {
-	skipIfNoCert(t)
-
-	results, err := RecipeSearch(nil)
-	if err != nil {
-		t.Fatalf("RecipeSearch failed: %v", err)
-	}
-	if results.TotalCount == 0 {
-		t.Fatal("expected at least one recipe")
-	}
-	if len(results.Recipes) == 0 {
-		t.Fatal("expected at least one recipe in results")
-	}
-	if results.Recipes[0].Title == "" {
-		t.Error("recipe Title is empty")
-	}
-}
-
-func TestRecipeSearchWithFilters(t *testing.T) {
-	skipIfNoCert(t)
-
-	opts := &RecipeSearchOpts{
-		Collection: CollectionVegetarisch,
-		Difficulty: DifficultyEasy,
-	}
-	results, err := RecipeSearch(opts)
-	if err != nil {
-		t.Fatalf("RecipeSearch with filters failed: %v", err)
-	}
-	// May return fewer results with filters, that's ok
-	t.Logf("got %d vegetarisch easy recipes", results.TotalCount)
-}
-
-func TestGetRecipeDetails(t *testing.T) {
-	skipIfNoCert(t)
-
-	// First get a recipe ID from search
-	results, err := RecipeSearch(nil)
-	if err != nil {
-		t.Fatalf("RecipeSearch failed: %v", err)
-	}
-	if len(results.Recipes) == 0 {
-		t.Skip("no recipes found to test details")
-	}
-
-	recipeID := results.Recipes[0].ID
-	details, err := GetRecipeDetails(recipeID)
-	if err != nil {
-		t.Fatalf("GetRecipeDetails failed: %v", err)
-	}
-	if details.Recipe.ID != recipeID {
-		t.Errorf("expected recipe ID %s, got %s", recipeID, details.Recipe.ID)
-	}
-	if details.Recipe.Title == "" {
-		t.Error("recipe Title is empty")
-	}
-	if len(details.Recipe.Steps) == 0 {
-		t.Error("recipe has no steps")
-	}
-}
-
-func TestGetRecipePopularTerms(t *testing.T) {
-	skipIfNoCert(t)
-
-	terms, err := GetRecipePopularTerms()
-	if err != nil {
-		t.Fatalf("GetRecipePopularTerms failed: %v", err)
-	}
-	if len(terms) == 0 {
-		t.Fatal("expected at least one popular term")
-	}
-	if terms[0].Title == "" {
-		t.Error("term Title is empty")
-	}
-}
-
-func TestGetRecipeHub(t *testing.T) {
-	skipIfNoCert(t)
-
-	hub, err := GetRecipeHub()
-	if err != nil {
-		t.Fatalf("GetRecipeHub failed: %v", err)
-	}
-	if hub.RecipeOfTheDay.Title == "" {
-		t.Error("recipe of the day Title is empty")
-	}
-	if len(hub.PopularRecipes) == 0 {
-		t.Error("no popular recipes")
-	}
 }
 
 func TestGetRecalls(t *testing.T) {

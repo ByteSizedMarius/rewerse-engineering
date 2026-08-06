@@ -13,6 +13,9 @@ dependencies = [
     "cffi>=1.15.0",
 ]
 
+[project.urls]
+Repository = "https://github.com/ByteSizedMarius/rewerse-engineering"
+
 [project.optional-dependencies]
 dev = [
     "pytest>=7.0",

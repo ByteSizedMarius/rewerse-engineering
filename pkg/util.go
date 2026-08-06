@@ -14,10 +14,7 @@ import (
 	"time"
 )
 
-const (
-	apiHost    = "mobile-api.rewe.de"
-	clientHost = "mobile-clients-api.rewe.de"
-)
+const clientHost = "mobile-clients-api.rewe.de"
 
 // NewUUID generates a random UUID v4 string
 func NewUUID() (string, error) {
@@ -99,7 +96,7 @@ func buildRequest(method, host, path string, body io.Reader) (req *http.Request,
 	}
 
 	req.Header.Set("x-instana-android", cfg.instanaId)
-	req.Header.Set("user-agent", fmt.Sprintf("REWE-Mobile-Client/5.7.3.47565 Android/14 %s", cfg.userAgent))
+	req.Header.Set("user-agent", fmt.Sprintf("REWE-Mobile-Client/5.16.2.52493 Android/14 %s", cfg.userAgent))
 	req.Header.Set("Host", host)
 	req.Header.Set("Connection", "Keep-Alive")
 

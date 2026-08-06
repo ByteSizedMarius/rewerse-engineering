@@ -252,36 +252,6 @@ type productDetailResponse struct {
 	} `json:"data"`
 }
 
-// ProductSuggestion is a search autocomplete suggestion
-// Endpoint: GET /products/suggestion-search
-type ProductSuggestion struct {
-	// Title is the product name: "Hof Alpermühle Bio Eier 6 Stück"
-	Title string `json:"title"`
-	// ImageURL is a small product image (150x150)
-	ImageURL string `json:"imageURL"`
-	// RawValues contains product identifiers
-	RawValues struct {
-		// CategoryID is the category: "3523"
-		CategoryID string `json:"categoryId"`
-		// ProductID is the product ID: "7828199"
-		ProductID string `json:"productId"`
-		// ArticleID is the article ID: "T4KNENOV"
-		ArticleID string `json:"articleId"`
-		// Nan is the article number (German: Artikelnummer)
-		Nan string `json:"nan"`
-	} `json:"rawValues"`
-}
-
-type ProductSuggestions []ProductSuggestion
-
-func (ps ProductSuggestions) String() string {
-	s := "Product suggestions:\n"
-	for _, p := range ps {
-		s += fmt.Sprintf("  - %s (%s)\n", p.Title, p.RawValues.ProductID)
-	}
-	return s
-}
-
 // ProductRecommendations contains related product recommendations
 // Endpoint: GET /api/products/recommendations?listingIds={listingId}
 type productRecommendationsResponse struct {

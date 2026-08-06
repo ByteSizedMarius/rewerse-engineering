@@ -6,14 +6,13 @@
 - [Service Types](#service-types)
 - [Output Examples](#output-examples)
 
-This Go package implements publicly accessible (unauthenticated) API endpoints used by the Rewe app for querying current discounts, products, recipes and recalls. The following functions are currently available:
+This Go package implements publicly accessible (unauthenticated) API endpoints used by the Rewe app for querying current discounts, products and recalls. The following functions are currently available:
 
 - `MarketSearch`: Search for Rewe markets using city, street, PLZ, market name, etc. Returns a list of markets with some basic information.
 - `GetMarketDetails`: Get details about a specific market using the unique market-id.
 - `GetDiscountsRaw`: Get all discounts for a specific market using the unique market-id. Returns the raw response parsed into a struct.
 - `GetDiscounts`: Get all discounts for a specific market using the unique market-id. Returns data cleaned of information deemed unnecessary by me (opinionated).
 - `GetRecalls`: Get product recalls.
-- `GetRecipeHub`: Returns data from the recipe-page in the Rewe app.
 - `GetShopOverview`: Returns the Product-Categories available in the given market. Only available for markets who are pickup- or delivery-enabled.
 - `GetCategoryProducts`: Returns all products in a given category. Only available for markets who are pickup- or delivery-enabled.
 - `GetProducts`: Returns all products for a given query. Only available for markets who are pickup- or delivery-enabled.
@@ -167,47 +166,6 @@ Recalls:
 Vorsorglicher Produktrückruf von verschiedenen Beba Produkten
 Mögliches Vorhandensein von Cereulid
 https://mediacenter.rewe.de/produktrueckrufe/beba-produkte
-```
-
-**GetRecipeHub:**
-```go
-recipes, _ := rewerse.GetRecipeHub()
-fmt.Println(recipes)
-```
-
-```
-Recipe Hub
-
-Recipe of the Day
---------------------
-Goi Xoai Mangosalat
-30 min
-Mittel
-https://www.rewe.de/rezepte/goi-xoai-mangosalat/
-
-Popular Recipes
---------------------
-Goi Xoai Mangosalat
-30 min
-Mittel
-https://www.rewe.de/rezepte/goi-xoai-mangosalat/
-
-Hack-Reis-Pfanne
-30 min
-Einfach
-https://www.rewe.de/rezepte/hack-reis-pfanne/
-
-[...]
-
-Available Categories
---------------------
-Vegetarisch
-Fleisch
-Backen
-Nachspeisen
-Fisch
-Vorspeisen
-Kuchen
 ```
 
 **GetServicePortfolio:**

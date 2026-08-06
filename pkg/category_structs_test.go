@@ -127,21 +127,3 @@ func TestProductDetailFeatureBenefitStringFailsUnmarshal(t *testing.T) {
 		t.Fatal("expected unmarshal error for string featureBenefit, got nil")
 	}
 }
-
-func TestProductSuggestionsUnmarshal(t *testing.T) {
-	var suggestions ProductSuggestions
-	if err := json.Unmarshal(loadFixture(t, "product_suggestions.json"), &suggestions); err != nil {
-		t.Fatalf("unmarshal failed: %v", err)
-	}
-
-	if len(suggestions) == 0 {
-		t.Fatal("no suggestions in response")
-	}
-	s := suggestions[0]
-	if s.Title == "" {
-		t.Error("title is empty")
-	}
-	if s.RawValues.ProductID == "" {
-		t.Error("rawValues.productId is empty")
-	}
-}
