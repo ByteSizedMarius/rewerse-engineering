@@ -1,83 +1,223 @@
 {
-  "productRecalls": [
-    {
-      "recallUrl": "https://mediacenter.rewe.de/produktrueckrufe/beba-produkte",
-      "subjectProduct": "Vorsorglicher Produktrückruf von verschiedenen Beba Produkten",
-      "subjectReason": "Mögliches Vorhandensein von Cereulid"
-    }
-  ],
-  "productCategories": [
-    {
-      "id": "3844",
-      "name": "Monats-Highlights",
-      "slug": "monatshighlights",
-      "productCount": 540,
-      "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3844.png",
-      "childCategories": [
+  "data": {
+    "productRecalls": {
+      "products": [
         {
-          "id": "3845",
-          "name": "Neu im Sortiment",
-          "link": "/c/neu-im-sortiment/",
-          "slug": "neu-im-sortiment",
-          "productCount": 97,
-          "imageUrl": "https://shop.rewe-static.de/rewe-navigation-service/static-images/navigation/v1_category-img-3845.png",
-          "childCategories": []
+          "url": "https://mediacenter.rewe.de/produktrueckrufe/koelln-zauberfleks-schoko",
+          "subjectReason": "Es kann nicht ausgeschlossen werden, dass sich in einzelnen Packungen dieser spezifischen Charge Fremdkörper aus unserem Produktionsvorgang befinden.",
+          "subjectProduct": "Vorsorglicher Produktrückruf von Kölln Zauberfleks Schoko (375g)"
         },
         {
-          "id": "3908",
-          "name": "Fit ins neue Jahr",
-          "link": "/c/fit-ins-neue-jahr/",
-          "slug": "fit-ins-neue-jahr",
-          "productCount": 231,
-          "imageUrl": "https://shop.rewe-static.de/rewe-navigation-service/static-images/navigation/v1_category-img-3908.png",
-          "childCategories": []
+          "url": "https://mediacenter.rewe.de/produktrueckrufe/Produktr%C3%BCckruf%20Nadi%20Apfel-Granatapfel-Fruchtplatte",
+          "subjectReason": "Nachweis eines nicht zugelassenen Farbstoffs",
+          "subjectProduct": "Produktrückruf Nadi Apfel-Granatapfel-Fruchtplatte"
         }
       ]
     },
-    {
-      "id": "3862",
-      "name": "Bewusste Ernährung",
-      "slug": "bewusste-ernaehrung",
-      "productCount": 1724,
-      "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3862.png",
-      "childCategories": [
-        {
-          "id": "3914",
-          "name": "Biologisch",
-          "link": "/c/bio-logisch/",
-          "slug": "bio-logisch",
-          "productCount": 700,
-          "imageUrl": "https://shop.rewe-static.de/rewe-navigation-service/static-images/navigation/v1_category-img-3914.png",
-          "childCategories": [
-            {
-              "id": "3915",
-              "name": "Alles für das Bio-Müsli",
-              "link": "/c/alles-fuer-das-bio-muesli/",
-              "slug": "alles-fuer-das-bio-muesli",
-              "productCount": 81,
-              "imageUrl": "https://shop.rewe-static.de/rewe-navigation-service/static-images/navigation/v1_category-img-3915.png"
-            }
-          ]
-        },
-        {
-          "id": "3666",
-          "name": "Vegane Vielfalt",
-          "link": "/c/vegane-vielfalt/",
-          "slug": "vegane-vielfalt",
-          "productCount": 496,
-          "imageUrl": "https://shop.rewe-static.de/rewe-navigation-service/static-images/navigation/v1_category-img-3666.png",
-          "childCategories": [
-            {
-              "id": "3679",
-              "name": "Vegane Basics",
-              "link": "/c/vegane-basics/",
-              "slug": "vegane-basics",
-              "productCount": 53,
-              "imageUrl": "https://shop.rewe-static.de/rewe-navigation-service/static-images/navigation/v1_category-img-3679.png"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+    "categories": [
+      {
+        "id": "3844",
+        "name": "Monats-Highlights",
+        "productCount": 1884,
+        "slug": "monatshighlights",
+        "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3844.png",
+        "categoryTags": [
+          "inspiration"
+        ],
+        "childCategories": [
+          {
+            "id": "3845",
+            "name": "Neu im Sortiment",
+            "productCount": 106,
+            "slug": "neu-im-sortiment",
+            "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3845.png",
+            "categoryTags": [
+              "inspiration"
+            ],
+            "childCategories": null
+          },
+          {
+            "id": "3886",
+            "name": "Genuss in Premiumqualität",
+            "productCount": 235,
+            "slug": "genuss-in-premiumqualitaet",
+            "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3886.png",
+            "categoryTags": [
+              "inspiration"
+            ],
+            "childCategories": [
+              {
+                "id": "4004",
+                "name": "Süßer Frühstücksgenuss",
+                "productCount": 21,
+                "slug": "suesser-fruehstuecksgenuss",
+                "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/4004.png",
+                "categoryTags": [
+                  "inspiration"
+                ]
+              },
+              {
+                "id": "4005",
+                "name": "Brotzeit-Delikatessen",
+                "productCount": 43,
+                "slug": "brotzeit-delikatessen",
+                "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/4005.png",
+                "categoryTags": [
+                  "inspiration"
+                ]
+              },
+              {
+                "id": "4006",
+                "name": "Frische Feinkostküche",
+                "productCount": 91,
+                "slug": "frische-feinkostkueche",
+                "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/4006.png",
+                "categoryTags": [
+                  "inspiration"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3859",
+            "name": "Ready to eat",
+            "productCount": 148,
+            "slug": "ready-to-eat",
+            "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3859.png",
+            "categoryTags": [
+              "inspiration"
+            ],
+            "childCategories": null
+          }
+        ]
+      },
+      {
+        "id": "3862",
+        "name": "Bewusste Ernährung",
+        "productCount": 2032,
+        "slug": "bewusste-ernaehrung",
+        "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3862.png",
+        "categoryTags": [
+          "inspiration"
+        ],
+        "childCategories": [
+          {
+            "id": "3914",
+            "name": "Biologisch",
+            "productCount": 650,
+            "slug": "biologisch",
+            "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3914.png",
+            "categoryTags": [
+              "inspiration"
+            ],
+            "childCategories": [
+              {
+                "id": "3915",
+                "name": "Bio-Müsli & Toppings",
+                "productCount": 80,
+                "slug": "bio-muesli-toppings",
+                "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3915.png",
+                "categoryTags": [
+                  "inspiration"
+                ]
+              },
+              {
+                "id": "3924",
+                "name": "Bio-Brotzeit von süß bis herzhaft",
+                "productCount": 106,
+                "slug": "bio-brotzeit-von-suess-bis-herzhaft",
+                "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3924.png",
+                "categoryTags": [
+                  "inspiration"
+                ]
+              },
+              {
+                "id": "3920",
+                "name": "Bio-Heißgetränke",
+                "productCount": 38,
+                "slug": "bio-heissgetraenke",
+                "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3920.png",
+                "categoryTags": [
+                  "inspiration"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "3909",
+            "name": "Bewusst snacken ",
+            "productCount": 205,
+            "slug": "bewusst-snacken",
+            "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3909.png",
+            "categoryTags": [
+              "inspiration"
+            ],
+            "childCategories": null
+          },
+          {
+            "id": "3666",
+            "name": "100% Pflanzlich",
+            "productCount": 638,
+            "slug": "100-pflanzlich",
+            "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3666.png",
+            "categoryTags": [
+              "inspiration"
+            ],
+            "childCategories": [
+              {
+                "id": "3667",
+                "name": "Pflanzliche Zutaten fürs Müsli",
+                "productCount": 83,
+                "slug": "pflanzliche-zutaten-fuers-muesli",
+                "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3667.png",
+                "categoryTags": [
+                  "inspiration"
+                ]
+              },
+              {
+                "id": "3668",
+                "name": "Pflanzliche Brotzeit",
+                "productCount": 110,
+                "slug": "pflanzliche-brotzeit",
+                "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3668.png",
+                "categoryTags": [
+                  "inspiration"
+                ]
+              },
+              {
+                "id": "3670",
+                "name": "Pflanzlich Kochen & Genießen",
+                "productCount": 242,
+                "slug": "pflanzlich-kochen-geniessen",
+                "imageUrl": "https://shop.rewe-static.de/mobile/categories/images/v2/3670.png",
+                "categoryTags": [
+                  "inspiration"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "extensions": {
+    "http": [
+      {
+        "path": [
+          "productRecalls"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      },
+      {
+        "path": [
+          "categories"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      }
+    ]
+  }
 }

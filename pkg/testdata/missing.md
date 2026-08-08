@@ -4,8 +4,7 @@ Responses where I have no source data from my api dump. Need to capture actual A
 
 ## No fixture at all
 
-- `bulkyGoodsResponse`: need a successful response from a delivery market
-- `productRecommendationsResponse`: need a response with actual products
+- `productRecommendationsResponse`: need a response with actual products.
 
 ## Fixture exists but doesn't exercise key fields
 

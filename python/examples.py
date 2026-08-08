@@ -19,13 +19,14 @@ def main():
     markets = client.market_search("Berlin")
     print(f"Found {len(markets)} markets in Berlin")
 
-    if not markets:
-        print("No markets found, exiting")
+    # Not every market supports pickup, so take one from the service portfolio
+    portfolio = client.get_service_portfolio("67065")
+    if not portfolio["pickupMarkets"]:
+        print("No pickup markets available, exiting")
         return
 
-    # Use first market for subsequent examples
-    market_id = markets[0]["wwIdent"]
-    print(f"Using market: {markets[0]['name']} ({market_id})")
+    market_id = portfolio["pickupMarkets"][0]["wwIdent"]
+    print(f"Using market: {portfolio['pickupMarkets'][0]['displayName']} ({market_id})")
 
     # Get detailed market info (hours, address, services)
     details = client.get_market_details(market_id)
@@ -34,24 +35,22 @@ def main():
 
     # --- Product Search ---
 
-    # Basic product search (response wrapped in data.products)
-    response = client.get_products(market_id, "Milch", page=1, objects_per_page=5)
-    products_data = response["data"]["products"]
-    print(f"\nSearch 'Milch': {products_data['pagination']['objectCount']} results")
-    for p in products_data["products"][:3]:
+    # Basic product search
+    results = client.get_products(market_id, "Milch", page=1, objects_per_page=5)
+    print(f"\nSearch 'Milch': {results['pagination']['objectCount']} results")
+    for p in results["products"][:3]:
         # Price is in cents
         price = p["listing"]["currentRetailPrice"] / 100
         print(f"  - {p['title']}: {price:.2f}€")
 
     # Search with filters
-    response = client.get_products(market_id, "Joghurt", filters=["attribute=vegan"])
-    products_data = response["data"]["products"]
-    print(f"\nVegan Joghurt: {products_data['pagination']['objectCount']} results")
+    results = client.get_products(market_id, "Joghurt", filters=["attribute=vegan"])
+    print(f"\nVegan Joghurt: {results['pagination']['objectCount']} results")
 
     # Get product details by ID (uses productId, not listingId)
-    if products_data["products"]:
-        product_id = products_data["products"][0]["productId"]
-        listing_id = products_data["products"][0]["listing"]["listingId"]
+    if results["products"]:
+        product_id = results["products"][0]["productId"]
+        listing_id = results["products"][0]["listing"]["listingId"]
         product = client.get_product_by_id(market_id, product_id)
         print(f"\nProduct details: {product['title']}")
 
@@ -71,16 +70,15 @@ def main():
     # Get products in a category
     if categories:
         slug = categories[0]["slug"]
-        response = client.get_category_products(market_id, slug, page=1, objects_per_page=5)
-        cat_data = response["data"]["products"]
-        print(f"\nProducts in '{categories[0]['name']}': {cat_data['pagination']['objectCount']}")
+        cat_results = client.get_category_products(market_id, slug, page=1, objects_per_page=5)
+        print(f"\nProducts in '{categories[0]['name']}': {cat_results['pagination']['objectCount']}")
 
     # --- Discounts ---
 
     discounts = client.get_discounts(market_id)
-    print(f"\nDiscounts valid until: {discounts['ValidUntil']}")
-    for cat in discounts["Categories"][:2]:
-        print(f"  {cat['Title']}: {len(cat['Offers'])} offers")
+    print(f"\nDiscounts valid until: {discounts['validUntil']}")
+    for cat in discounts["categories"][:2]:
+        print(f"  {cat['title']}: {len(cat['offers'])} offers")
 
     # --- Misc ---
 

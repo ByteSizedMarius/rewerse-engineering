@@ -1,0 +1,28 @@
+{
+  "data": {
+    "bulkyGoodsConfiguration": {
+      "hasBeverageSurcharge": true,
+      "beverageSurcharge": {
+        "softLimit": 299,
+        "hardLimit": 700,
+        "surcharge": 190,
+        "displayTexts": [
+          "Ab der 3. Getränkekiste berechnen wir einen Getränkezuschlag von 1,90€ pro Getränkekiste.",
+          "Du kannst maximal 7 Getränkekisten bestellen."
+        ]
+      }
+    }
+  },
+  "extensions": {
+    "http": [
+      {
+        "path": [
+          "bulkyGoodsConfiguration"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      }
+    ]
+  }
+}
