@@ -210,6 +210,17 @@ func TestGetDiscounts(t *testing.T) {
 	if len(ds.Categories) == 0 {
 		t.Fatal("expected at least one discount category")
 	}
+	var anyManufacturer bool
+	for _, cat := range ds.Categories {
+		for _, offer := range cat.Offers {
+			if offer.Manufacturer != "" {
+				anyManufacturer = true
+			}
+		}
+	}
+	if !anyManufacturer {
+		t.Error("could not find any manufacturer in the discounts. this suggests that the format changed")
+	}
 	if ds.ValidUntil.IsZero() {
 		t.Error("ValidUntil is zero")
 	}

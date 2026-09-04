@@ -57,6 +57,10 @@ func GetDiscounts(marketID string) (ds Discounts, err error) {
 		return
 	}
 
+	return cleanDiscounts(rd)
+}
+
+func cleanDiscounts(rd RawDiscounts) (ds Discounts, err error) {
 	week := getActiveWeek(rd)
 
 	// Parse date from ISO format: "2026-01-10"
@@ -66,7 +70,6 @@ func GetDiscounts(marketID string) (ds Discounts, err error) {
 		return
 	}
 
-	var foundAnyManuf bool
 	for _, rawCat := range week.Categories {
 		cat := DiscountCategory{
 			ID:    rawCat.ID,
@@ -109,7 +112,6 @@ func GetDiscounts(marketID string) (ds Discounts, err error) {
 					for _, title := range content.Titles {
 						if strings.HasPrefix(title, expectedTitle) {
 							discount.Manufacturer = strings.TrimPrefix(title, expectedTitle)
-							foundAnyManuf = true
 							break
 						}
 					}
@@ -123,10 +125,6 @@ func GetDiscounts(marketID string) (ds Discounts, err error) {
 		}
 
 		ds.Categories = append(ds.Categories, cat)
-	}
-
-	if !foundAnyManuf {
-		err = fmt.Errorf("could not find any manufacturer in the discounts. this suggests that the format changed")
 	}
 
 	return
