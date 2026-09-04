@@ -2,7 +2,7 @@
 
 <div>
   <img src="gopher.png" alt="Project Logo" width="170" align="right">
-  <p>This repository aims to implement all publicly accessible (unauthenticated) API endpoints used by the Rewe app for querying current discounts, products and recalls.</p>
+  <p>An unofficial REWE API client in Go and Python. It implements the publicly accessible (unauthenticated) endpoints the REWE app uses for querying current discounts (Angebote), products, markets and recalls.</p>
   <p>Current supported APK version: 5.16.2 (as of 06.08.26)</p> 
 </div>
 
@@ -70,9 +70,7 @@ Use of this software is at your own risk. Users are responsible for ensuring the
 
 ## removed endpoints
 
-Recipes are gone for now. Rewe reworked them server-side, moving everything to GraphQL on a different host, so the response types need a full rewrite.
-
-The app no longer has an autocomplete endpoint and just uses the normal product search, so product suggestions are gone too.
+The app no longer has an autocomplete endpoint and just uses the normal product search, so product suggestions are gone.
 
 ## cli
 
@@ -89,6 +87,7 @@ Commands:
   products        Search, browse, and get product info
   discounts       Get market discounts
   categories      Get product categories
+  recipes         Search recipes, get details and popular terms
   recalls         Get product recalls
   services        Get service portfolio by zip
 
@@ -99,6 +98,8 @@ Examples:
   ./rewerse.exe discounts -market 840174
   ./rewerse.exe categories -market 831002
   ./rewerse.exe services -zip 50667
+  ./rewerse.exe recipes search -term Lachs -difficulties 1
+  ./rewerse.exe recipes details -id blt4aaa7361ba69f8c8
 
 Run './rewerse.exe <command>' for subcommand help.
 ```

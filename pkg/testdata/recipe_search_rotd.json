@@ -1,0 +1,334 @@
+{
+  "data": {
+    "recipes": {
+      "recipes": [
+        {
+          "id": "blt1111111111111111",
+          "title": "Nudeln mit Tomatensoße",
+          "timePreparation": 10,
+          "timeCooking": 15,
+          "timeTotal": 25,
+          "difficulty": 1,
+          "detailUrl": "https://www.rewe.de/rezepte/nudeln-mit-tomatensosse/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000001/1/00000001.png"
+          ]
+        },
+        {
+          "id": "blt2222222222222222",
+          "title": "Rührei mit Schnittlauch",
+          "timePreparation": 5,
+          "timeCooking": 5,
+          "timeTotal": null,
+          "difficulty": 1,
+          "detailUrl": "https://www.rewe.de/rezepte/ruehrei-mit-schnittlauch/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000002/1/00000002.png"
+          ]
+        },
+        {
+          "id": "blt3333333333333333",
+          "title": "Gemüsesuppe",
+          "timePreparation": 15,
+          "timeCooking": null,
+          "timeTotal": 40,
+          "difficulty": 1,
+          "detailUrl": "https://www.rewe.de/rezepte/gemuesesuppe/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000003/1/00000003.png"
+          ]
+        },
+        {
+          "id": "blt4444444444444444",
+          "title": "Kartoffelsalat",
+          "timePreparation": null,
+          "timeCooking": null,
+          "timeTotal": 30,
+          "difficulty": 1,
+          "detailUrl": "https://www.rewe.de/rezepte/kartoffelsalat/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000004/1/00000004.png"
+          ]
+        },
+        {
+          "id": "blt5555555555555555",
+          "title": "Blechkuchen mit Äpfeln",
+          "timePreparation": 20,
+          "timeCooking": 45,
+          "timeTotal": 75,
+          "difficulty": 2,
+          "detailUrl": "https://www.rewe.de/rezepte/blechkuchen-mit-aepfeln/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000005/1/00000005.png"
+          ]
+        },
+        {
+          "id": "blt6666666666666666",
+          "title": "Linseneintopf",
+          "timePreparation": 15,
+          "timeCooking": 60,
+          "timeTotal": 75,
+          "difficulty": 2,
+          "detailUrl": "https://www.rewe.de/rezepte/linseneintopf/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000006/1/00000006.png"
+          ]
+        },
+        {
+          "id": "blt7777777777777777",
+          "title": "Sauerteigbrot",
+          "timePreparation": 30,
+          "timeCooking": 50,
+          "timeTotal": null,
+          "difficulty": 3,
+          "detailUrl": "https://www.rewe.de/rezepte/sauerteigbrot/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000007/1/00000007.png"
+          ]
+        },
+        {
+          "id": "blt8888888888888888",
+          "title": "Gefüllte Paprika",
+          "timePreparation": null,
+          "timeCooking": 35,
+          "timeTotal": 55,
+          "difficulty": 2,
+          "detailUrl": "https://www.rewe.de/rezepte/gefuellte-paprika/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000008/1/00000008.png"
+          ]
+        }
+      ],
+      "metadata": {
+        "totalRecipeCount": 96,
+        "collections": [
+          {
+            "count": 30,
+            "name": "Vegetarisch"
+          },
+          {
+            "count": 22,
+            "name": "Fleisch"
+          },
+          {
+            "count": 15,
+            "name": "Backen"
+          },
+          {
+            "count": 12,
+            "name": "Nachspeisen"
+          },
+          {
+            "count": 9,
+            "name": "Fisch"
+          },
+          {
+            "count": 5,
+            "name": "Vorspeisen"
+          },
+          {
+            "count": 3,
+            "name": "Kuchen"
+          }
+        ],
+        "tags": [],
+        "difficulties": [
+          {
+            "count": 58,
+            "name": 1
+          },
+          {
+            "count": 33,
+            "name": 2
+          },
+          {
+            "count": 5,
+            "name": 3
+          }
+        ]
+      }
+    },
+    "recipeOfTheDay": {
+      "id": "blt9999999999999999",
+      "title": "Ofengemüse mit Kräuterquark",
+      "difficulty": 1,
+      "serving": {
+        "type": "portions",
+        "quantity": 4
+      },
+      "timeCooking": 35,
+      "timePreparation": 20,
+      "timeTotal": null,
+      "preparation": {
+        "steps": [
+          {
+            "description": "Den Backofen auf 200 °C Ober-/Unterhitze vorheizen. Die Kartoffeln waschen und in Spalten schneiden."
+          },
+          {
+            "description": "Paprika, Zucchini und Zwiebel putzen und grob würfeln. Alles mit den Kartoffeln, den Tomaten, dem Öl, dem Paprikapulver und dem Salz mischen."
+          },
+          {
+            "description": "Das Gemüse auf einem Backblech verteilen und etwa 35 Minuten backen. Nach der Hälfte der Zeit einmal wenden."
+          },
+          {
+            "description": "Den Quark mit der Milch glatt rühren. Die Kräuter fein schneiden, unterheben und mit Salz abschmecken."
+          }
+        ]
+      },
+      "imageUrls": [
+        {
+          "urls": {
+            "default": "https://c.rewe-static.de/00000009/1/00000009.png"
+          }
+        }
+      ],
+      "detailUrl": "ofengemuese-mit-kraeuterquark",
+      "tags": [
+        "Abendessen",
+        "Hauptspeise",
+        "Vegetarisch",
+        "Geringer Aufwand",
+        "Mittagessen",
+        "Ofengericht"
+      ],
+      "ingredients": [
+        {
+          "quantity": 800.0,
+          "unit": "g",
+          "name": "Kartoffeln",
+          "displayName": "800 g Kartoffeln"
+        },
+        {
+          "quantity": 2.0,
+          "unit": null,
+          "name": "Paprika",
+          "displayName": "2 Paprika"
+        },
+        {
+          "quantity": 1.0,
+          "unit": null,
+          "name": "Zucchini",
+          "displayName": "1 Zucchini"
+        },
+        {
+          "quantity": 250.0,
+          "unit": "g",
+          "name": "Cherrytomaten",
+          "displayName": "250 g Cherrytomaten"
+        },
+        {
+          "quantity": 1.0,
+          "unit": null,
+          "name": "rote Zwiebel",
+          "displayName": "1 rote Zwiebel"
+        },
+        {
+          "quantity": 3.0,
+          "unit": "EL",
+          "name": "Olivenöl",
+          "displayName": "3 EL Olivenöl"
+        },
+        {
+          "quantity": 1.0,
+          "unit": "TL",
+          "name": "Paprikapulver",
+          "displayName": "1 TL Paprikapulver"
+        },
+        {
+          "quantity": 1.0,
+          "unit": "Prise(n)",
+          "name": "Salz",
+          "displayName": "1 Prise(n) Salz"
+        },
+        {
+          "quantity": 500.0,
+          "unit": "g",
+          "name": "Magerquark",
+          "displayName": "500 g Magerquark"
+        },
+        {
+          "quantity": 100.0,
+          "unit": "ml",
+          "name": "Milch",
+          "displayName": "100 ml Milch"
+        },
+        {
+          "quantity": 1.0,
+          "unit": "Bund",
+          "name": "Schnittlauch",
+          "displayName": "1 Bund Schnittlauch"
+        },
+        {
+          "quantity": 1.0,
+          "unit": "Bund",
+          "name": "Petersilie",
+          "displayName": "1 Bund Petersilie"
+        }
+      ],
+      "nutrients": [
+        {
+          "title": "Energie",
+          "unit": "kcal",
+          "rda": 2200.0,
+          "amount": 312.0
+        },
+        {
+          "title": "Eiweiß",
+          "unit": "g",
+          "rda": 55.0,
+          "amount": 18.4
+        },
+        {
+          "title": "Fett",
+          "unit": "g",
+          "rda": 75.0,
+          "amount": 9.7
+        },
+        {
+          "title": "Kohlenhydrate",
+          "unit": "g",
+          "rda": 300.0,
+          "amount": 38.2
+        }
+      ],
+      "vitalSubstances": [
+        {
+          "title": "Vitamin C",
+          "unit": "mg",
+          "rda": 80.0,
+          "amount": 62.5
+        },
+        {
+          "title": "Kalium",
+          "unit": "mg",
+          "rda": 2000.0,
+          "amount": 1120.0
+        },
+        {
+          "title": "Magnesium",
+          "unit": "mg",
+          "rda": 375.0,
+          "amount": 58.3
+        },
+        {
+          "title": "Calcium",
+          "unit": "mg",
+          "rda": 800.0,
+          "amount": 210.4
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "http": [
+      {
+        "path": [
+          "recipes"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      }
+    ]
+  }
+}

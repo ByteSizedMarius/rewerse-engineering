@@ -42,6 +42,11 @@ ffi.cdef("""
 
     // Delivery
     char* GetBulkyGoodsConfig(char* marketID, char* serviceType);
+
+    // Recipes
+    char* RecipeSearch(char* optsJSON);
+    char* GetRecipeDetails(char* recipeID);
+    char* GetRecipePopularTerms();
 """)
 
 

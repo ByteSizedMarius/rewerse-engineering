@@ -80,6 +80,30 @@ def main():
     for cat in discounts["categories"][:2]:
         print(f"  {cat['title']}: {len(cat['offers'])} offers")
 
+    # --- Recipes ---
+
+    # Search terms the app shows on the recipe landing page
+    terms = client.get_recipe_popular_terms()
+    print(f"\nPopular recipe terms: {', '.join(terms[:5])}")
+
+    # Recipe search, filtered to easy fish recipes
+    recipes = client.recipe_search(
+        search_term="Lachs",
+        objects_per_page=5,
+        collections=["Fisch"],
+        difficulties=[1],
+    )
+    print(f"Easy fish recipes for 'Lachs': {recipes['metadata']['totalRecipeCount']}")
+    for r in recipes["recipes"][:3]:
+        print(f"  - {r['title']}")
+
+    # Full recipe with ingredients and steps
+    if recipes["recipes"]:
+        recipe = client.get_recipe_details(recipes["recipes"][0]["id"])
+        print(f"\n{recipe['title']}: {len(recipe['ingredients'])} ingredients")
+        for i in recipe["ingredients"][:3]:
+            print(f"  - {i['displayName']}")
+
     # --- Misc ---
 
     # Check service availability for a postal code

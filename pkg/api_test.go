@@ -1,6 +1,7 @@
 package rewerse
 
 import (
+	"errors"
 	"os"
 	"testing"
 )
@@ -381,4 +382,100 @@ func TestGetShopOverviewDelivery(t *testing.T) {
 	} else {
 		t.Logf("got %d categories for delivery", len(so.ProductCategories))
 	}
+}
+
+func TestRecipeSearch(t *testing.T) {
+	skipIfNoCert(t)
+
+	results, err := RecipeSearch(&RecipeSearchOpts{SearchTerm: "Lachs"})
+	if err != nil {
+		t.Fatalf("RecipeSearch failed: %v", err)
+	}
+	if len(results.Recipes) == 0 {
+		t.Fatal("expected at least one recipe")
+	}
+	if results.Metadata.TotalRecipeCount == 0 {
+		t.Error("totalRecipeCount is 0")
+	}
+	if results.Recipes[0].ID == "" {
+		t.Error("recipe ID is empty")
+	}
+	if results.Recipes[0].Title == "" {
+		t.Error("recipe Title is empty")
+	}
+}
+
+func TestRecipeSearchFilters(t *testing.T) {
+	skipIfNoCert(t)
+
+	opts := &RecipeSearchOpts{
+		Collections:  []RecipeCollection{CollectionFish},
+		Difficulties: []RecipeDifficulty{DifficultyEasy},
+	}
+	results, err := RecipeSearch(opts)
+	if err != nil {
+		t.Fatalf("RecipeSearch with filters failed: %v", err)
+	}
+	if results.Metadata.TotalRecipeCount == 0 {
+		t.Fatal("expected at least one matching recipe")
+	}
+	for _, r := range results.Recipes {
+		if r.Difficulty != DifficultyEasy {
+			t.Errorf("recipe %s has difficulty %d, expected %d", r.Title, r.Difficulty, DifficultyEasy)
+		}
+	}
+}
+
+func TestRecipeSearchRecipeOfTheDay(t *testing.T) {
+	skipIfNoCert(t)
+
+	opts := &RecipeSearchOpts{SearchTerm: "*", IncludeRecipeOfTheDay: true}
+	results, err := RecipeSearch(opts)
+	if err != nil {
+		t.Fatalf("RecipeSearch failed: %v", err)
+	}
+	if results.RecipeOfTheDay == nil {
+		t.Fatal("expected a recipe of the day")
+	}
+	t.Logf("recipe of the day: %s", results.RecipeOfTheDay.Title)
+}
+
+func TestGetRecipeDetails(t *testing.T) {
+	skipIfNoCert(t)
+
+	recipe, err := GetRecipeDetails("blt4aaa7361ba69f8c8")
+	if err != nil {
+		t.Fatalf("GetRecipeDetails failed: %v", err)
+	}
+	if recipe.Title != "Hefekuchen" {
+		t.Errorf("expected title Hefekuchen, got %q", recipe.Title)
+	}
+	if len(recipe.Ingredients) == 0 {
+		t.Error("recipe has no ingredients")
+	}
+	if len(recipe.Preparation.Steps) == 0 {
+		t.Error("recipe has no steps")
+	}
+}
+
+func TestGetRecipeDetailsNotFound(t *testing.T) {
+	skipIfNoCert(t)
+
+	_, err := GetRecipeDetails("doesnotexist")
+	if !errors.Is(err, ErrRecipeNotFound) {
+		t.Fatalf("expected ErrRecipeNotFound, got %v", err)
+	}
+}
+
+func TestGetRecipePopularTerms(t *testing.T) {
+	skipIfNoCert(t)
+
+	terms, err := GetRecipePopularTerms()
+	if err != nil {
+		t.Fatalf("GetRecipePopularTerms failed: %v", err)
+	}
+	if len(terms) == 0 {
+		t.Fatal("expected at least one popular term")
+	}
+	t.Logf("popular terms: %v", terms)
 }

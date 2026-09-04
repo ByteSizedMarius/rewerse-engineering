@@ -17,6 +17,9 @@ This Go package implements publicly accessible (unauthenticated) API endpoints u
 - `GetCategoryProducts`: Returns all products in a given category. Only available for markets who are pickup- or delivery-enabled.
 - `GetProducts`: Returns all products for a given query. Only available for markets who are pickup- or delivery-enabled.
 - `GetServicePortfolio`: Returns delivery/pickup availability for a zip code.
+- `RecipeSearch`: Search recipes by term, collection, difficulty and tags.
+- `GetRecipeDetails`: Get a full recipe with ingredients, steps and nutrients using the recipe id.
+- `GetRecipePopularTerms`: Returns the search terms shown on the recipe landing page.
 
 ## Usage
 

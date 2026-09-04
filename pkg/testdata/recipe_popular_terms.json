@@ -1,0 +1,47 @@
+{
+  "data": {
+    "searchTags": {
+      "tags": [
+        {
+          "title": "Lachs"
+        },
+        {
+          "title": "Low Carb"
+        },
+        {
+          "title": "Kürbis"
+        },
+        {
+          "title": "Nudeln"
+        },
+        {
+          "title": "Vegan"
+        },
+        {
+          "title": "Plätzchen"
+        },
+        {
+          "title": "Suppe"
+        },
+        {
+          "title": "Grillen"
+        },
+        {
+          "title": "Waffeln"
+        },
+        {
+          "title": "Smoothie"
+        },
+        {
+          "title": "Burger"
+        },
+        {
+          "title": "Auflauf"
+        },
+        {
+          "title": "Süßkartoffel"
+        }
+      ]
+    }
+  }
+}

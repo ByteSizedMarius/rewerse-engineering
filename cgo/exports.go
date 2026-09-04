@@ -450,4 +450,57 @@ func GetBulkyGoodsConfig(marketID, serviceType *C.char) *C.char {
 	return successJSON(config)
 }
 
+// --- Recipes ---
+
+func recipeOptsFromJSON(optsJSON *C.char) (*rewerse.RecipeSearchOpts, error) {
+	if optsJSON == nil {
+		return nil, nil
+	}
+	s := C.GoString(optsJSON)
+	if s == "" || s == "null" {
+		return nil, nil
+	}
+
+	var opts rewerse.RecipeSearchOpts
+	if err := json.Unmarshal([]byte(s), &opts); err != nil {
+		return nil, err
+	}
+	return &opts, nil
+}
+
+//export RecipeSearch
+func RecipeSearch(optsJSON *C.char) *C.char {
+	opts, err := recipeOptsFromJSON(optsJSON)
+	if err != nil {
+		return errorJSON(errors.New("options: " + err.Error()))
+	}
+	results, err := rewerse.RecipeSearch(opts)
+	if err != nil {
+		return errorJSON(err)
+	}
+	return successJSON(results)
+}
+
+//export GetRecipeDetails
+func GetRecipeDetails(recipeID *C.char) *C.char {
+	rid, err := requireString(recipeID)
+	if err != nil {
+		return errorJSON(errors.New("recipeID: " + err.Error()))
+	}
+	recipe, err := rewerse.GetRecipeDetails(rid)
+	if err != nil {
+		return errorJSON(err)
+	}
+	return successJSON(recipe)
+}
+
+//export GetRecipePopularTerms
+func GetRecipePopularTerms() *C.char {
+	terms, err := rewerse.GetRecipePopularTerms()
+	if err != nil {
+		return errorJSON(err)
+	}
+	return successJSON(terms)
+}
+
 func main() {}

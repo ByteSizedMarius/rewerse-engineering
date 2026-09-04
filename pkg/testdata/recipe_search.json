@@ -1,0 +1,152 @@
+{
+  "data": {
+    "recipes": {
+      "recipes": [
+        {
+          "id": "blt1111111111111111",
+          "title": "Nudeln mit Tomatensoße",
+          "timePreparation": 10,
+          "timeCooking": 15,
+          "timeTotal": 25,
+          "difficulty": 1,
+          "detailUrl": "https://www.rewe.de/rezepte/nudeln-mit-tomatensosse/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000001/1/00000001.png"
+          ]
+        },
+        {
+          "id": "blt2222222222222222",
+          "title": "Rührei mit Schnittlauch",
+          "timePreparation": 5,
+          "timeCooking": 5,
+          "timeTotal": null,
+          "difficulty": 1,
+          "detailUrl": "https://www.rewe.de/rezepte/ruehrei-mit-schnittlauch/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000002/1/00000002.png"
+          ]
+        },
+        {
+          "id": "blt3333333333333333",
+          "title": "Gemüsesuppe",
+          "timePreparation": 15,
+          "timeCooking": null,
+          "timeTotal": 40,
+          "difficulty": 1,
+          "detailUrl": "https://www.rewe.de/rezepte/gemuesesuppe/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000003/1/00000003.png"
+          ]
+        },
+        {
+          "id": "blt4444444444444444",
+          "title": "Kartoffelsalat",
+          "timePreparation": null,
+          "timeCooking": null,
+          "timeTotal": 30,
+          "difficulty": 1,
+          "detailUrl": "https://www.rewe.de/rezepte/kartoffelsalat/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000004/1/00000004.png"
+          ]
+        },
+        {
+          "id": "blt5555555555555555",
+          "title": "Blechkuchen mit Äpfeln",
+          "timePreparation": 20,
+          "timeCooking": 45,
+          "timeTotal": 75,
+          "difficulty": 2,
+          "detailUrl": "https://www.rewe.de/rezepte/blechkuchen-mit-aepfeln/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000005/1/00000005.png"
+          ]
+        },
+        {
+          "id": "blt6666666666666666",
+          "title": "Linseneintopf",
+          "timePreparation": 15,
+          "timeCooking": 60,
+          "timeTotal": 75,
+          "difficulty": 2,
+          "detailUrl": "https://www.rewe.de/rezepte/linseneintopf/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000006/1/00000006.png"
+          ]
+        },
+        {
+          "id": "blt7777777777777777",
+          "title": "Sauerteigbrot",
+          "timePreparation": 30,
+          "timeCooking": 50,
+          "timeTotal": null,
+          "difficulty": 3,
+          "detailUrl": "https://www.rewe.de/rezepte/sauerteigbrot/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000007/1/00000007.png"
+          ]
+        },
+        {
+          "id": "blt8888888888888888",
+          "title": "Gefüllte Paprika",
+          "timePreparation": null,
+          "timeCooking": 35,
+          "timeTotal": 55,
+          "difficulty": 2,
+          "detailUrl": "https://www.rewe.de/rezepte/gefuellte-paprika/",
+          "imageUrls": [
+            "https://c.rewe-static.de/00000008/1/00000008.png"
+          ]
+        }
+      ],
+      "metadata": {
+        "totalRecipeCount": 42,
+        "collections": [
+          {
+            "count": 18,
+            "name": "Vegetarisch"
+          },
+          {
+            "count": 12,
+            "name": "Fleisch"
+          },
+          {
+            "count": 7,
+            "name": "Backen"
+          },
+          {
+            "count": 5,
+            "name": "Vorspeisen"
+          }
+        ],
+        "tags": [],
+        "difficulties": [
+          {
+            "count": 24,
+            "name": 1
+          },
+          {
+            "count": 15,
+            "name": 2
+          },
+          {
+            "count": 3,
+            "name": 3
+          }
+        ]
+      }
+    }
+  },
+  "extensions": {
+    "http": [
+      {
+        "path": [
+          "recipes"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      }
+    ]
+  }
+}

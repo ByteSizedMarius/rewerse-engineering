@@ -1,0 +1,25 @@
+{
+  "data": {
+    "recipes": {
+      "recipes": [],
+      "metadata": {
+        "totalRecipeCount": 0,
+        "collections": [],
+        "tags": [],
+        "difficulties": []
+      }
+    }
+  },
+  "extensions": {
+    "http": [
+      {
+        "path": [
+          "recipes"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      }
+    ]
+  }
+}

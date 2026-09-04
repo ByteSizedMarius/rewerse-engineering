@@ -64,6 +64,8 @@ func main() {
 		if err == nil && data == nil {
 			return // already printed
 		}
+	case "recipes":
+		data, err = handleRecipes(flag.Args()[1:])
 	case "recalls":
 		data, err = rewerse.GetRecalls()
 	case "services":
@@ -104,6 +106,7 @@ Commands:
   products        Search, browse, and get product info
   discounts       Get market discounts
   categories      Get product categories
+  recipes         Search recipes, get details and popular terms
   recalls         Get product recalls
   services        Get service portfolio by zip
 
@@ -114,7 +117,9 @@ Examples:
   %s discounts -market 840174
   %s categories -market 831002
   %s services -zip 50667
+  %s recipes search -term Lachs -difficulties 1
+  %s recipes details -id blt4aaa7361ba69f8c8
 
 Run '%s <command>' for subcommand help.
-`, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName)
+`, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName, binaryName)
 }

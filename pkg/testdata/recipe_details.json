@@ -1,0 +1,159 @@
+{
+  "data": {
+    "recipeById": {
+      "id": "blt5555555555555555",
+      "title": "Blechkuchen mit Äpfeln",
+      "difficulty": 2,
+      "serving": {
+        "type": "pieces",
+        "quantity": 20
+      },
+      "timeCooking": 45,
+      "timePreparation": 20,
+      "timeTotal": 75,
+      "preparation": {
+        "steps": [
+          {
+            "description": "Die Milch erwärmen und die Butter darin schmelzen. Zucker und Hefe einrühren und 10 Minuten stehen lassen."
+          },
+          {
+            "description": "Mehl, Salz und Eier zugeben und alles zu einem glatten Teig verkneten. Zugedeckt 45 Minuten gehen lassen."
+          },
+          {
+            "description": "Den Teig auf ein Backblech ausrollen, mit den geschnittenen Äpfeln belegen und bei 180 °C etwa 45 Minuten backen."
+          }
+        ]
+      },
+      "imageUrls": [
+        {
+          "urls": {
+            "default": "https://c.rewe-static.de/00000005/1/00000005.png"
+          }
+        }
+      ],
+      "detailUrl": "blechkuchen-mit-aepfeln",
+      "tags": [
+        "Backen",
+        "Kuchen",
+        "Dessert",
+        "Mittlerer Aufwand",
+        "Blechkuchen",
+        "Hefeteig"
+      ],
+      "ingredients": [
+        {
+          "quantity": 250.0,
+          "unit": "ml",
+          "name": "Milch",
+          "displayName": "250 ml Milch"
+        },
+        {
+          "quantity": 100.0,
+          "unit": "g",
+          "name": "Butter",
+          "displayName": "100 g Butter"
+        },
+        {
+          "quantity": 80.0,
+          "unit": "g",
+          "name": "Zucker",
+          "displayName": "80 g Zucker"
+        },
+        {
+          "quantity": 1.0,
+          "unit": "Würfel",
+          "name": "Hefe",
+          "displayName": "1 Würfel Hefe"
+        },
+        {
+          "quantity": 500.0,
+          "unit": "g",
+          "name": "Mehl",
+          "displayName": "500 g Mehl"
+        },
+        {
+          "quantity": 1.0,
+          "unit": "Prise(n)",
+          "name": "Salz",
+          "displayName": "1 Prise(n) Salz"
+        },
+        {
+          "quantity": 2.0,
+          "unit": null,
+          "name": "Eier",
+          "displayName": "2 Eier"
+        },
+        {
+          "quantity": 1.2,
+          "unit": "kg",
+          "name": "Äpfel",
+          "displayName": "1.2 kg Äpfel"
+        }
+      ],
+      "nutrients": [
+        {
+          "title": "Energie",
+          "unit": "kcal",
+          "rda": 2200.0,
+          "amount": 185.0
+        },
+        {
+          "title": "Eiweiß",
+          "unit": "g",
+          "rda": 55.0,
+          "amount": 3.8
+        },
+        {
+          "title": "Fett",
+          "unit": "g",
+          "rda": 75.0,
+          "amount": 5.2
+        },
+        {
+          "title": "Kohlenhydrate",
+          "unit": "g",
+          "rda": 300.0,
+          "amount": 30.5
+        }
+      ],
+      "vitalSubstances": [
+        {
+          "title": "Vitamin B2",
+          "unit": "mg",
+          "rda": 1.2,
+          "amount": 0.1
+        },
+        {
+          "title": "Kalium",
+          "unit": "mg",
+          "rda": 2000.0,
+          "amount": 145.0
+        },
+        {
+          "title": "Magnesium",
+          "unit": "mg",
+          "rda": 375.0,
+          "amount": 11.5
+        },
+        {
+          "title": "Natrium",
+          "unit": "mg",
+          "rda": 550.0,
+          "amount": 32.4
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "http": [
+      {
+        "path": [
+          "recipeById"
+        ],
+        "message": "OK",
+        "statusCode": 200,
+        "responseBody": null
+      }
+    ]
+  }
+}

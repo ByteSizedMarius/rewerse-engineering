@@ -16,7 +16,7 @@ import json
 
 from ._ffi import call, RewerseError
 
-__version__ = "1.3.0"
+__version__ = "1.4.0"
 __all__ = ["Rewerse", "RewerseError", "__version__"]
 
 
@@ -343,3 +343,61 @@ class Rewerse:
             Beverage surcharge config (limits, prices)
         """
         return call("GetBulkyGoodsConfig", market_id, service_type)
+
+    # --- Recipes ---
+
+    def recipe_search(
+        self,
+        *,
+        search_term: str = "",
+        page: int = 1,
+        objects_per_page: int = 20,
+        collections: list[str] | None = None,
+        difficulties: list[int] | None = None,
+        tags: list[str] | None = None,
+        tag_concat: str = "AND",
+        include_recipe_of_the_day: bool = False,
+    ) -> dict:
+        """
+        Search recipes.
+
+        Args:
+            search_term: Search query, empty or "*" matches all recipes
+            page: Page number (1-indexed)
+            objects_per_page: Results per page
+            collections: Categories ("Vegetarisch", "Fleisch", "Backen",
+                "Nachspeisen", "Fisch", "Vorspeisen", "Kuchen")
+            difficulties: Effort ratings (1 = Gering, 2 = Mittel, 3 = Hoch)
+            tags: Lowercase labels (e.g., ["fisch", "vegan"])
+            tag_concat: "AND" intersects the tag results, "OR" unions them
+            include_recipe_of_the_day: Adds RecipeOfTheDay to the response
+
+        Returns:
+            Recipes with facet counts in Metadata
+        """
+        opts = {
+            "SearchTerm": search_term,
+            "Page": page,
+            "ObjectsPerPage": objects_per_page,
+            "Collections": collections or [],
+            "Difficulties": difficulties or [],
+            "Tags": tags or [],
+            "TagConcat": tag_concat,
+            "IncludeRecipeOfTheDay": include_recipe_of_the_day,
+        }
+        return call("RecipeSearch", json.dumps(opts))
+
+    def get_recipe_details(self, recipe_id: str) -> dict:
+        """
+        Get a full recipe.
+
+        Args:
+            recipe_id: The recipe ID (e.g., "blt4aaa7361ba69f8c8")
+
+        Returns:
+            Recipe with ingredients, steps, nutrients
+        """
+        return call("GetRecipeDetails", recipe_id)
+
+    def get_recipe_popular_terms(self) -> list[str]:
+        return call("GetRecipePopularTerms")

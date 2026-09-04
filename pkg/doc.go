@@ -39,4 +39,11 @@
 //	session, _ := rewerse.CreateBasket("840174", "67065", rewerse.ServicePickup)
 //	session.SetItemQuantity("listing-id", 2)
 //	basket, _ := session.GetBasket()
+//
+// # Recipes
+//
+// Search recipes or get details for a specific recipe:
+//
+//	results, _ := rewerse.RecipeSearch(&rewerse.RecipeSearchOpts{SearchTerm: "Lachs"})
+//	recipe, _ := rewerse.GetRecipeDetails("blt4aaa7361ba69f8c8")
 package rewerse

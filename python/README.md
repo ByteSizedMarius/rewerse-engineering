@@ -162,6 +162,20 @@ See [`ServiceType`](https://pkg.go.dev/github.com/ByteSizedMarius/rewerse-engine
 |--------|-------------|
 | `get_bulky_goods_config(market_id, service_type="DELIVERY")` | Get beverage crate limits and surcharges |
 
+### Recipes
+
+| Method | Description |
+|--------|-------------|
+| `recipe_search(*, search_term="", page=1, objects_per_page=20, collections=None, difficulties=None, tags=None, tag_concat="AND", include_recipe_of_the_day=False)` | Search recipes by term, collection, difficulty and tags |
+| `get_recipe_details(recipe_id)` | Get a full recipe with ingredients, steps and nutrients |
+| `get_recipe_popular_terms()` | Get the search terms shown on the recipe landing page |
+
+```python
+results = client.recipe_search(search_term="Lachs", difficulties=[1])
+recipe = client.get_recipe_details("blt4aaa7361ba69f8c8")
+terms = client.get_recipe_popular_terms()
+```
+
 ## macOS
 
 The PyPI wheel doesn't include a macOS binary. Build from source on a Mac:
