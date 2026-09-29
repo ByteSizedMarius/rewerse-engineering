@@ -9,97 +9,12 @@ param (
 	[switch]$Pfx,
 	
 	[parameter(Mandatory = $true, ParameterSetName = "CustomPath")]
-	[string]$PfxPath,
-	
-	[parameter(Mandatory = $false)]
-	[switch]$Dl
+	[string]$PfxPath
 )
 
 # ——————————————————————————————————————————————————————————————————————————————
 # Functions
 # ——————————————————————————————————————————————————————————————————————————————
-
-# APK download target version; update if this version is no longer available on UpToDown
-$targetVersion = "5.15.2"
-
-function Get-ApkVersionUrl {
-    try {
-        $response = Invoke-WebRequest -UseBasicParsing -Uri "https://rewe.en.uptodown.com/android/versions"
-        $content = $response.Content
-
-        # Find div with data-url, data-version-id, data-extra-url that contains target version
-        # HTML: <div data-url="URL" data-version-id="ID" data-extra-url="download">...<span class="version">VERSION</span>
-        $escapedVersion = [regex]::Escape($targetVersion)
-        if ($content -match "<div[^>]*data-url=`"([^`"]+)`"[^>]*data-version-id=`"([^`"]+)`"[^>]*data-extra-url=`"([^`"]+)`"[^>]*>[\s\S]*?<span[^>]*class=`"version`"[^>]*>$escapedVersion</span>") {
-            $baseUrl = $Matches[1]
-            $versionId = $Matches[2]
-            $extraUrl = $Matches[3]
-            return "$baseUrl/$extraUrl/$versionId"
-        }
-
-        Write-Error "Target version $targetVersion not found on the page"
-        return $null
-    } catch {
-        Write-Error "Error extracting download URL: $_"
-        return $null
-    }
-}
-
-function Get-ApkDownloadUrl {
-    [CmdletBinding()]
-    param()
-
-    try {
-        # Get the initial URL for the app version page
-        $initialUrl = Get-ApkVersionUrl
-        if ($null -eq $initialUrl) {
-            Write-Error "Failed to get initial URL"
-            return $null
-        }
-        Write-Verbose "Initial URL: $initialUrl"
-
-        # Request the version page
-        $versionPageResponse = Invoke-WebRequest -UseBasicParsing -Uri $initialUrl
-        $content = $versionPageResponse.Content
-
-        # Extract data-version from button.variants
-        if ($content -notmatch 'class="button variants"[^>]*data-version="([^"]+)"') {
-            Write-Error "Could not find variants button"
-            return $null
-        }
-        $dataVersion = $Matches[1]
-        Write-Verbose "Data Version: $dataVersion"
-
-        # Extract data-code from #detail-app-name
-        if ($content -notmatch 'id="detail-app-name"[^>]*data-code="([^"]+)"') {
-            Write-Error "Could not find app name element"
-            return $null
-        }
-        $dataCode = $Matches[1]
-        Write-Verbose "Data Code: $dataCode"
-
-        # Construct and request the variants URL
-        $variantsUrl = "https://rewe.en.uptodown.com/app/$dataCode/version/$dataVersion/files"
-        Write-Verbose "Variants URL: $variantsUrl"
-        $variantsResponse = Invoke-WebRequest -UseBasicParsing -Uri $variantsUrl
-        $jsonResponse = $variantsResponse.Content | ConvertFrom-Json
-        $htmlContent = $jsonResponse.content
-
-        # Extract URL from onclick in v-version div
-        # HTML: <div class="v-version" onclick="...location.href='URL';">
-        if ($htmlContent -match 'class="v-version"[^>]*onclick="[^"]*location\.href=''([^'']+)''') {
-            $downloadUrl = $Matches[1]
-            Write-Verbose "Found download URL: $downloadUrl"
-            return $downloadUrl
-        }
-
-        Write-Error "Could not find download URL in variants"
-        return $null
-    } catch {
-        Write-Error "Error extracting download URL: $_"
-        return $null
-    }
-}
 
 function Export-PfxToPemKey {
     [CmdletBinding()]
@@ -160,51 +75,6 @@ $KeyBase64
     }
 }
 
-function Download-ReweApk {
-    [CmdletBinding()]
-    param (
-        [Parameter(Mandatory = $true)]
-        [string]$WorkingDirectory
-    )
-    
-    # Ensure the working directory exists
-    if (-not (Test-Path -Path $WorkingDirectory -PathType Container)) {
-        New-Item -Path $WorkingDirectory -ItemType Directory -Force | Out-Null
-        Write-Host "Created working directory: $WorkingDirectory"
-    }
-    
-    # Function to get the APK download base URL
-    $BaseUrl = Get-ApkDownloadUrl
-    
-    try {
-        # Send a request to the URL, then extract the dynamic download link from the response
-        $Response = Invoke-WebRequest -Uri $BaseUrl -UseBasicParsing
-        if ($response.StatusCode -ne 200) {
-            throw "Issue getting data-url"
-        }
-    } catch {
-        Write-Error "Failed to fetch the APK. Download the apk manually from https://rewe.en.uptodown.com/android/"
-        return
-    }
-    
-    # Match the download data-url (the one with data-download-version attribute)
-    if ($Response.Content -match 'data-url="([^"]+)"[^>]*data-download-version=') {
-        $DataUrl = $matches[1]
-    } else {
-        Write-Error "No data-url found in the response content."
-        return
-    }
-    
-    # Downloading the file
-    Write-Host "Starting download. Please wait..."
-    $ApkUrl = "https://dw.uptodown.com/dwn/$DataUrl"
-    $ApkFile = Join-Path -Path $WorkingDirectory -ChildPath "rewe.apk"
-    Invoke-WebRequest -Uri $ApkUrl -OutFile $ApkFile -UseBasicParsing
-    Write-Host "Done"
-
-    return $ApkFile
-}
-
 # ——————————————————————————————————————————————————————————————————————————————
 # Main
 # ——————————————————————————————————————————————————————————————————————————————
@@ -256,25 +126,18 @@ if ($Pfx -or $PfxPath) {
 	return
 }
 
-if ($Dl) {
-	Write-Host "Downloading APK from UpToDown.com"	
-	$ApkFile = Download-ReweApk $WorkingDirectory
-	Write-Host "Downloaded to $ApkFile"
-	return
-}
-	
 # Apk files was not provided via cmdline
 if (-not $ApkFile) {
-	
-	Write-Host "No APK file specified. Looking in working directory..."
+
 	$ApkFiles = Get-ChildItem -Path $WorkingDirectory -File | Where-Object { $_.Extension -in ".apk",".xapk" }
-	
-	# No apkfiles in working directory. download it.
+
+	# No apkfiles in working directory
 	if ($ApkFiles.Count -eq 0) {
-		Write-Host "No APK files found in the directory '$WorkingDirectory'"
-		Write-Host "Downloading from UpToDown.com"
-		
-		$ApkFile = Download-ReweApk $WorkingDirectory
+		Write-Host "No APK file found in '$WorkingDirectory'"
+		Write-Host "Download the REWE xapk in a browser from https://rewe.en.uptodown.com/android/download/1220537953-x"
+		Write-Host "Read the buttons carefully. You want the xapk file, NOT the Uptodown installer or app store."
+		Write-Host "Then place it there or pass it with -ApkFile <path>"
+		exit 1
 	} elseif ($ApkFiles.Count -gt 1) {
 		Write-Host "Multiple APK files found in the directory"
 		$ApkFile = ($ApkFiles[0]).FullName
@@ -287,7 +150,7 @@ if (-not $ApkFile) {
 # Check if the file exists
 if (-not (Test-Path -Path $ApkFile -PathType Leaf)) {
 	Write-Error "APK file '$ApkFile' does not exist."
-	return
+	exit 1
 } else {
 	Write-Host "Using APK file: $($ApkFile)"
 }

@@ -3,7 +3,7 @@
 <div>
   <img src="gopher.png" alt="Project Logo" width="170" align="right">
   <p>An unofficial REWE API client in Go and Python. It implements the publicly accessible (unauthenticated) endpoints the REWE app uses for querying current discounts (Angebote), products, markets and recalls.</p>
-  <p>Current supported APK version: 5.16.2 (as of 06.08.26)</p> 
+  <p>Current supported APK version: 5.18.1 (as of 29.09.26)</p> 
 </div>
 
 > [!CAUTION]

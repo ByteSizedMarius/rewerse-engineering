@@ -1,6 +1,6 @@
 # extracting certificates
 
-Even though [manual extraction](#manual-extraction) is not necessarily difficult, I tried automating the whole process in PowerShell. The [script](./rewerse-engineering.ps1) contained in this directory automatically downloads the rewe apk from uptodown, extracts the certificate from it and splits the certificate into pem and key. It has some commandline-options (including the ability to just extract pem and key from a manually obtained pfx) described in [#usage](#usage).
+Even though [manual extraction](#manual-extraction) is not necessarily difficult, I tried automating the whole process in PowerShell. The [script](./rewerse-engineering.ps1) contained in this directory extracts the certificate from a manually downloaded rewe apk and splits the certificate into pem and key. It has some commandline-options (including the ability to just extract pem and key from a manually obtained pfx) described in [#usage](#usage).
 
 > [!CAUTION]
 > The PS script opens the apk in memory as a zip archive to extract the pfx from it. Windows Defender does not seem to like this very much.
@@ -8,9 +8,10 @@ Even though [manual extraction](#manual-extraction) is not necessarily difficult
 
 ## download + run
 
-In a powershell-window, run this one-liner, that clones the repo, temporarily sets the execution policy and executes the script.
+1. Download the rewe xapk from [uptodown](https://rewe.en.uptodown.com/android/download/1220537953-x) in your browser. Read the buttons carefully: you want the xapk file, **not** the Uptodown installer or app store.
+2. In a powershell-window, in the folder containing the apk, run this one-liner, that clones the repo, temporarily sets the execution policy and executes the script. The certificate files end up next to the apk.
 ```powershell
-git clone https://github.com/ByteSizedMarius/rewerse-engineering; Push-Location .\rewerse-engineering\docs; Set-ExecutionPolicy Bypass -Scope Process -Force; .\rewerse-engineering.ps1; Pop-Location
+git clone https://github.com/ByteSizedMarius/rewerse-engineering; Set-ExecutionPolicy Bypass -Scope Process -Force; .\rewerse-engineering\docs\rewerse-engineering.ps1
 ```
 
 ## manual extraction
@@ -32,11 +33,10 @@ You can also quite easily extract the pfx manually.
 
 - Optional: Provide a working directory (`-WorkingDirectory <Path>`); if not provided, the current working-directory is used
 - Optional: Provide the apk-file to use (`-ApkFile <Path>`); if not provided:
-	- the working directory is searched for an apk file
-	- if not found, rewe apk ver. 5.7.3 is downloaded from uptodown.net
+	- the working directory is searched for an .apk/.xapk file
+	- if none is found, the script tells you where to download it
 - Optional: Just extract key/pem from `mtls_prod.pfx` in current WorkingDirectory (`-Pfx`)
 - Optional: Just extract key/pem from pfx at path (`-PfxPath <Path>`)
-- Optional: Just download the apk to the current working directory (`-Dl`). Note: File ending is always .apk, even when it is an xapk.
 
 ## misc
 
@@ -44,6 +44,7 @@ Apk versions tested with the script:
 
 | version | tested |
 |---------|--------|
+| 5.18.1  | ✅      |
 | 5.15.2  | ✅      |
 | 5.11.0  | ✅      |
 | 5.7.3   | ✅      |
